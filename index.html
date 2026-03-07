@@ -224,6 +224,43 @@
     .dicas { border-left-color: var(--cor4); background: #fffef0; }
     .explicacao h3, .exemplos h3, .dicas h3 { margin-top: 0; font-size: 1.1rem; }
     .exercicios-titulo { font-size: 1.25rem; margin: 18px 0 12px 0; color: var(--cor2); }
+    /* Painel de exercícios expansível (inicialmente fechado) */
+    .painel-exercicios {
+      margin: 18px 0 12px 0;
+      border: 2px solid var(--cor3);
+      border-radius: 12px;
+      background: #fafbff;
+      overflow: hidden;
+    }
+    .painel-exercicios[open] { border-color: var(--cor2); background: #fff; }
+    .painel-exercicios-cabecalho {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--cor2);
+      padding: 14px 16px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .painel-exercicios-cabecalho::-webkit-details-marker { display: none; }
+    .painel-exercicios-cabecalho::marker { content: none; }
+    .painel-exercicios-icone {
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      color: var(--cor1);
+      transition: transform 0.2s ease;
+    }
+    .painel-exercicios[open] .painel-exercicios-icone { transform: rotate(180deg); }
+    .painel-exercicios-conteudo {
+      padding: 0 14px 14px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .painel-exercicios-conteudo .exercicios-titulo { display: none; }
     .exercicio {
       background: #fafafa;
       padding: 14px;
@@ -3971,8 +4008,38 @@
       saveRespostas();
     }
 
+    // Envolver o bloco de exercícios de cada tópico num painel expansível (fechado por defeito)
+    function initPainéisExercicios() {
+      for (var n = 1; n <= 18; n++) {
+        var section = document.getElementById('t' + n);
+        if (!section) continue;
+        var titulo = section.querySelector('h3.exercicios-titulo');
+        if (!titulo) continue;
+        var resumoId = 'resumo-t' + n;
+        var nodes = [];
+        var el = titulo.nextElementSibling;
+        while (el && el.id !== resumoId) {
+          nodes.push(el);
+          el = el.nextElementSibling;
+        }
+        if (el && el.id === resumoId) nodes.push(el);
+        var details = document.createElement('details');
+        details.className = 'painel-exercicios';
+        var summary = document.createElement('summary');
+        summary.className = 'painel-exercicios-cabecalho';
+        summary.innerHTML = titulo.innerHTML + ' <span class="painel-exercicios-icone" aria-hidden="true">▼</span>';
+        var wrap = document.createElement('div');
+        wrap.className = 'painel-exercicios-conteudo';
+        nodes.forEach(function(node) { wrap.appendChild(node); });
+        details.appendChild(summary);
+        details.appendChild(wrap);
+        titulo.parentNode.replaceChild(details, titulo);
+      }
+    }
+
     // Restaurar respostas e pontuação ao carregar a página
     function initPersist() {
+      initPainéisExercicios();
       loadRespostas();
       for (var t = 1; t <= 18; t++) corrigirTopico(t);
       var inputs = document.querySelectorAll('input[name^="t"]');
