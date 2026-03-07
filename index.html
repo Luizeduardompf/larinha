@@ -2,7 +2,10 @@
 <html lang="pt-PT">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="theme-color" content="#6C63FF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>📚 Português 4º Ano - Guia de Estudo</title>
   <style>
     * { box-sizing: border-box; }
@@ -14,119 +17,208 @@
       --cor5: #95E1D3;
       --sombra: 0 4px 15px rgba(0,0,0,0.1);
       --fundo: #F8F9FE;
-      --nav-altura: 36px;
+      --safe-top: env(safe-area-inset-top, 0);
+      --safe-bottom: env(safe-area-inset-bottom, 0);
+      --safe-left: env(safe-area-inset-left, 0);
+      --safe-right: env(safe-area-inset-right, 0);
     }
+    /* ========== MOBILE-FIRST: base = telemóvel ========== */
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #E8EAF6 0%, #FCE4EC 50%, #E0F7FA 100%);
       margin: 0;
       padding: 0;
-      padding-top: var(--nav-altura);
-      font-size: 18px;
-      line-height: 1.6;
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+      padding-bottom: var(--safe-bottom);
+      font-size: 16px;
+      line-height: 1.55;
       color: #333;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: rgba(108, 99, 255, 0.2);
     }
-    .container { max-width: 900px; margin: 0 auto; padding: 12px 16px 24px; }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 10px 12px 20px;
+      min-width: 0;
+    }
     header {
       text-align: center;
-      padding: 25px;
+      padding: 12px 14px 14px;
       background: linear-gradient(135deg, var(--cor1), var(--cor2));
-      border-radius: 20px;
+      border-radius: 14px;
       color: white;
-      margin-bottom: 25px;
+      margin-bottom: 16px;
       box-shadow: var(--sombra);
     }
-    header h1 { font-size: 2.2rem; margin: 0; }
-    header p { font-size: 1.2rem; opacity: 0.95; margin: 10px 0 0 0; }
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--nav-altura);
-      background: linear-gradient(90deg, var(--cor1), var(--cor2));
-      z-index: 100;
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    header.main-header .header-mensagem { font-size: 0.9rem; opacity: 0.95; margin: 0 0 4px 0; font-weight: 600; }
+    header.main-header h1 { font-size: 1.4rem; margin: 0; line-height: 1.2; }
+    header.main-header p { font-size: 0.95rem; opacity: 0.95; margin: 2px 0 0 0; }
+    /* Barra de tópicos dentro do header principal (wrap, sem scroll horizontal) */
+    header.main-header .header-nav {
+      margin-top: 12px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.3);
     }
-    nav::-webkit-scrollbar { height: 4px; }
-    nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 2px; }
+    header.main-header .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     .nav-links {
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
-      height: 100%;
-      padding: 0 8px;
-      gap: 2px;
+      min-height: 36px;
+      padding: 0 4px;
+      gap: 4px;
     }
     .nav-links a {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       flex-shrink: 0;
-      height: 28px;
-      padding: 0 10px;
+      min-width: 34px;
+      min-height: 30px;
+      padding: 0 8px;
       background: rgba(255,255,255,0.25);
       color: white;
       text-decoration: none;
-      border-radius: 6px;
-      font-size: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
       font-weight: 600;
       white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
     }
     .nav-links a:hover, .nav-links a:focus { background: rgba(255,255,255,0.45); }
+    .nav-links a:active { background: rgba(255,255,255,0.5); }
     .nav-links a .nav-count { font-weight: normal; opacity: 0.9; margin-left: 2px; }
     .nav-links a.topic-ok .nav-count { font-weight: bold; }
+    /* Header fixo ao fazer scroll (resumo fino, 2 linhas: título + tópicos) */
+    :root { --sticky-header-height: 80px; }
+    header.header-sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      min-height: calc(var(--sticky-header-height) + var(--safe-top));
+      padding: calc(6px + var(--safe-top)) calc(10px + var(--safe-right)) calc(6px) calc(10px + var(--safe-left));
+      background: linear-gradient(90deg, var(--cor1), var(--cor2));
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-100%);
+      transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s;
+    }
+    header.header-sticky.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    header.header-sticky .header-sticky-title {
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+      margin: 0;
+      line-height: 1.2;
+    }
+    header.header-sticky .header-nav {
+      flex: 0 0 auto;
+      margin: 0;
+      padding: 0;
+      border: none;
+      overflow: visible;
+    }
+    header.header-sticky .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px;
+      overflow: visible;
+    }
+    header.header-sticky .nav-links a {
+      min-width: 26px;
+      min-height: 24px;
+      padding: 0 5px;
+      font-size: 0.72rem;
+    }
+    header.header-sticky .nav-links a .nav-count { font-size: 0.65rem; }
     section.topic {
       background: white;
-      padding: 30px;
-      margin-bottom: 30px;
-      border-radius: 20px;
+      padding: 16px 14px;
+      margin-bottom: 20px;
+      border-radius: 16px;
       box-shadow: var(--sombra);
-      scroll-margin-top: calc(var(--nav-altura) + 8px);
+      scroll-margin-top: calc(var(--sticky-header-height) + var(--safe-top) + 10px);
     }
     section.topic h2 {
       color: var(--cor1);
-      font-size: 1.8rem;
-      border-bottom: 4px solid var(--cor4);
-      padding-bottom: 10px;
+      font-size: 1.35rem;
+      border-bottom: 3px solid var(--cor4);
+      padding-bottom: 8px;
       margin-top: 0;
+      line-height: 1.3;
+      word-wrap: break-word;
     }
     .explicacao, .exemplos, .dicas {
       background: #f0f7ff;
-      padding: 20px;
-      border-radius: 12px;
-      margin: 15px 0;
-      border-left: 5px solid var(--cor3);
+      padding: 14px;
+      border-radius: 10px;
+      margin: 12px 0;
+      border-left: 4px solid var(--cor3);
     }
     .exemplos { border-left-color: var(--cor2); background: #fff5f8; }
     .dicas { border-left-color: var(--cor4); background: #fffef0; }
-    .explicacao h3, .exemplos h3, .dicas h3 { margin-top: 0; font-size: 1.2rem; }
-    .exercicios-titulo { font-size: 1.4rem; margin: 25px 0 15px 0; color: var(--cor2); }
+    .explicacao h3, .exemplos h3, .dicas h3 { margin-top: 0; font-size: 1.1rem; }
+    .exercicios-titulo { font-size: 1.25rem; margin: 18px 0 12px 0; color: var(--cor2); }
     .exercicio {
       background: #fafafa;
-      padding: 18px;
-      margin: 12px 0;
+      padding: 14px;
+      margin: 10px 0;
       border-radius: 12px;
       border: 2px solid #eee;
     }
-    .exercicio p { margin: 0 0 10px 0; font-size: 1.05rem; }
-    .opcoes label { display: block; margin: 8px 0; cursor: pointer; font-size: 1.05rem; }
-    .opcoes input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+    .exercicio p { margin: 0 0 10px 0; font-size: 1rem; }
+    .opcoes label {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px 0;
+      min-height: 44px;
+      cursor: pointer;
+      font-size: 1rem;
+      gap: 10px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .opcoes input[type="radio"] {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      margin: 0;
+      accent-color: var(--cor1);
+    }
     input[type="text"].resposta {
-      padding: 12px 15px;
-      font-size: 1.1rem;
+      padding: 12px 14px;
+      font-size: 16px;
+      min-height: 44px;
       border: 2px solid var(--cor3);
       border-radius: 8px;
       width: 100%;
-      max-width: 400px;
+      max-width: 100%;
     }
     .btn-corrigir {
       display: inline-block;
-      margin: 20px 0;
-      padding: 15px 30px;
-      font-size: 1.2rem;
+      margin: 16px 0;
+      padding: 14px 24px;
+      min-height: 48px;
+      font-size: 1.1rem;
       font-weight: bold;
       background: linear-gradient(135deg, var(--cor1), var(--cor2));
       color: white;
@@ -134,21 +226,24 @@
       border-radius: 12px;
       cursor: pointer;
       box-shadow: var(--sombra);
-      transition: transform 0.2s;
+      transition: transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
     }
-    .btn-corrigir:hover { transform: scale(1.05); }
+    .btn-corrigir:hover { transform: scale(1.02); }
+    .btn-corrigir:active { transform: scale(0.98); }
     .resumo-correcao {
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 12px;
-      font-size: 1.15rem;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1rem;
       font-weight: 600;
       display: none;
     }
     .resumo-correcao.visible { display: block; }
-    .resumo-correcao .corretas { color: #2E7D32; background: #E8F5E9; padding: 10px; border-radius: 8px; margin: 5px 0; }
-    .resumo-correcao .incorretas { color: #C62828; background: #FFEBEE; padding: 10px; border-radius: 8px; margin: 5px 0; }
-    .resumo-correcao .explicacoes-erradas { margin-top: 12px; }
+    .resumo-correcao .corretas, .resumo-correcao .incorretas { padding: 10px; border-radius: 8px; margin: 5px 0; }
+    .resumo-correcao .corretas { color: #2E7D32; background: #E8F5E9; }
+    .resumo-correcao .incorretas { color: #C62828; background: #FFEBEE; }
+    .resumo-correcao .explicacoes-erradas { margin-top: 10px; }
     .resumo-correcao .incorreta-item { background: #FFF8E1; border-left: 4px solid #F9A825; padding: 10px 12px; margin: 8px 0; border-radius: 6px; font-weight: normal; font-size: 0.95rem; }
     .explicacao-errada-inline { background: #FFF8E1; border-left: 4px solid #E65100; padding: 10px 12px; margin-top: 10px; border-radius: 6px; font-size: 0.95rem; color: #333; }
     .explicacao-errada-inline strong { color: #BF360C; }
@@ -156,38 +251,86 @@
     .explicacao-errada-texto { font-weight: normal; }
     table.conjugacao {
       width: 100%;
-      max-width: 400px;
+      max-width: 100%;
       border-collapse: collapse;
-      margin: 15px 0;
+      margin: 12px 0;
+      font-size: 0.9rem;
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
     table.conjugacao td, table.conjugacao th {
       border: 2px solid var(--cor3);
-      padding: 12px;
+      padding: 10px 8px;
       text-align: left;
     }
     table.conjugacao th { background: var(--cor5); }
-    table.conjugacao input { width: 100%; padding: 8px; font-size: 1rem; }
-    .texto-leitura { background: #E3F2FD; padding: 20px; border-radius: 12px; margin: 15px 0; font-style: italic; }
-    @media (max-width: 600px) {
-      body { font-size: 16px; }
-      .container { padding: 10px 12px 20px; }
-      header { padding: 18px 12px; margin-bottom: 18px; }
-      header h1 { font-size: 1.5rem; }
-      section.topic { padding: 18px 14px; margin-bottom: 20px; }
-      .explicacao, .exemplos, .dicas { padding: 14px; }
-      .exercicio { padding: 14px; }
-      .opcoes label { margin: 10px 0; min-height: 44px; display: flex; align-items: center; }
-      .opcoes input[type="radio"] { min-width: 22px; min-height: 22px; }
-      input[type="text"].resposta { min-height: 44px; font-size: 16px; }
-      .btn-corrigir { padding: 14px 24px; min-height: 48px; font-size: 1.1rem; }
-      table.conjugacao { font-size: 0.95rem; }
-      table.conjugacao input { min-height: 40px; }
+    table.conjugacao input { width: 100%; padding: 8px; font-size: 16px; min-height: 40px; }
+    .texto-leitura { background: #E3F2FD; padding: 14px; border-radius: 10px; margin: 12px 0; font-style: italic; font-size: 0.98rem; }
+    .video-explicacao { margin: 14px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 100%; }
+    .video-explicacao iframe { display: block; width: 100%; height: 200px; border: 0; pointer-events: auto; }
+    .video-link-fallback { background: #FFF3E0; border: 1px solid #FFB74D; padding: 14px; }
+    .video-link-fallback .video-fallback-text { margin: 0 0 10px 0; font-size: 0.95rem; color: #333; }
+    .video-link-fallback .video-fallback-btn {
+      display: inline-block;
+      background: #E65100;
+      color: #fff;
+      padding: 12px 18px;
+      min-height: 44px;
+      line-height: 1.3;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .video-link-fallback .video-fallback-btn:hover { background: #BF360C; }
+    .video-link-fallback .video-fallback-btn + .video-fallback-btn { margin-left: 10px; }
+    /* ========== Tablet e desktop: min-width ========== */
+    @media (min-width: 600px) {
+      body { font-size: 17px; }
+      .container { padding: 14px 20px 28px; }
+      header.main-header { padding: 14px 20px 16px; margin-bottom: 20px; }
+      header.main-header .header-mensagem { font-size: 0.95rem; margin: 0 0 6px 0; }
+      header.main-header h1 { font-size: 1.65rem; }
+      header.main-header p { font-size: 1rem; margin: 4px 0 0 0; }
+      header.main-header .header-nav { margin-top: 14px; padding-top: 10px; }
+      .nav-links a { min-width: auto; min-height: 28px; padding: 0 10px; font-size: 0.8rem; }
+      header.header-sticky .nav-links a { min-width: 26px; min-height: 24px; font-size: 0.75rem; }
+      section.topic { padding: 24px 22px; margin-bottom: 26px; border-radius: 20px; }
+      section.topic h2 { font-size: 1.65rem; border-bottom-width: 4px; padding-bottom: 10px; }
+      .explicacao, .exemplos, .dicas { padding: 18px; margin: 15px 0; border-left-width: 5px; }
+      .explicacao h3, .exemplos h3, .dicas h3 { font-size: 1.2rem; }
+      .exercicios-titulo { font-size: 1.4rem; margin: 22px 0 14px 0; }
+      .exercicio { padding: 18px; margin: 12px 0; }
+      .exercicio p { font-size: 1.05rem; }
+      .opcoes label { margin: 8px 0; padding: 6px 0; min-height: auto; font-size: 1.05rem; }
+      .opcoes input[type="radio"] { width: 18px; height: 18px; }
+      input[type="text"].resposta { font-size: 1.05rem; min-height: auto; max-width: 400px; }
+      .btn-corrigir { padding: 15px 30px; min-height: auto; font-size: 1.2rem; margin: 20px 0; }
+      .btn-corrigir:hover { transform: scale(1.05); }
+      .resumo-correcao { padding: 20px; font-size: 1.1rem; margin-top: 20px; }
+      table.conjugacao { font-size: 1rem; max-width: 400px; display: table; margin: 15px 0; }
+      table.conjugacao td, table.conjugacao th { padding: 12px; }
+      table.conjugacao input { font-size: 1rem; min-height: auto; }
+      .texto-leitura { padding: 20px; margin: 15px 0; }
+      .video-explicacao { max-width: 360px; margin: 16px 0; }
+      .video-explicacao iframe { height: 202px; }
+      .video-link-fallback .video-fallback-btn { min-height: auto; padding: 10px 18px; margin-top: 0; }
+    }
+    @media (min-width: 900px) {
+      body { font-size: 18px; }
+      .container { padding: 16px 24px 32px; }
+      section.topic { padding: 30px; margin-bottom: 30px; }
+      section.topic h2 { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
-  <nav aria-label="Menu de tópicos">
-    <div class="nav-links">
+  <!-- Header fixo (aparece ao fazer scroll) -->
+  <header class="header-sticky" id="header-sticky" aria-hidden="true">
+    <span class="header-sticky-title">📚 Português 4º Ano</span>
+    <nav class="header-nav" aria-label="Tópicos">
+      <div class="nav-links">
         <a href="#t1" title="Ler e compreender">1<span class="nav-count"></span></a>
         <a href="#t2" title="Separação de sílabas">2<span class="nav-count"></span></a>
         <a href="#t3" title="Palavras simples e complexas">3<span class="nav-count"></span></a>
@@ -206,12 +349,36 @@
         <a href="#t16" title="Sujeito e predicado">16<span class="nav-count"></span></a>
         <a href="#t17" title="Preposições">17<span class="nav-count"></span></a>
         <a href="#t18" title="Produção de texto">18<span class="nav-count"></span></a>
-    </div>
-  </nav>
+      </div>
+    </nav>
+  </header>
   <div class="container">
-    <header>
+    <header class="main-header" id="main-header">
+      <p class="header-mensagem">Força LARINHA, Foca em MUITO BOM! 💪</p>
       <h1>📚 Português 4º Ano</h1>
-      <p>Guia de Estudo Interativo — Aprende a brincar!</p>
+      <p>Professora Odília — Prova dia 10/03/2026!</p>
+      <nav class="header-nav" aria-label="Menu de tópicos">
+        <div class="nav-links">
+          <a href="#t1" title="Ler e compreender">1<span class="nav-count"></span></a>
+          <a href="#t2" title="Separação de sílabas">2<span class="nav-count"></span></a>
+          <a href="#t3" title="Palavras simples e complexas">3<span class="nav-count"></span></a>
+          <a href="#t4" title="Famílias de palavras">4<span class="nav-count"></span></a>
+          <a href="#t5" title="Tipos de frases">5<span class="nav-count"></span></a>
+          <a href="#t6" title="Classes de palavras">6<span class="nav-count"></span></a>
+          <a href="#t7" title="Onomatopeias">7<span class="nav-count"></span></a>
+          <a href="#t8" title="Modos verbais">8<span class="nav-count"></span></a>
+          <a href="#t9" title="Conjugação de verbos">9<span class="nav-count"></span></a>
+          <a href="#t10" title="Pronomes pessoais">10<span class="nav-count"></span></a>
+          <a href="#t11" title="Determinantes demonstrativos">11<span class="nav-count"></span></a>
+          <a href="#t12" title="Determinantes possessivos">12<span class="nav-count"></span></a>
+          <a href="#t13" title="Determinantes interrogativos">13<span class="nav-count"></span></a>
+          <a href="#t14" title="Conectores discursivos">14<span class="nav-count"></span></a>
+          <a href="#t15" title="Graus dos adjetivos">15<span class="nav-count"></span></a>
+          <a href="#t16" title="Sujeito e predicado">16<span class="nav-count"></span></a>
+          <a href="#t17" title="Preposições">17<span class="nav-count"></span></a>
+          <a href="#t18" title="Produção de texto">18<span class="nav-count"></span></a>
+        </div>
+      </nav>
     </header>
 
     <!-- TÓPICO 1: Ler e compreender -->
@@ -405,6 +572,10 @@
         <h3>O que é uma sílaba?</h3>
         <p>Uma <strong>sílaba</strong> é um conjunto de sons que pronunciamos de uma vez. As palavras dividem-se em sílabas: <strong>ca-sa</strong>, <strong>es-co-la</strong>.</p>
         <p><strong>Sílaba tónica</strong> é a sílaba que pronunciamos com mais força. Em <strong>casa</strong>, a tónica é <strong>ca</strong>. Em <strong>escola</strong>, é <strong>co</strong>.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Sílabas e classificação das palavras (monossílabas, dissílabas, trissílabas, polissílabas):</p>
+          <a href="https://www.youtube.com/watch?v=r4NLo5jgaMU&t=9s&pp=ygWUAVTDs3BpY28gMiDigJQgU8OtbGFiYXMgZSBjbGFzc2lmaWNhw6fDo28gZGFzIHBhbGF2cmFzICBEaXZpc8OjbyBzaWzDoWJpY2EgIE1vbm9zc8OtbGFiYXMsIGRpc3PDrWxhYmFzLCB0cmlzc8OtbGFiYXMgZSBwb2xpc3PDrWxhYmFzICBTw61sYWJhIHTDs25pY2E%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>📌 Classificação pelo número de sílabas</h3>
@@ -591,6 +762,10 @@
         <strong>Palavra complexa</strong> = formada a partir de outra, juntando <strong>prefixos</strong> (à frente) ou <strong>sufixos</strong> (atrás).</p>
         <p><strong>Prefixo</strong> = partícula que se coloca no <strong>início</strong> da palavra (in- em <strong>in</strong>feliz).<br>
         <strong>Sufixo</strong> = partícula que se coloca no <strong>fim</strong> da palavra (-mente em feliz<strong>mente</strong>).</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Palavras simples e complexas (prefixo e sufixo):</p>
+          <a href="https://www.youtube.com/watch?v=CCEEbYNbkjk&pp=ygVrUGFsYXZyYXMgc2ltcGxlcyBlIHBhbGF2cmFzIGNvbXBsZXhhcyAgUGFsYXZyYSBiYXNlICBQcmVmaXhvIChhbnRlcyBkYSBwYWxhdnJhKSAgU3VmaXhvIChkZXBvaXMgZGEgcGFsYXZyYSk%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -770,6 +945,10 @@
       <div class="explicacao">
         <h3>O que é uma família de palavras?</h3>
         <p>É um conjunto de palavras que partilham a mesma <strong>raiz</strong> (parte comum). Todas têm um significado relacionado!</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Família de palavras (mesma raiz, formação de palavras):</p>
+          <a href="https://www.youtube.com/watch?v=HazNriKKl38&pp=ygVqRmFtw61saWEgZGUgcGFsYXZyYXMgIFBhbGF2cmFzIGNvbSBhIG1lc21hIHJhaXogIFJlbGHDp8OjbyBkZSBzaWduaWZpY2FkbyBlbnRyZSBwYWxhdnJhcyBkYSBtZXNtYSBmYW3DrWxpYQ%3D%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplo: família de "mar"</h3>
@@ -954,8 +1133,12 @@
         <h3>Os 4 tipos de frases</h3>
         <p>• <strong>Declarativa</strong> – afirma ou nega algo. Termina em ponto (.)<br>
         • <strong>Interrogativa</strong> – faz uma pergunta. Termina em (?)<br>
-        • <strong>Exclamativa</strong> – exprime emoção, surpresa. Termina em (!)<br>
+        • <strong>Exclamativa</strong> – mostra emoção, surpresa. Termina em (!)<br>
         • <strong>Imperativa</strong> – dá ordem, pedido ou conselho. Pode terminar em (.) ou (!)</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Tipos de frases:</p>
+          <a href="https://www.youtube.com/watch?v=dEuQ3vqRho0&pp=ygV0VGlwb3MgZGUgZnJhc2VzICBGcmFzZSBkZWNsYXJhdGl2YSAgRnJhc2UgaW50ZXJyb2dhdGl2YSAgRnJhc2UgZXhjbGFtYXRpdmEgIEZyYXNlIGltcGVyYXRpdmEgIFBvbnR1YcOnw6NvIGRhcyBmcmFzZXM%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -985,7 +1168,7 @@
           <label><input type="radio" name="t5-ex2" value="imperativa"> imperativa</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="5" data-ex="3" data-correct="exclamativa" data-explicacao="«Que susto!» exprime <strong>emoção</strong> ou surpresa (medo, admiração). Frases assim chamam-se <strong>exclamativas</strong> e terminam em !.">
+      <div class="exercicio" data-topic="5" data-ex="3" data-correct="exclamativa" data-explicacao="«Que susto!» demonstra <strong>emoção</strong> ou surpresa (medo, admiração). Frases assim chamam-se <strong>exclamativas</strong> e terminam em !.">
         <p>3. "Que susto!" Que tipo de frase?</p>
         <div class="opcoes">
           <label><input type="radio" name="t5-ex3" value="declarativa"> declarativa</label>
@@ -1009,12 +1192,12 @@
           <label><input type="radio" name="t5-ex5" value="exclamação"> exclamação</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="5" data-ex="6" data-correct="interrogação" data-explicacao="A frase <strong>interrogativa</strong> faz uma pergunta e termina com o sinal de <strong>interrogação</strong> (?). Exemplo: Onde vais? Quantos anos tens?">
-        <p>6. A frase interrogativa termina em ______.</p>
+      <div class="exercicio" data-topic="5" data-ex="6" data-correct="?" data-explicacao="Uma <strong>pergunta</strong> termina com o sinal <strong>?</strong> (interrogação). O ponto (.) termina frases que afirmam; o ! termina exclamações.">
+        <p>6. Qual sinal termina uma pergunta?</p>
         <div class="opcoes">
-          <label><input type="radio" name="t5-ex6" value="interrogação"> interrogação (?)</label>
-          <label><input type="radio" name="t5-ex6" value="ponto"> ponto (.)</label>
-          <label><input type="radio" name="t5-ex6" value="exclamação"> exclamação (!)</label>
+          <label><input type="radio" name="t5-ex6" value="?"> ?</label>
+          <label><input type="radio" name="t5-ex6" value="."> .</label>
+          <label><input type="radio" name="t5-ex6" value="!"> !</label>
         </div>
       </div>
       <div class="exercicio" data-topic="5" data-ex="7" data-correct="pergunta" data-explicacao="A frase <strong>interrogativa</strong> faz uma <strong>pergunta</strong> e termina com ?. Exemplo: Que dia é hoje? Onde está o lápis?">
@@ -1041,7 +1224,7 @@
           <label><input type="radio" name="t5-ex9" value="exclamativa"> exclamativa</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="5" data-ex="10" data-correct="exclamação" data-explicacao="A frase <strong>exclamativa</strong> exprime emoção ou surpresa e termina com o sinal de <strong>exclamação</strong> (!). Exemplo: Que belo dia! Que susto!">
+      <div class="exercicio" data-topic="5" data-ex="10" data-correct="exclamação" data-explicacao="A frase <strong>exclamativa</strong> demonstra emoção ou surpresa e termina com o sinal de <strong>exclamação</strong> (!). Exemplo: Que belo dia! Que susto!">
         <p>10. A frase exclamativa termina em ______.</p>
         <div class="opcoes">
           <label><input type="radio" name="t5-ex10" value="exclamação"> exclamação (!)</label>
@@ -1081,8 +1264,8 @@
           <label><input type="radio" name="t5-ex14" value="ordena"> ordena</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="5" data-ex="15" data-correct="exclamativa" data-explicacao="«Que lindo!» exprime <strong>emoção</strong> (admiração). Frases que exprimem emoção ou surpresa chamam-se <strong>exclamativas</strong> e terminam em !.">
-        <p>15. "Que lindo!" exprime emoção. É ______.</p>
+      <div class="exercicio" data-topic="5" data-ex="15" data-correct="exclamativa" data-explicacao="«Que lindo!» demonstra <strong>emoção</strong> (admiração). Frases que demonstram emoção ou surpresa chamam-se <strong>exclamativas</strong> e terminam em !.">
+        <p>15. "Que lindo!" demonstra emoção. É ______.</p>
         <div class="opcoes">
           <label><input type="radio" name="t5-ex15" value="exclamativa"> exclamativa</label>
           <label><input type="radio" name="t5-ex15" value="declarativa"> declarativa</label>
@@ -1105,8 +1288,8 @@
           <label><input type="radio" name="t5-ex17" value="exclamativa"> exclamativa</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="5" data-ex="18" data-correct="emoção" data-explicacao="A frase <strong>exclamativa</strong> exprime <strong>emoção</strong> ou surpresa (alegria, medo, admiração…) e termina em !. Exemplo: Que belo! Que susto!">
-        <p>18. A frase exclamativa exprime ______ ou surpresa.</p>
+      <div class="exercicio" data-topic="5" data-ex="18" data-correct="emoção" data-explicacao="A frase <strong>exclamativa</strong> demonstra <strong>emoção</strong> ou surpresa (alegria, medo, admiração…) e termina em !. Exemplo: Que belo! Que susto!">
+        <p>18. A frase exclamativa mostra ______ ou surpresa.</p>
         <div class="opcoes">
           <label><input type="radio" name="t5-ex18" value="emoção"> emoção</label>
           <label><input type="radio" name="t5-ex18" value="pergunta"> pergunta</label>
@@ -1124,9 +1307,9 @@
       <div class="exercicio" data-topic="5" data-ex="20" data-correct="conselho" data-explicacao="A frase imperativa serve para mandar fazer algo. Pode dar: <strong>ordem</strong> («Fecha a porta!»), <strong>pedido</strong> («Ajuda-me.») ou <strong>conselho</strong> («Estuda para o teste.»).">
         <p>20. A frase imperativa pode dar ordem, pedido ou ______.</p>
         <div class="opcoes">
-          <label><input type="radio" name="t5-ex20" value="conselho"> conselho</label>
+          <label><input type="radio" name="t5-ex20" value="conselho"> conselho, </label>
           <label><input type="radio" name="t5-ex20" value="pergunta"> pergunta</label>
-          <label><input type="radio" name="t5-ex20" value="história"> história</label>
+          <label><input type="radio" name="t5-ex20" value="explicação"> explicação</label>
         </div>
       </div>
       <button class="btn-corrigir" onclick="corrigirTopico(5)">✅ Corrigir Tópico</button>
@@ -1143,6 +1326,10 @@
         <strong>Verbo</strong> – indica ação, estado ou fenómeno (ex: correr, ser, chover).<br>
         <strong>Adjetivo</strong> – qualifica o nome (ex: bonito, alto, feliz).</p>
         <p>Há também: advérbio, pronome, determinante, conjunção, preposição, interjeição.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Classes de palavras (nome, verbo, adjetivo):</p>
+          <a href="https://www.youtube.com/watch?v=CG0F824bI-Y&pp=ygVQQ2xhc3NlcyBkZSBwYWxhdnJhcyAoYW7DoWxpc2UgbW9yZm9sw7NnaWNhKSAgTm9tZSAoc3Vic3RhbnRpdm8pICBWZXJibyAgQWRqZXRpdm8%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -1325,6 +1512,10 @@
       <div class="explicacao">
         <h3>O que é uma onomatopeia?</h3>
         <p>É uma palavra que <strong>imita</strong> um som da natureza ou de ações. Quando escreves o barulho que algo faz, estás a usar uma onomatopeia!</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Onomatopeias:</p>
+          <a href="https://www.youtube.com/watch?v=VrwJone9VhM&pp=ygUmT25vbWF0b3BlaWFzICBQYWxhdnJhcyBxdWUgaW1pdGFtIHNvbnM%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -1506,7 +1697,12 @@
         <h3>O que são modos verbais?</h3>
         <p>O <strong>modo</strong> do verbo indica a atitude de quem fala perante a ação.</p>
         <p><strong>Indicativo</strong> – apresenta a ação como real, certa (ex: Eu estudo. Ela correu.)<br>
-        <strong>Imperativo</strong> – exprime ordem, pedido ou conselho (ex: Estuda! Corre daqui!)</p>
+        <strong>Imperativo</strong> – dar ordem, faz pedido ou dar conselho (ex: Estuda! Corre daqui!)</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeos: Modos do verbo (indicativo e imperativo):</p>
+          <a href="https://www.youtube.com/watch?v=ypW2w1egpSU&pp=ygUmTW9kb3MgZG8gdmVyYm8gIEluZGljYXRpdm8gIEltcGVyYXRpdm8%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Vídeo 1 – Indicativo e imperativo</a>
+          <a href="https://www.youtube.com/watch?v=2LuZlzLPThk&pp=ygUbTW9kb3MgZG8gdmVyYm8gICBJbXBlcmF0aXZv" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Vídeo 2 – Imperativo</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -1524,7 +1720,7 @@
           <label><input type="radio" name="t8-ex1" value="imperativo"> imperativo</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="8" data-ex="2" data-correct="imperativo" data-explicacao="«Estuda já!» é uma <strong>ordem</strong> (manda fazer algo). O modo que exprime ordem, pedido ou conselho chama-se <strong>imperativo</strong>.">
+      <div class="exercicio" data-topic="8" data-ex="2" data-correct="imperativo" data-explicacao="«Estuda já!» é uma <strong>ordem</strong> (manda fazer algo). O modo que dar ordem, faz pedido ou dar conselho chama-se <strong>imperativo</strong>.">
         <p>2. "Estuda já!" O verbo está no modo ______.</p>
         <div class="opcoes">
           <label><input type="radio" name="t8-ex2" value="imperativo"> imperativo</label>
@@ -1540,15 +1736,15 @@
           <label><input type="radio" name="t8-ex3" value="dúvida"> dúvida</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="8" data-ex="4" data-correct="ordem" data-explicacao="O <strong>imperativo</strong> exprime <strong>ordem</strong> («Fecha a porta!»), <strong>pedido</strong> («Ajuda-me.») ou <strong>conselho</strong> («Estuda.»).">
-        <p>4. O imperativo exprime ______, pedido ou conselho.</p>
+      <div class="exercicio" data-topic="8" data-ex="4" data-correct="ordem" data-explicacao="O <strong>imperativo</strong> dar <strong>ordem</strong> («Fecha a porta!»), <strong>pedido</strong> («Ajuda-me.») ou <strong>conselho</strong> («Estuda.»).">
+        <p>4. O imperativo dar ______, faz pedido ou dar conselho.</p>
         <div class="opcoes">
           <label><input type="radio" name="t8-ex4" value="ordem"> ordem</label>
           <label><input type="radio" name="t8-ex4" value="facto"> facto</label>
           <label><input type="radio" name="t8-ex4" value="pergunta"> pergunta</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="8" data-ex="5" data-correct="imperativo" data-explicacao="«Fecha a janela!» é uma <strong>ordem</strong> (manda fazer algo). O modo que exprime ordem, pedido ou conselho é o <strong>imperativo</strong>.">
+      <div class="exercicio" data-topic="8" data-ex="5" data-correct="imperativo" data-explicacao="«Fecha a janela!» é uma <strong>ordem</strong> (manda fazer algo). O modo que dar ordem, faz pedido ou dar conselho é o <strong>imperativo</strong>.">
         <p>5. "Fecha a janela!" Que modo verbal?</p>
         <div class="opcoes">
           <label><input type="radio" name="t8-ex5" value="indicativo"> indicativo</label>
@@ -1682,6 +1878,10 @@
         <strong>Pretérito perfeito</strong> – ação passada acabada (eu cantei).<br>
         <strong>Pretérito imperfeito</strong> – ação passada em curso ou habitual (eu cantava).<br>
         <strong>Futuro</strong> – ação futura (eu cantarei).</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Conjugação verbal (Presente, Pretérito, Futuro):</p>
+          <a href="https://www.youtube.com/watch?v=U27jEc610Tg&pp=ygUcUHJlc2VudGUgIFByZXTDqXJpdG8gIEZ1dHVybw%3D%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Verbo CANTAR – Presente do indicativo</h3>
@@ -1878,6 +2078,10 @@
         <p>São palavras que substituem os nomes das pessoas (ou coisas) na frase. Ex: <strong>Eu</strong> vou. <strong>Tu</strong> comes. <strong>Ele</strong> corre.</p>
         <p><strong>Formas tónicas</strong> – têm acento próprio na frase (eu, tu, ele, ela, nós, vós, eles, elas). Usam-se sozinhos ou após preposição.<br>
         <strong>Formas átonas</strong> – não têm acento próprio, aparecem ligadas ao verbo (me, te, se, lhe, nos, vos, o, a, etc.).</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Pronomes pessoais (forma tónica e átona):</p>
+          <a href="https://www.youtube.com/watch?v=tHljSatQsQw&pp=ygVJUHJvbm9tZXMgcGVzc29haXMgIEZvcm1hIHTDs25pY2EgKGV1LCB0dSwgbWltLCB0aSkgIEZvcm1hIMOhdG9uYSAobWUsIHRlKQ%3D%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -2060,6 +2264,10 @@
         <strong>Este/esta</strong> – perto de quem fala.<br>
         <strong>Esse/essa</strong> – perto de quem ouve.<br>
         <strong>Aquele/aquela</strong> – longe dos dois.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Demonstrativos (este, esse, aquele):</p>
+          <a href="https://www.youtube.com/watch?v=i1YVo27-qm4" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -2238,6 +2446,10 @@
       <div class="explicacao">
         <h3>O que são?</h3>
         <p>Indicam <strong>posse</strong>, a quem pertence algo. Concordam em género e número com a coisa possuída.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Determinantes possessivos:</p>
+          <a href="https://www.youtube.com/watch?v=yOtAlB14Fgg" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -2418,6 +2630,10 @@
       <div class="explicacao">
         <h3>O que são?</h3>
         <p>Usam-se em <strong>perguntas</strong> para questionar sobre o nome. Ex: <strong>Que</strong> livro? <strong>Qual</strong> caneta? <strong>Quantos</strong> anos?</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Palavras interrogativas:</p>
+          <a href="https://www.youtube.com/watch?v=CuHI7E3004A" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -2598,6 +2814,10 @@
       <div class="explicacao">
         <h3>O que são?</h3>
         <p>Palavras que <strong>ligam</strong> partes do texto e mostram a relação entre ideias: adição (e), oposição (mas), causa (porque), ordem (depois, então), conclusão (por isso).</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Conectores (e, mas, porque, etc.):</p>
+          <a href="https://www.youtube.com/watch?v=MZ7hxGuL0D4&pp=ygVhY3JpYW5jYXMgQ29uZWN0b3JlcyAocGFsYXZyYXMgZGUgbGlnYcOnw6NvKSBwb3J0dWd1w6pzIChlICBtYXMgIHBvcnF1ZSAgZGVwb2lzICBlbnTDo28gIHBvciBpc3NvKdIHCQmuCgGHKiGM7w%3D%3D" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -2780,6 +3000,10 @@
         <p><strong>Grau normal</strong> – qualidade simples (alto, bonito).<br>
         <strong>Comparativo</strong> – compara dois elementos (mais alto que, tão alto como).<br>
         <strong>Superlativo</strong> – qualidade no máximo (altíssimo, o mais alto).</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Grau dos adjetivos (normal, comparativo, superlativo):</p>
+          <a href="https://www.youtube.com/watch?v=e8Ma4Nj43w0" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -2895,7 +3119,7 @@
         </div>
       </div>
       <div class="exercicio" data-topic="15" data-ex="14" data-correct="qualidade">
-        <p>14. O adjetivo no grau normal exprime ______ simples.</p>
+        <p>14. O adjetivo no grau normal refere-se a ______ simples.</p>
         <div class="opcoes">
           <label><input type="radio" name="t15-ex14" value="qualidade"> qualidade</label>
           <label><input type="radio" name="t15-ex14" value="quantidade"> quantidade</label>
@@ -2962,6 +3186,10 @@
         <p>A frase simples divide-se em duas partes:<br>
         <strong>Sujeito</strong> – quem faz a ação (ou de quem se fala).<br>
         <strong>Predicado</strong> – o que se diz sobre o sujeito (ação, estado).</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Sujeito e predicado:</p>
+          <a href="https://www.youtube.com/watch?v=ia0Q6YVxcvg" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -3140,6 +3368,10 @@
       <div class="explicacao">
         <h3>O que são?</h3>
         <p>Palavras que <strong>ligam</strong> outras palavras e indicam relação (lugar, tempo, modo, posse, etc.).</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo: Preposições:</p>
+          <a href="https://www.youtube.com/watch?v=FZSJDNRTO3g" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
       </div>
       <div class="exemplos">
         <h3>💡 Exemplos</h3>
@@ -3558,19 +3790,22 @@
       const incorretas = [];
       for (let ex = 1; ex <= 20; ex++) {
         let ok = false;
+        let semResposta = false;
         if (topic === 9 && ex === 1) {
           const sel = (name) => (document.querySelector('input[name="' + name + '"]:checked') || {}).value || '';
           const a = normalize(sel('t9-ex1-a'));
           const b = normalize(sel('t9-ex1-b'));
           const c = normalize(sel('t9-ex1-c'));
+          semResposta = (a === '' && b === '' && c === '');
           ok = (a === 'canto' && b === 'cantas' && c === 'canta');
         } else {
           const resp = normalize(getResposta(topic, ex));
           const correct = normalize(getCorrect(topic, ex));
+          semResposta = (resp === '');
           ok = correct && (resp === correct);
         }
         if (ok) corretas.push(ex);
-        else incorretas.push(ex);
+        else if (!semResposta) incorretas.push(ex);
       }
       const resumoEl = document.getElementById('resumo-t' + topic);
       if (!resumoEl) return;
@@ -3587,8 +3822,8 @@
       });
       resumoEl.innerHTML = '<div class="corretas">CORRETAS: ' + (corretas.length ? corretas.join(',') : 'nenhuma') + '</div><div class="incorretas">INCORRETAS: ' + (incorretas.length ? incorretas.join(',') : 'nenhuma') + '</div>';
       resumoEl.classList.add('visible');
-      var navLink = document.querySelector('nav a[href="#t' + topic + '"]');
-      if (navLink) {
+      var navLinks = document.querySelectorAll('a[href="#t' + topic + '"]');
+      navLinks.forEach(function(navLink) {
         var countSpan = navLink.querySelector('.nav-count');
         if (countSpan) {
           countSpan.textContent = ' (' + corretas.length + '/20)';
@@ -3599,8 +3834,22 @@
             navLink.classList.remove('topic-ok');
           }
         }
-      }
+      });
     }
+    // Mostrar/ocultar header fixo ao fazer scroll
+    (function() {
+      var mainHeader = document.getElementById('main-header');
+      var stickyHeader = document.getElementById('header-sticky');
+      if (!mainHeader || !stickyHeader) return;
+      var threshold = 80;
+      function onScroll() {
+        var show = window.scrollY > threshold;
+        stickyHeader.classList.toggle('visible', show);
+        stickyHeader.setAttribute('aria-hidden', show ? 'false' : 'true');
+      }
+      window.addEventListener('scroll', function() { requestAnimationFrame(onScroll); }, { passive: true });
+      onScroll();
+    })();
   </script>
 </body>
 </html>
