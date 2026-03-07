@@ -1,0 +1,3069 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>📚 Português 4º Ano - Guia de Estudo</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --cor1: #6C63FF;
+      --cor2: #FF6B9D;
+      --cor3: #4ECDC4;
+      --cor4: #FFE66D;
+      --cor5: #95E1D3;
+      --sombra: 0 4px 15px rgba(0,0,0,0.1);
+      --fundo: #F8F9FE;
+      --nav-altura: 36px;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #E8EAF6 0%, #FCE4EC 50%, #E0F7FA 100%);
+      margin: 0;
+      padding: 0;
+      padding-top: var(--nav-altura);
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 12px 16px 24px; }
+    header {
+      text-align: center;
+      padding: 25px;
+      background: linear-gradient(135deg, var(--cor1), var(--cor2));
+      border-radius: 20px;
+      color: white;
+      margin-bottom: 25px;
+      box-shadow: var(--sombra);
+    }
+    header h1 { font-size: 2.2rem; margin: 0; }
+    header p { font-size: 1.2rem; opacity: 0.95; margin: 10px 0 0 0; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-altura);
+      background: linear-gradient(90deg, var(--cor1), var(--cor2));
+      z-index: 100;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    nav::-webkit-scrollbar { height: 4px; }
+    nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 2px; }
+    .nav-links {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      height: 100%;
+      padding: 0 8px;
+      gap: 2px;
+    }
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      height: 28px;
+      padding: 0 10px;
+      background: rgba(255,255,255,0.25);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a:focus { background: rgba(255,255,255,0.45); }
+    .nav-links a .nav-count { font-weight: normal; opacity: 0.9; margin-left: 2px; }
+    .nav-links a.topic-ok .nav-count { font-weight: bold; }
+    section.topic {
+      background: white;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 20px;
+      box-shadow: var(--sombra);
+      scroll-margin-top: calc(var(--nav-altura) + 8px);
+    }
+    section.topic h2 {
+      color: var(--cor1);
+      font-size: 1.8rem;
+      border-bottom: 4px solid var(--cor4);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    .explicacao, .exemplos, .dicas {
+      background: #f0f7ff;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+      border-left: 5px solid var(--cor3);
+    }
+    .exemplos { border-left-color: var(--cor2); background: #fff5f8; }
+    .dicas { border-left-color: var(--cor4); background: #fffef0; }
+    .explicacao h3, .exemplos h3, .dicas h3 { margin-top: 0; font-size: 1.2rem; }
+    .exercicios-titulo { font-size: 1.4rem; margin: 25px 0 15px 0; color: var(--cor2); }
+    .exercicio {
+      background: #fafafa;
+      padding: 18px;
+      margin: 12px 0;
+      border-radius: 12px;
+      border: 2px solid #eee;
+    }
+    .exercicio p { margin: 0 0 10px 0; font-size: 1.05rem; }
+    .opcoes label { display: block; margin: 8px 0; cursor: pointer; font-size: 1.05rem; }
+    .opcoes input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+    input[type="text"].resposta {
+      padding: 12px 15px;
+      font-size: 1.1rem;
+      border: 2px solid var(--cor3);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .btn-corrigir {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, var(--cor1), var(--cor2));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: var(--sombra);
+      transition: transform 0.2s;
+    }
+    .btn-corrigir:hover { transform: scale(1.05); }
+    .resumo-correcao {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      display: none;
+    }
+    .resumo-correcao.visible { display: block; }
+    .resumo-correcao .corretas { color: #2E7D32; background: #E8F5E9; padding: 10px; border-radius: 8px; margin: 5px 0; }
+    .resumo-correcao .incorretas { color: #C62828; background: #FFEBEE; padding: 10px; border-radius: 8px; margin: 5px 0; }
+    .resumo-correcao .explicacoes-erradas { margin-top: 12px; }
+    .resumo-correcao .incorreta-item { background: #FFF8E1; border-left: 4px solid #F9A825; padding: 10px 12px; margin: 8px 0; border-radius: 6px; font-weight: normal; font-size: 0.95rem; }
+    .explicacao-errada-inline { background: #FFF8E1; border-left: 4px solid #E65100; padding: 10px 12px; margin-top: 10px; border-radius: 6px; font-size: 0.95rem; color: #333; }
+    .explicacao-errada-inline strong { color: #BF360C; }
+    .explicacao-errada-titulo { font-weight: bold; margin-bottom: 6px; }
+    .explicacao-errada-texto { font-weight: normal; }
+    table.conjugacao {
+      width: 100%;
+      max-width: 400px;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    table.conjugacao td, table.conjugacao th {
+      border: 2px solid var(--cor3);
+      padding: 12px;
+      text-align: left;
+    }
+    table.conjugacao th { background: var(--cor5); }
+    table.conjugacao input { width: 100%; padding: 8px; font-size: 1rem; }
+    .texto-leitura { background: #E3F2FD; padding: 20px; border-radius: 12px; margin: 15px 0; font-style: italic; }
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .container { padding: 10px 12px 20px; }
+      header { padding: 18px 12px; margin-bottom: 18px; }
+      header h1 { font-size: 1.5rem; }
+      section.topic { padding: 18px 14px; margin-bottom: 20px; }
+      .explicacao, .exemplos, .dicas { padding: 14px; }
+      .exercicio { padding: 14px; }
+      .opcoes label { margin: 10px 0; min-height: 44px; display: flex; align-items: center; }
+      .opcoes input[type="radio"] { min-width: 22px; min-height: 22px; }
+      input[type="text"].resposta { min-height: 44px; font-size: 16px; }
+      .btn-corrigir { padding: 14px 24px; min-height: 48px; font-size: 1.1rem; }
+      table.conjugacao { font-size: 0.95rem; }
+      table.conjugacao input { min-height: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Menu de tópicos">
+    <div class="nav-links">
+        <a href="#t1" title="Ler e compreender">1<span class="nav-count"></span></a>
+        <a href="#t2" title="Separação de sílabas">2<span class="nav-count"></span></a>
+        <a href="#t3" title="Palavras simples e complexas">3<span class="nav-count"></span></a>
+        <a href="#t4" title="Famílias de palavras">4<span class="nav-count"></span></a>
+        <a href="#t5" title="Tipos de frases">5<span class="nav-count"></span></a>
+        <a href="#t6" title="Classes de palavras">6<span class="nav-count"></span></a>
+        <a href="#t7" title="Onomatopeias">7<span class="nav-count"></span></a>
+        <a href="#t8" title="Modos verbais">8<span class="nav-count"></span></a>
+        <a href="#t9" title="Conjugação de verbos">9<span class="nav-count"></span></a>
+        <a href="#t10" title="Pronomes pessoais">10<span class="nav-count"></span></a>
+        <a href="#t11" title="Determinantes demonstrativos">11<span class="nav-count"></span></a>
+        <a href="#t12" title="Determinantes possessivos">12<span class="nav-count"></span></a>
+        <a href="#t13" title="Determinantes interrogativos">13<span class="nav-count"></span></a>
+        <a href="#t14" title="Conectores discursivos">14<span class="nav-count"></span></a>
+        <a href="#t15" title="Graus dos adjetivos">15<span class="nav-count"></span></a>
+        <a href="#t16" title="Sujeito e predicado">16<span class="nav-count"></span></a>
+        <a href="#t17" title="Preposições">17<span class="nav-count"></span></a>
+        <a href="#t18" title="Produção de texto">18<span class="nav-count"></span></a>
+    </div>
+  </nav>
+  <div class="container">
+    <header>
+      <h1>📚 Português 4º Ano</h1>
+      <p>Guia de Estudo Interativo — Aprende a brincar!</p>
+    </header>
+
+    <!-- TÓPICO 1: Ler e compreender -->
+    <section id="t1" class="topic">
+      <h2>📖 1. Ler e compreender um texto</h2>
+      <div class="explicacao">
+        <h3>O que é compreender um texto?</h3>
+        <p>Quando lemos, não basta só passar os olhos pelas palavras. Temos de <strong>entender</strong> o que está escrito! Compreender é perceber a história, as personagens e as ideias principais.</p>
+      </div>
+      <div class="texto-leitura">
+        <strong>O Coelho e a Tartaruga</strong><br><br>
+        O Coelho era muito convencido e gozava da Tartaruga por ser lenta. Um dia, a Tartaruga desafiou-o para uma corrida. O Coelho riu e aceitou. Correu muito e, como estava à frente, decidiu dormir debaixo de uma árvore. A Tartaruga foi andando devagar, sem parar. Quando o Coelho acordou, a Tartaruga já tinha chegado à meta. Moral: a persistência vence a pressa.
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos de perguntas de compreensão</h3>
+        <p>• Quem desafiou quem para a corrida?<br>• Por que é que o Coelho perdeu?<br>• O que nos ensina esta história?</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Lê o texto duas vezes. Na primeira, lê para conhecer. Na segunda, pensa nas perguntas e procura a resposta no texto.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="1" data-ex="1" data-correct="tartaruga" data-explicacao="Foi a Tartaruga que desafiou o Coelho. Lê a segunda frase do texto: «Um dia, a Tartaruga desafiou-o para uma corrida.»">
+        <p>1. Quem desafiou o Coelho para a corrida?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex1" value="coelho"> O Coelho</label>
+          <label><input type="radio" name="t1-ex1" value="tartaruga"> A Tartaruga</label>
+          <label><input type="radio" name="t1-ex1" value="raposa"> A Raposa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="2" data-correct="dormir" data-explicacao="No texto diz que o Coelho «decidiu dormir debaixo de uma árvore». Por estar à frente, descansou – e a Tartaruga ganhou. A palavra que falta é <strong>dormir</strong>.">
+        <p>2. O Coelho perdeu porque decidiu ______ debaixo de uma árvore.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex2" value="dormir"> dormir</label>
+          <label><input type="radio" name="t1-ex2" value="correr"> correr</label>
+          <label><input type="radio" name="t1-ex2" value="parar"> parar</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="3" data-correct="lenta">
+        <p>3. O Coelho gozava da Tartaruga por ser...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex3" value="rápida"> rápida</label>
+          <label><input type="radio" name="t1-ex3" value="lenta"> lenta</label>
+          <label><input type="radio" name="t1-ex3" value="grande"> grande</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="4" data-correct="persistência" data-explicacao="A moral da história é: «a persistência vence a pressa». <strong>Persistência</strong> significa não desistir e continuar a tentar. Exemplo: a Tartaruga ganhou porque foi persistente.">
+        <p>4. A moral diz que a ______ vence a pressa.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex4" value="persistência"> persistência</label>
+          <label><input type="radio" name="t1-ex4" value="pressa"> pressa</label>
+          <label><input type="radio" name="t1-ex4" value="corrida"> corrida</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="5" data-correct="tartaruga" data-explicacao="Quando o Coelho acordou, «a Tartaruga já tinha chegado à meta». Quem chegou primeiro foi a Tartaruga.">
+        <p>5. Quem chegou primeiro à meta?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex5" value="coelho"> O Coelho</label>
+          <label><input type="radio" name="t1-ex5" value="tartaruga"> A Tartaruga</label>
+          <label><input type="radio" name="t1-ex5" value="ninguém"> Ninguém</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="6" data-correct="convencido" data-explicacao="O texto diz que o Coelho «era muito convencido». <strong>Convencido</strong> significa que achava que era o melhor. Por isso gozava da Tartaruga e depois perdeu.">
+        <p>6. O Coelho era muito ______ (achava-se o melhor).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex6" value="convencido"> convencido</label>
+          <label><input type="radio" name="t1-ex6" value="rápido"> rápido</label>
+          <label><input type="radio" name="t1-ex6" value="cansado"> cansado</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="7" data-correct="corrida">
+        <p>7. Que tipo de prova fizeram?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex7" value="corrida"> Uma corrida</label>
+          <label><input type="radio" name="t1-ex7" value="natação"> Natação</label>
+          <label><input type="radio" name="t1-ex7" value="salto"> Salto</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="8" data-correct="árvore" data-explicacao="No texto: o Coelho «decidiu dormir debaixo de uma árvore». A palavra que falta é <strong>árvore</strong>. Por estar à frente, deitou-se à sombra e adormeceu.">
+        <p>8. O Coelho dormiu debaixo de uma ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex8" value="árvore"> árvore</label>
+          <label><input type="radio" name="t1-ex8" value="pedra"> pedra</label>
+          <label><input type="radio" name="t1-ex8" value="casa"> casa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="9" data-correct="sem parar" data-explicacao="O texto diz: «A Tartaruga foi andando devagar, sem parar.» Ou seja, continuou sempre a andar e não parou. A resposta é <strong>sem parar</strong>.">
+        <p>9. A Tartaruga foi andando devagar, ______ ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex9" value="sem parar"> sem parar</label>
+          <label><input type="radio" name="t1-ex9" value="muito rápido"> muito rápido</label>
+          <label><input type="radio" name="t1-ex9" value="à frente"> à frente</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="10" data-correct="pressa">
+        <p>10. A persistência vence a ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex10" value="pressa"> pressa</label>
+          <label><input type="radio" name="t1-ex10" value="corrida"> corrida</label>
+          <label><input type="radio" name="t1-ex10" value="sono"> sono</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="11" data-correct="aceitou" data-explicacao="O texto diz: «A Tartaruga desafiou-o para uma corrida. O Coelho riu e aceitou.» O Coelho <strong>aceitou</strong> o desafio (disse que sim à corrida).">
+        <p>11. O Coelho ______ o desafio.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex11" value="aceitou"> aceitou</label>
+          <label><input type="radio" name="t1-ex11" value="recusou"> recusou</label>
+          <label><input type="radio" name="t1-ex11" value="esqueceu"> esqueceu</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="12" data-correct="dois">
+        <p>12. Quantas personagens principais há na história?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex12" value="um"> Uma</label>
+          <label><input type="radio" name="t1-ex12" value="dois"> Duas</label>
+          <label><input type="radio" name="t1-ex12" value="três"> Três</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="13" data-correct="devagar" data-explicacao="O texto diz: «A Tartaruga foi andando devagar, sem parar.» A Tartaruga andava <strong>devagar</strong> (lenta), mas não parou e por isso ganhou.">
+        <p>13. A Tartaruga andava ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex13" value="devagar"> devagar</label>
+          <label><input type="radio" name="t1-ex13" value="depressa"> depressa</label>
+          <label><input type="radio" name="t1-ex13" value="sozinha"> sozinha</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="14" data-correct="riu">
+        <p>14. O Coelho ______ quando ouviu o desafio.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex14" value="chorou"> chorou</label>
+          <label><input type="radio" name="t1-ex14" value="riu"> riu</label>
+          <label><input type="radio" name="t1-ex14" value="fugiu"> fugiu</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="15" data-correct="moral" data-explicacao="No fim do texto está a <strong>moral</strong>: «a persistência vence a pressa». A moral é a lição que a história nos ensina.">
+        <p>15. A ______ é a lição da história.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex15" value="moral"> moral</label>
+          <label><input type="radio" name="t1-ex15" value="história"> história</label>
+          <label><input type="radio" name="t1-ex15" value="corrida"> corrida</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="16" data-correct="acordou" data-explicacao="O texto diz: «Quando o Coelho acordou, a Tartaruga já tinha chegado à meta.» O Coelho <strong>acordou</strong> (acabou de dormir) e aí viu que tinha perdido.">
+        <p>16. Quando o Coelho ______, a Tartaruga já tinha ganho.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex16" value="acordou"> acordou</label>
+          <label><input type="radio" name="t1-ex16" value="correu"> correu</label>
+          <label><input type="radio" name="t1-ex16" value="dormiu"> dormiu</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="17" data-correct="convencido" data-explicacao="<strong>Convencido</strong> significa vaidoso, quem se acha o melhor. O Coelho era convencido porque gozava da Tartaruga e achava que ganhava fácil. O contrário seria humilde.">
+        <p>17. O Coelho era convencido. Convencido significa...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex17" value="humilde"> humilde</label>
+          <label><input type="radio" name="t1-ex17" value="convencido"> vaidoso / que se acha o melhor</label>
+          <label><input type="radio" name="t1-ex17" value="triste"> triste</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="18" data-correct="persistência" data-explicacao="<strong>Persistência</strong> é não desistir e continuar a tentar. A Tartaruga foi persistente: andou devagar mas sem parar. Por isso venceu o Coelho, que parou para dormir.">
+        <p>18. Não desistir e continuar chama-se ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex18" value="persistência"> persistência</label>
+          <label><input type="radio" name="t1-ex18" value="pressa"> pressa</label>
+          <label><input type="radio" name="t1-ex18" value="corrida"> corrida</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="19" data-correct="fábula" data-explicacao="Uma <strong>fábula</strong> é uma história curta com animais que falam e no fim tem uma moral (uma lição). Este texto tem o Coelho, a Tartaruga e a moral «a persistência vence a pressa».">
+        <p>19. Este texto é uma ______ (história com animais e moral).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex19" value="fábula"> fábula</label>
+          <label><input type="radio" name="t1-ex19" value="conto"> conto</label>
+          <label><input type="radio" name="t1-ex19" value="poema"> poema</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="20" data-correct="tartaruga">
+        <p>20. Quem ganhou a corrida?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex20" value="coelho"> O Coelho</label>
+          <label><input type="radio" name="t1-ex20" value="tartaruga"> A Tartaruga</label>
+          <label><input type="radio" name="t1-ex20" value="empate"> Empate</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(1)">✅ Corrigir Tópico</button>
+      <div id="resumo-t1" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 2: Separação de sílabas -->
+    <section id="t2" class="topic">
+      <h2>🔤 2. Separação de sílabas</h2>
+      <div class="explicacao">
+        <h3>O que é uma sílaba?</h3>
+        <p>Uma <strong>sílaba</strong> é um conjunto de sons que pronunciamos de uma vez. As palavras dividem-se em sílabas: <strong>ca-sa</strong>, <strong>es-co-la</strong>.</p>
+        <p><strong>Sílaba tónica</strong> é a sílaba que pronunciamos com mais força. Em <strong>casa</strong>, a tónica é <strong>ca</strong>. Em <strong>escola</strong>, é <strong>co</strong>.</p>
+      </div>
+      <div class="exemplos">
+        <h3>📌 Classificação pelo número de sílabas</h3>
+        <p>• <strong>Monossílaba</strong> = 1 sílaba (mar, sol, pé)<br>
+        • <strong>Dissílaba</strong> = 2 sílabas (ca-sa, me-sa)<br>
+        • <strong>Trissílaba</strong> = 3 sílabas (es-co-la, ca-dei-ra)<br>
+        • <strong>Polissílaba</strong> = 4 ou mais sílabas (com-pu-ta-dor, por-tu-guês)</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Para separar em sílabas, diz a palavra devagar e conta quantos "golpes" de voz dás. Cada golpe é uma sílaba!</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="2" data-ex="1" data-correct="monossílaba">
+        <p>1. A palavra "sol" é...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex1" value="monossílaba"> monossílaba</label>
+          <label><input type="radio" name="t2-ex1" value="dissílaba"> dissílaba</label>
+          <label><input type="radio" name="t2-ex1" value="trissílaba"> trissílaba</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="2" data-correct="ca-sa" data-explicacao="A palavra <strong>casa</strong> tem duas sílabas: <strong>ca-sa</strong>. Diz a palavra devagar: ca… sa. Cada parte é uma sílaba.">
+        <p>2. Separa em sílabas: casa</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex2" value="ca-sa"> ca-sa</label>
+          <label><input type="radio" name="t2-ex2" value="cas-a"> cas-a</label>
+          <label><input type="radio" name="t2-ex2" value="casa"> casa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="3" data-correct="dissílaba">
+        <p>3. "Mesa" tem duas sílabas. É uma palavra...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex3" value="monossílaba"> monossílaba</label>
+          <label><input type="radio" name="t2-ex3" value="dissílaba"> dissílaba</label>
+          <label><input type="radio" name="t2-ex3" value="polissílaba"> polissílaba</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="4" data-correct="es-co-la" data-explicacao="<strong>Escola</strong> tem três sílabas: <strong>es-co-la</strong>. Diz devagar: es… co… la. A sílaba tónica é <strong>co</strong> (pronunciamos com mais força).">
+        <p>4. Separa em sílabas: escola</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex4" value="es-co-la"> es-co-la</label>
+          <label><input type="radio" name="t2-ex4" value="es-cola"> es-cola</label>
+          <label><input type="radio" name="t2-ex4" value="esc-o-la"> esc-o-la</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="5" data-correct="trissílaba">
+        <p>5. "Caderno" tem três sílabas. É...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex5" value="dissílaba"> dissílaba</label>
+          <label><input type="radio" name="t2-ex5" value="trissílaba"> trissílaba</label>
+          <label><input type="radio" name="t2-ex5" value="polissílaba"> polissílaba</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="6" data-correct="polissílaba" data-explicacao="Palavra com <strong>4 ou mais</strong> sílabas chama-se <strong>polissílaba</strong>. Exemplos: com-pu-ta-dor (5), por-tu-guês (3). Mono=1, di=2, tri=3, poli=muitas.">
+        <p>6. Uma palavra com 4 ou mais sílabas é...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex6" value="polissílaba"> polissílaba</label>
+          <label><input type="radio" name="t2-ex6" value="trissílaba"> trissílaba</label>
+          <label><input type="radio" name="t2-ex6" value="monossílaba"> monossílaba</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="7" data-correct="mar">
+        <p>7. Qual destas é monossílaba?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex7" value="mar"> mar</label>
+          <label><input type="radio" name="t2-ex7" value="maré"> maré</label>
+          <label><input type="radio" name="t2-ex7" value="marinho"> marinho</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="8" data-correct="lá-pis" data-explicacao="<strong>Lápis</strong> tem duas sílabas: <strong>lá-pis</strong>. A sílaba tónica é <strong>lá</strong>. Não confundir com lá-pi (está errado).">
+        <p>8. Separa em sílabas: lápis</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex8" value="lá-pis"> lá-pis</label>
+          <label><input type="radio" name="t2-ex8" value="la-pis"> la-pis</label>
+          <label><input type="radio" name="t2-ex8" value="lápi-s"> lápi-s</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="9" data-correct="tónica" data-explicacao="A sílaba que dizemos com <strong>mais força</strong> chama-se sílaba <strong>tónica</strong>. Em ca-SA, a tónica é «sa». Em es-CO-la, a tónica é «co».">
+        <p>9. A sílaba que pronunciamos com mais força chama-se sílaba ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex9" value="tónica"> tónica</label>
+          <label><input type="radio" name="t2-ex9" value="átona"> átona</label>
+          <label><input type="radio" name="t2-ex9" value="única"> única</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="10" data-correct="duas">
+        <p>10. "Gato" tem quantas sílabas?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex10" value="uma"> uma</label>
+          <label><input type="radio" name="t2-ex10" value="duas"> duas</label>
+          <label><input type="radio" name="t2-ex10" value="três"> três</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="11" data-correct="ga-to" data-explicacao="<strong>Gato</strong> tem duas sílabas: <strong>ga-to</strong>. Diz devagar: ga… to. É uma palavra dissílaba.">
+        <p>11. Separa: gato</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex11" value="ga-to"> ga-to</label>
+          <label><input type="radio" name="t2-ex11" value="gat-o"> gat-o</label>
+          <label><input type="radio" name="t2-ex11" value="g-ato"> g-ato</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="12" data-correct="monossílaba">
+        <p>12. "Pé" e "luz" são palavras...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex12" value="monossílaba"> monossílabas</label>
+          <label><input type="radio" name="t2-ex12" value="dissílabas"> dissílabas</label>
+          <label><input type="radio" name="t2-ex12" value="trissílabas"> trissílabas</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="13" data-correct="li-vro" data-explicacao="<strong>Livro</strong> separa-se em <strong>li-vro</strong> (duas sílabas). A sílaba tónica é <strong>li</strong>. Exemplo: li… vro.">
+        <p>13. Separa em sílabas: livro</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex13" value="li-vro"> li-vro</label>
+          <label><input type="radio" name="t2-ex13" value="liv-ro"> liv-ro</label>
+          <label><input type="radio" name="t2-ex13" value="li-vr-o"> li-vr-o</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="14" data-correct="três">
+        <p>14. "Janela" tem quantas sílabas?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex14" value="duas"> duas</label>
+          <label><input type="radio" name="t2-ex14" value="três"> três</label>
+          <label><input type="radio" name="t2-ex14" value="quatro"> quatro</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="15" data-correct="ja-ne-la" data-explicacao="<strong>Janela</strong> tem três sílabas: <strong>ja-ne-la</strong>. Diz devagar: ja… ne… la. A sílaba tónica é <strong>ne</strong>.">
+        <p>15. Separa: janela</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex15" value="ja-ne-la"> ja-ne-la</label>
+          <label><input type="radio" name="t2-ex15" value="jan-e-la"> jan-e-la</label>
+          <label><input type="radio" name="t2-ex15" value="ja-nela"> ja-nela</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="16" data-correct="com-pu-ta-dor" data-explicacao="<strong>Computador</strong> tem 5 sílabas: <strong>com-pu-ta-dor</strong>. É uma palavra polissílaba. A sílaba tónica é <strong>dor</strong>.">
+        <p>16. Separa: computador</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex16" value="com-pu-ta-dor"> com-pu-ta-dor</label>
+          <label><input type="radio" name="t2-ex16" value="com-pu-tador"> com-pu-tador</label>
+          <label><input type="radio" name="t2-ex16" value="comp-u-ta-dor"> comp-u-ta-dor</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="17" data-correct="quatro">
+        <p>17. "Computador" tem quantas sílabas?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex17" value="três"> três</label>
+          <label><input type="radio" name="t2-ex17" value="quatro"> quatro</label>
+          <label><input type="radio" name="t2-ex17" value="cinco"> cinco</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="18" data-correct="sílaba" data-explicacao="Cada <strong>golpe</strong> de voz (cada parte que dizemos de uma vez) é uma <strong>sílaba</strong>. Em «casa» há dois golpes: ca e sa. Por isso casa tem 2 sílabas.">
+        <p>18. Cada "golpe" de voz numa palavra é uma ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex18" value="sílaba"> sílaba</label>
+          <label><input type="radio" name="t2-ex18" value="letra"> letra</label>
+          <label><input type="radio" name="t2-ex18" value="palavra"> palavra</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="19" data-correct="flor">
+        <p>19. Qual é monossílaba: flor, florido ou floresta?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex19" value="flor"> flor</label>
+          <label><input type="radio" name="t2-ex19" value="florido"> florido</label>
+          <label><input type="radio" name="t2-ex19" value="floresta"> floresta</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="20" data-correct="por-tu-guês" data-explicacao="<strong>Português</strong> tem três sílabas: <strong>por-tu-guês</strong>. A sílaba tónica é <strong>guês</strong>. Diz devagar: por… tu… guês.">
+        <p>20. Separa: português</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex20" value="por-tu-guês"> por-tu-guês</label>
+          <label><input type="radio" name="t2-ex20" value="port-u-guês"> port-u-guês</label>
+          <label><input type="radio" name="t2-ex20" value="por-tug-uês"> por-tug-uês</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(2)">✅ Corrigir Tópico</button>
+      <div id="resumo-t2" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 3: Palavras simples e complexas -->
+    <section id="t3" class="topic">
+      <h2>🧩 3. Palavras simples e complexas</h2>
+      <div class="explicacao">
+        <h3>O que são?</h3>
+        <p><strong>Palavra simples</strong> = uma só palavra base, sem partes à frente ou atrás (ex: <strong>feliz</strong>).<br>
+        <strong>Palavra complexa</strong> = formada a partir de outra, juntando <strong>prefixos</strong> (à frente) ou <strong>sufixos</strong> (atrás).</p>
+        <p><strong>Prefixo</strong> = partícula que se coloca no <strong>início</strong> da palavra (in- em <strong>in</strong>feliz).<br>
+        <strong>Sufixo</strong> = partícula que se coloca no <strong>fim</strong> da palavra (-mente em feliz<strong>mente</strong>).</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• <strong>feliz</strong> (simples) → <strong>in</strong>feliz (prefixo in-) → feliz<strong>mente</strong> (sufixo -mente)<br>
+        • <strong>fazer</strong> → <strong>des</strong>fazer (prefixo des-)<br>
+        • <strong>livro</strong> → livr<strong>aria</strong> (sufixo -aria)</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Prefixo = à frente. Sufixo = atrás. Assim não te enganas!</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="3" data-ex="1" data-correct="prefixo">
+        <p>1. "In-" em "infeliz" é um...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex1" value="prefixo"> prefixo</label>
+          <label><input type="radio" name="t3-ex1" value="sufixo"> sufixo</label>
+          <label><input type="radio" name="t3-ex1" value="raiz"> raiz</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="2" data-correct="sufixo" data-explicacao="O <strong>-mente</strong> está no <strong>fim</strong> da palavra feliz<strong>mente</strong>. O que fica no fim chama-se <strong>sufixo</strong>. Prefixo fica no início (in-feliz).">
+        <p>2. "-mente" em "felizmente" é um...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex2" value="sufixo"> sufixo</label>
+          <label><input type="radio" name="t3-ex2" value="prefixo"> prefixo</label>
+          <label><input type="radio" name="t3-ex2" value="raiz"> raiz</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="3" data-correct="feliz">
+        <p>3. Em "infeliz", qual é a palavra base?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex3" value="in"> in</label>
+          <label><input type="radio" name="t3-ex3" value="feliz"> feliz</label>
+          <label><input type="radio" name="t3-ex3" value="infeliz"> infeliz</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="4" data-correct="des" data-explicacao="Em <strong>des</strong>fazer, a parte que está <strong>à frente</strong> é <strong>des-</strong>. Por isso é um prefixo. Desfazer = fazer o contrário (des- pode indicar negação ou inversão).">
+        <p>4. Em "desfazer", o prefixo é ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex4" value="des"> des</label>
+          <label><input type="radio" name="t3-ex4" value="fazer"> fazer</label>
+          <label><input type="radio" name="t3-ex4" value="in"> in</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="5" data-correct="início">
+        <p>5. O prefixo coloca-se no ______ da palavra.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex5" value="início"> início</label>
+          <label><input type="radio" name="t3-ex5" value="meio"> meio</label>
+          <label><input type="radio" name="t3-ex5" value="fim"> fim</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="6" data-correct="fim" data-explicacao="O <strong>sufixo</strong> coloca-se no <strong>fim</strong> da palavra. Exemplo: feliz<strong>mente</strong>, cas<strong>inha</strong>. O prefixo é que fica no início.">
+        <p>6. O sufixo coloca-se no ______ da palavra.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex6" value="fim"> fim</label>
+          <label><input type="radio" name="t3-ex6" value="início"> início</label>
+          <label><input type="radio" name="t3-ex6" value="meio"> meio</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="7" data-correct="livraria">
+        <p>7. Livro + sufixo -aria = ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex7" value="livraria"> livraria</label>
+          <label><input type="radio" name="t3-ex7" value="livreiro"> livreiro</label>
+          <label><input type="radio" name="t3-ex7" value="livrinho"> livrinho</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="8" data-correct="simples" data-explicacao="<strong>Casa</strong> não tem nada à frente (prefixo) nem atrás (sufixo). Por isso é uma palavra <strong>simples</strong>. Complexa seria casinha (casa + inha) ou casarão.">
+        <p>8. "Casa" é uma palavra ______ (sem prefixo nem sufixo).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex8" value="simples"> simples</label>
+          <label><input type="radio" name="t3-ex8" value="complexa"> complexa</label>
+          <label><input type="radio" name="t3-ex8" value="composta"> composta</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="9" data-correct="complexa">
+        <p>9. "Infelizmente" é uma palavra ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex9" value="simples"> simples</label>
+          <label><input type="radio" name="t3-ex9" value="complexa"> complexa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="10" data-correct="re" data-explicacao="Em <strong>re</strong>fazer, a parte à frente é <strong>re-</strong>. Re- significa «de novo»: refazer = fazer outra vez. É um prefixo.">
+        <p>10. Em "refazer", o prefixo é ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex10" value="re"> re</label>
+          <label><input type="radio" name="t3-ex10" value="fazer"> fazer</label>
+          <label><input type="radio" name="t3-ex10" value="des"> des</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="11" data-correct="in">
+        <p>11. Que prefixo significa "negação" em "incorreto"?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex11" value="in"> in-</label>
+          <label><input type="radio" name="t3-ex11" value="re"> re-</label>
+          <label><input type="radio" name="t3-ex11" value="des"> des-</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="12" data-correct="eiro" data-explicacao="Livr + <strong>eiro</strong> = livreiro (quem vende livros). O sufixo <strong>-eiro</strong> indica profissão ou ofício. Outro exemplo: pão → pad<strong>eiro</strong>.">
+        <p>12. "Livr" + sufixo = livreiro. O sufixo é ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex12" value="eiro"> eiro</label>
+          <label><input type="radio" name="t3-ex12" value="aria"> aria</label>
+          <label><input type="radio" name="t3-ex12" value="inho"> inho</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="13" data-correct="desfazer">
+        <p>13. "Des" + fazer = ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex13" value="desfazer"> desfazer</label>
+          <label><input type="radio" name="t3-ex13" value="refazer"> refazer</label>
+          <label><input type="radio" name="t3-ex13" value="fazer"> fazer</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="14" data-correct="mente" data-explicacao="O sufixo <strong>-mente</strong> junta-se ao adjetivo e forma advérbio: rápido → rapidamente, feliz → felizmente. Indica «de que maneira».">
+        <p>14. O sufixo "-______" forma advérbios (ex: rápido → rapidamente).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex14" value="mente"> mente</label>
+          <label><input type="radio" name="t3-ex14" value="inho"> inho</label>
+          <label><input type="radio" name="t3-ex14" value="eiro"> eiro</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="15" data-correct="prefixo">
+        <p>15. "Im-" em "impossível" é um...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex15" value="prefixo"> prefixo</label>
+          <label><input type="radio" name="t3-ex15" value="sufixo"> sufixo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="16" data-correct="possível" data-explicacao="Em <strong>im</strong>possível, tiramos o prefixo <strong>im-</strong> e fica <strong>possível</strong>. A palavra base é possível. Im- significa «não» (impossível = não possível).">
+        <p>16. Em "impossível", a palavra base é ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex16" value="possível"> possível</label>
+          <label><input type="radio" name="t3-ex16" value="im"> im</label>
+          <label><input type="radio" name="t3-ex16" value="impossível"> impossível</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="17" data-correct="inho">
+        <p>17. "Casa" + ______ = casinha (sufixo de diminutivo).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex17" value="inho"> inho</label>
+          <label><input type="radio" name="t3-ex17" value="aria"> aria</label>
+          <label><input type="radio" name="t3-ex17" value="mente"> mente</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="18" data-correct="complexa" data-explicacao="Quando uma palavra tem <strong>prefixo</strong> (à frente) ou <strong>sufixo</strong> (atrás), chamamos-lhe palavra <strong>complexa</strong>. Exemplo: infeliz (in- + feliz), felizmente (feliz + -mente).">
+        <p>18. Palavra com prefixo ou sufixo é ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex18" value="complexa"> complexa</label>
+          <label><input type="radio" name="t3-ex18" value="simples"> simples</label>
+          <label><input type="radio" name="t3-ex18" value="composta"> composta</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="19" data-correct="re">
+        <p>19. "Re" em "reescrever" é um ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex19" value="sufixo"> sufixo</label>
+          <label><input type="radio" name="t3-ex19" value="re"> prefixo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="20" data-correct="felizmente" data-explicacao="Feliz + sufixo <strong>-mente</strong> = <strong>felizmente</strong>. O -mente forma advérbios a partir de adjetivos: «de forma feliz» = felizmente.">
+        <p>20. Feliz + sufixo -mente = ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex20" value="felizmente"> felizmente</label>
+          <label><input type="radio" name="t3-ex20" value="infeliz"> infeliz</label>
+          <label><input type="radio" name="t3-ex20" value="felicidade"> felicidade</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(3)">✅ Corrigir Tópico</button>
+      <div id="resumo-t3" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 4: Famílias de palavras -->
+    <section id="t4" class="topic">
+      <h2>👨‍👩‍👧‍👦 4. Famílias de palavras</h2>
+      <div class="explicacao">
+        <h3>O que é uma família de palavras?</h3>
+        <p>É um conjunto de palavras que partilham a mesma <strong>raiz</strong> (parte comum). Todas têm um significado relacionado!</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplo: família de "mar"</h3>
+        <p>• <strong>mar</strong> → marinho, marítimo, marinheiro, maré, marear</p>
+        <p>Outros exemplos:<br>
+        • <strong>flor</strong> → florido, floresta, floricultura<br>
+        • <strong>pão</strong> → padeiro, padaria, panificação</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Se duas palavras têm pedaços iguais e significados parecidos, provavelmente são da mesma família!</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="4" data-ex="1" data-correct="raiz">
+        <p>1. A parte comum a todas as palavras da família chama-se ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex1" value="raiz"> raiz</label>
+          <label><input type="radio" name="t4-ex1" value="prefixo"> prefixo</label>
+          <label><input type="radio" name="t4-ex1" value="sufixo"> sufixo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="2" data-correct="mar" data-explicacao="Marinheiro, marinho e marítimo têm todos a raiz <strong>mar</strong>. A palavra base da família é <strong>mar</strong>. Todas estão relacionadas com o mar.">
+        <p>2. Marinheiro, marinho e marítimo pertencem à família de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex2" value="mar"> mar</label>
+          <label><input type="radio" name="t4-ex2" value="marinho"> marinho</label>
+          <label><input type="radio" name="t4-ex2" value="água"> água</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="3" data-correct="flor">
+        <p>3. Florido e floresta são da família de...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex3" value="flor"> flor</label>
+          <label><input type="radio" name="t4-ex3" value="floresta"> floresta</label>
+          <label><input type="radio" name="t4-ex3" value="florido"> florido</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="4" data-correct="pão" data-explicacao="Padeiro (quem faz pão) e padaria (onde se vende pão) partilham a raiz <strong>pão</strong>. A palavra base da família é <strong>pão</strong>.">
+        <p>4. Padeiro e padaria são da família de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex4" value="pão"> pão</label>
+          <label><input type="radio" name="t4-ex4" value="padeiro"> padeiro</label>
+          <label><input type="radio" name="t4-ex4" value="padaria"> padaria</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="5" data-correct="marinho">
+        <p>5. Que palavra da família de "mar" significa "relativo ao mar"?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex5" value="marinheiro"> marinheiro</label>
+          <label><input type="radio" name="t4-ex5" value="marinho"> marinho</label>
+          <label><input type="radio" name="t4-ex5" value="maré"> maré</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="6" data-correct="marinheiro" data-explicacao="Quem trabalha no mar (em barcos, pesca, etc.) chama-se <strong>marinheiro</strong>. É uma palavra da família de «mar» (mar + sufixo -eiro indica profissão).">
+        <p>6. Quem trabalha no mar é o ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex6" value="marinheiro"> marinheiro</label>
+          <label><input type="radio" name="t4-ex6" value="marinho"> marinho</label>
+          <label><input type="radio" name="t4-ex6" value="pescador"> pescador</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="7" data-correct="relacionado">
+        <p>7. As palavras da mesma família têm significado ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex7" value="igual"> igual</label>
+          <label><input type="radio" name="t4-ex7" value="relacionado"> relacionado</label>
+          <label><input type="radio" name="t4-ex7" value="oposto"> oposto</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="8" data-correct="livro" data-explicacao="Livraria (loja de livros) e livreiro (quem vende livros) têm a raiz <strong>livro</strong>. A palavra base é <strong>livro</strong>.">
+        <p>8. Livraria e livreiro são da família de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex8" value="livro"> livro</label>
+          <label><input type="radio" name="t4-ex8" value="livraria"> livraria</label>
+          <label><input type="radio" name="t4-ex8" value="leitura"> leitura</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="9" data-correct="sol">
+        <p>9. Solar e ensolarado são da família de...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex9" value="sol"> sol</label>
+          <label><input type="radio" name="t4-ex9" value="solar"> solar</label>
+          <label><input type="radio" name="t4-ex9" value="ensolarado"> ensolarado</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="10" data-correct="água" data-explicacao="Aquático (relativo à água) e aquário (sítio com água para peixes) partilham a raiz de <strong>água</strong> (em latim «aqua»). A palavra base é <strong>água</strong>.">
+        <p>10. Aquático e aquário são da família de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex10" value="água"> água</label>
+          <label><input type="radio" name="t4-ex10" value="aquático"> aquático</label>
+          <label><input type="radio" name="t4-ex10" value="mar"> mar</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="11" data-correct="terra">
+        <p>11. Terrestre e território são da família de...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex11" value="terra"> terra</label>
+          <label><input type="radio" name="t4-ex11" value="terrestre"> terrestre</label>
+          <label><input type="radio" name="t4-ex11" value="território"> território</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="12" data-correct="família" data-explicacao="Quando várias palavras partilham a mesma raiz e significados relacionados, dizemos que formam uma <strong>família</strong> de palavras. Exemplo: mar, marinho, marinheiro = família de «mar».">
+        <p>12. Conjunto de palavras com a mesma raiz = ______ de palavras.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex12" value="família"> família</label>
+          <label><input type="radio" name="t4-ex12" value="raiz"> raiz</label>
+          <label><input type="radio" name="t4-ex12" value="conjunto"> conjunto</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="13" data-correct="mar" data-explicacao="Marítimo, marinho e marinheiro são palavras da família de MAR. A raiz é «mar».">
+        <p>13. "Marítimo" significa "relativo ao mar". Pertence à família de...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex13" value="mar"> mar</label>
+          <label><input type="radio" name="t4-ex13" value="marítimo"> marítimo</label>
+          <label><input type="radio" name="t4-ex13" value="marinho"> marinho</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="14" data-correct="padeiro" data-explicacao="Quem faz pão é o <strong>padeiro</strong>. Pão → pad+eiro = padeiro (profissão). É uma palavra da família de «pão».">
+        <p>14. Quem faz pão é o ______ (família de "pão").</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex14" value="padeiro"> padeiro</label>
+          <label><input type="radio" name="t4-ex14" value="padaria"> padaria</label>
+          <label><input type="radio" name="t4-ex14" value="pão"> pão</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="15" data-correct="flor" data-explicacao="A palavra base é FLOR. Floresta, florido e florista são da família de flor.">
+        <p>15. Floresta vem da família de...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex15" value="flor"> flor</label>
+          <label><input type="radio" name="t4-ex15" value="floresta"> floresta</label>
+          <label><input type="radio" name="t4-ex15" value="florido"> florido</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="16" data-correct="cão" data-explicacao="Canino significa «relativo ao cão». A palavra base é <strong>cão</strong> (can- vem de cão). Cão, canino, canícula são da mesma família.">
+        <p>16. Canino é da família de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex16" value="cão"> cão</label>
+          <label><input type="radio" name="t4-ex16" value="canino"> canino</label>
+          <label><input type="radio" name="t4-ex16" value="animal"> animal</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="17" data-correct="noite">
+        <p>17. Noturno é da família de...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex17" value="noite"> noite</label>
+          <label><input type="radio" name="t4-ex17" value="noturno"> noturno</label>
+          <label><input type="radio" name="t4-ex17" value="notícia"> notícia</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="18" data-correct="pedra" data-explicacao="Pedreira (lugar de onde se tira pedra) e pedregulho (pedra pequena) partilham a raiz <strong>pedra</strong>. A palavra base é <strong>pedra</strong>.">
+        <p>18. Pedreira e pedregulho são da família de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex18" value="pedra"> pedra</label>
+          <label><input type="radio" name="t4-ex18" value="pedreira"> pedreira</label>
+          <label><input type="radio" name="t4-ex18" value="rocha"> rocha</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="19" data-correct="parte comum">
+        <p>19. A raiz é a ______ que todas as palavras da família partilham.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex19" value="parte comum"> parte comum</label>
+          <label><input type="radio" name="t4-ex19" value="sufixo"> sufixo</label>
+          <label><input type="radio" name="t4-ex19" value="prefixo"> prefixo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="20" data-correct="mar" data-explicacao="A palavra base é <strong>MAR</strong>. Maré, marinho, marinheiro e marítimo são todas da família de mar. Maré = movimento da água do mar.">
+        <p>20. "Maré" (subida e descida da água do mar) é da família de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex20" value="mar"> mar</label>
+          <label><input type="radio" name="t4-ex20" value="maré"> maré</label>
+          <label><input type="radio" name="t4-ex20" value="água"> água</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(4)">✅ Corrigir Tópico</button>
+      <div id="resumo-t4" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 5: Tipos de frases -->
+    <section id="t5" class="topic">
+      <h2>💬 5. Tipos de frases</h2>
+      <div class="explicacao">
+        <h3>Os 4 tipos de frases</h3>
+        <p>• <strong>Declarativa</strong> – afirma ou nega algo. Termina em ponto (.)<br>
+        • <strong>Interrogativa</strong> – faz uma pergunta. Termina em (?)<br>
+        • <strong>Exclamativa</strong> – exprime emoção, surpresa. Termina em (!)<br>
+        • <strong>Imperativa</strong> – dá ordem, pedido ou conselho. Pode terminar em (.) ou (!)</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• Declarativa: O céu está azul.<br>
+        • Interrogativa: Que horas são?<br>
+        • Exclamativa: Que belo dia!<br>
+        • Imperativa: Fecha a janela. / Cuidado!</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Olha para o fim da frase: . ? ! e o que a frase faz (afirma, pergunta, exclama ou manda) para descobrires o tipo!</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="5" data-ex="1" data-correct="declarativa" data-explicacao="«O gato dorme no sofá.» <strong>afirma</strong> um facto (diz algo que é verdade). Frases que afirmam ou negam chamam-se <strong>declarativas</strong> e terminam em ponto (.).">
+        <p>1. "O gato dorme no sofá." Que tipo de frase é?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex1" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex1" value="interrogativa"> interrogativa</label>
+          <label><input type="radio" name="t5-ex1" value="exclamativa"> exclamativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="2" data-correct="interrogativa" data-explicacao="«Onde vais?» é uma <strong>pergunta</strong>. Frases que fazem perguntas chamam-se <strong>interrogativas</strong> e terminam com ?. Exemplo: Que horas são?">
+        <p>2. "Onde vais?" é uma frase ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex2" value="interrogativa"> interrogativa</label>
+          <label><input type="radio" name="t5-ex2" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex2" value="imperativa"> imperativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="3" data-correct="exclamativa" data-explicacao="«Que susto!» exprime <strong>emoção</strong> ou surpresa (medo, admiração). Frases assim chamam-se <strong>exclamativas</strong> e terminam em !.">
+        <p>3. "Que susto!" Que tipo de frase?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex3" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex3" value="interrogativa"> interrogativa</label>
+          <label><input type="radio" name="t5-ex3" value="exclamativa"> exclamativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="4" data-correct="imperativa" data-explicacao="«Abre a porta.» é uma <strong>ordem</strong> (manda alguém fazer algo). Frases que dão ordem, pedido ou conselho chamam-se <strong>imperativas</strong>. Exemplo: Fecha a janela!">
+        <p>4. "Abre a porta." é uma frase ______ (dá ordem).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex4" value="imperativa"> imperativa</label>
+          <label><input type="radio" name="t5-ex4" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex4" value="interrogativa"> interrogativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="5" data-correct="ponto" data-explicacao="A frase <strong>declarativa</strong> afirma ou nega algo e termina com <strong>ponto</strong> (.). Exemplo: O sol brilha. A Maria estuda.">
+        <p>5. A frase declarativa termina em ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex5" value="ponto"> ponto</label>
+          <label><input type="radio" name="t5-ex5" value="interrogação"> interrogação</label>
+          <label><input type="radio" name="t5-ex5" value="exclamação"> exclamação</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="6" data-correct="interrogação" data-explicacao="A frase <strong>interrogativa</strong> faz uma pergunta e termina com o sinal de <strong>interrogação</strong> (?). Exemplo: Onde vais? Quantos anos tens?">
+        <p>6. A frase interrogativa termina em ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex6" value="interrogação"> interrogação (?)</label>
+          <label><input type="radio" name="t5-ex6" value="ponto"> ponto (.)</label>
+          <label><input type="radio" name="t5-ex6" value="exclamação"> exclamação (!)</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="7" data-correct="pergunta" data-explicacao="A frase <strong>interrogativa</strong> faz uma <strong>pergunta</strong> e termina com ?. Exemplo: Que dia é hoje? Onde está o lápis?">
+        <p>7. A frase interrogativa faz uma ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex7" value="afirmação"> afirmação</label>
+          <label><input type="radio" name="t5-ex7" value="pergunta"> pergunta</label>
+          <label><input type="radio" name="t5-ex7" value="ordem"> ordem</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="8" data-correct="declarativa" data-explicacao="«A Maria gosta de ler.» <strong>afirma</strong> algo (diz um facto). Frases que afirmam ou negam algo chamam-se <strong>declarativas</strong> e terminam em ponto (.).">
+        <p>8. "A Maria gosta de ler." É uma frase ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex8" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex8" value="interrogativa"> interrogativa</label>
+          <label><input type="radio" name="t5-ex8" value="imperativa"> imperativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="9" data-correct="imperativa" data-explicacao="Mesmo terminando com !, «Calem-se!» <strong>manda fazer</strong> algo (ficar em silêncio). Por isso é uma frase <strong>imperativa</strong>. O ! dá força à ordem.">
+        <p>9. "Calem-se!" Que tipo de frase?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex9" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex9" value="imperativa"> imperativa</label>
+          <label><input type="radio" name="t5-ex9" value="exclamativa"> exclamativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="10" data-correct="exclamação" data-explicacao="A frase <strong>exclamativa</strong> exprime emoção ou surpresa e termina com o sinal de <strong>exclamação</strong> (!). Exemplo: Que belo dia! Que susto!">
+        <p>10. A frase exclamativa termina em ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex10" value="exclamação"> exclamação (!)</label>
+          <label><input type="radio" name="t5-ex10" value="interrogação"> interrogação (?)</label>
+          <label><input type="radio" name="t5-ex10" value="ponto"> ponto (.)</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="11" data-correct="quatro" data-explicacao="Estudámos <strong>quatro</strong> tipos de frases: <strong>declarativa</strong> (afirma/nega), <strong>interrogativa</strong> (pergunta), <strong>imperativa</strong> (ordem/pedido/conselho) e <strong>exclamativa</strong> (emoção).">
+        <p>11. Quantos tipos de frases estudámos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex11" value="três"> três</label>
+          <label><input type="radio" name="t5-ex11" value="quatro"> quatro</label>
+          <label><input type="radio" name="t5-ex11" value="cinco"> cinco</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="12" data-correct="ordem" data-explicacao="A frase <strong>imperativa</strong> serve para mandar fazer algo. Pode dar: <strong>ordem</strong> («Fecha a porta!»), <strong>pedido</strong> («Ajuda-me, por favor.») ou <strong>conselho</strong> («Estuda para o teste.»).">
+        <p>12. A frase imperativa dá ______, pedido ou conselho.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex12" value="ordem"> ordem</label>
+          <label><input type="radio" name="t5-ex12" value="pergunta"> pergunta</label>
+          <label><input type="radio" name="t5-ex12" value="história"> história</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="13" data-correct="interrogativa" data-explicacao="«Quantos anos tens?» é uma <strong>pergunta</strong>. Frases que fazem perguntas chamam-se <strong>interrogativas</strong> e terminam com ?.">
+        <p>13. "Quantos anos tens?" é...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex13" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex13" value="interrogativa"> interrogativa</label>
+          <label><input type="radio" name="t5-ex13" value="imperativa"> imperativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="14" data-correct="afirma" data-explicacao="A frase <strong>declarativa</strong> <strong>afirma</strong> ou nega algo (diz um facto). Termina em ponto (.). Exemplo: O céu é azul. A Maria não veio.">
+        <p>14. A frase declarativa ______ ou nega algo.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex14" value="afirma"> afirma</label>
+          <label><input type="radio" name="t5-ex14" value="pergunta"> pergunta</label>
+          <label><input type="radio" name="t5-ex14" value="ordena"> ordena</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="15" data-correct="exclamativa" data-explicacao="«Que lindo!» exprime <strong>emoção</strong> (admiração). Frases que exprimem emoção ou surpresa chamam-se <strong>exclamativas</strong> e terminam em !.">
+        <p>15. "Que lindo!" exprime emoção. É ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex15" value="exclamativa"> exclamativa</label>
+          <label><input type="radio" name="t5-ex15" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex15" value="interrogativa"> interrogativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="16" data-correct="imperativa" data-explicacao="«Não corras!» é uma <strong>ordem</strong> (manda não fazer algo). Frases que dão ordem, pedido ou conselho chamam-se <strong>imperativas</strong>. O ! dá força ao aviso.">
+        <p>16. "Não corras!" é uma frase ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex16" value="imperativa"> imperativa</label>
+          <label><input type="radio" name="t5-ex16" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex16" value="interrogativa"> interrogativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="17" data-correct="declarativa" data-explicacao="«Hoje chove.» <strong>afirma</strong> um facto sobre o tempo. Frases que afirmam ou negam algo são <strong>declarativas</strong> e terminam em ponto (.).">
+        <p>17. "Hoje chove." Que tipo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex17" value="declarativa"> declarativa</label>
+          <label><input type="radio" name="t5-ex17" value="interrogativa"> interrogativa</label>
+          <label><input type="radio" name="t5-ex17" value="exclamativa"> exclamativa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="18" data-correct="emoção" data-explicacao="A frase <strong>exclamativa</strong> exprime <strong>emoção</strong> ou surpresa (alegria, medo, admiração…) e termina em !. Exemplo: Que belo! Que susto!">
+        <p>18. A frase exclamativa exprime ______ ou surpresa.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex18" value="emoção"> emoção</label>
+          <label><input type="radio" name="t5-ex18" value="pergunta"> pergunta</label>
+          <label><input type="radio" name="t5-ex18" value="ordem"> ordem</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="19" data-correct="?" data-explicacao="A frase <strong>interrogativa</strong> faz uma pergunta e usa no fim o sinal de <strong>interrogação</strong> (?). Exemplo: Onde vais?">
+        <p>19. Que sinal usa a frase interrogativa no fim?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex19" value="."> .</label>
+          <label><input type="radio" name="t5-ex19" value="?"> ?</label>
+          <label><input type="radio" name="t5-ex19" value="!"> !</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="20" data-correct="conselho" data-explicacao="A frase imperativa serve para mandar fazer algo. Pode dar: <strong>ordem</strong> («Fecha a porta!»), <strong>pedido</strong> («Ajuda-me.») ou <strong>conselho</strong> («Estuda para o teste.»).">
+        <p>20. A frase imperativa pode dar ordem, pedido ou ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex20" value="conselho"> conselho</label>
+          <label><input type="radio" name="t5-ex20" value="pergunta"> pergunta</label>
+          <label><input type="radio" name="t5-ex20" value="história"> história</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(5)">✅ Corrigir Tópico</button>
+      <div id="resumo-t5" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 6: Classes de palavras -->
+    <section id="t6" class="topic">
+      <h2>📝 6. Classes de palavras (Análise morfológica)</h2>
+      <div class="explicacao">
+        <h3>O que são classes de palavras?</h3>
+        <p>As palavras dividem-se em <strong>classes</strong> conforme a sua função na frase.</p>
+        <p><strong>Nome (substantivo)</strong> – designa seres, coisas, lugares, sentimentos (ex: cão, Lisboa, alegria).<br>
+        <strong>Verbo</strong> – indica ação, estado ou fenómeno (ex: correr, ser, chover).<br>
+        <strong>Adjetivo</strong> – qualifica o nome (ex: bonito, alto, feliz).</p>
+        <p>Há também: advérbio, pronome, determinante, conjunção, preposição, interjeição.</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• "O <strong>cão</strong> <strong>corre</strong> no <strong>jardim</strong>." → cão, jardim = nomes; corre = verbo.<br>
+        • "A <strong>casa</strong> é <strong>grande</strong>." → casa = nome; grande = adjetivo.<br>
+        • "O <strong>menino</strong> <strong>feliz</strong> <strong>brinca</strong>." → menino = nome; feliz = adjetivo; brinca = verbo.</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Para encontrar o verbo: pergunta "O que faz?" ou "O que acontece?". Para o nome: "quem?" ou "o quê?". Para o adjetivo: "como é?"</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="6" data-ex="1" data-correct="correu" data-explicacao="O <strong>verbo</strong> indica a ação. Em «O gato correu para o jardim», a ação é <strong>correu</strong>. «Gato» e «jardim» são nomes (substantivos).">
+        <p>1. Na frase "O gato correu para o jardim.", qual é o verbo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex1" value="gato"> gato</label>
+          <label><input type="radio" name="t6-ex1" value="correu"> correu</label>
+          <label><input type="radio" name="t6-ex1" value="jardim"> jardim</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="2" data-correct="substantivo" data-explicacao="«Cão» e «casa» são <strong>nomes</strong> de seres e coisas. Outro nome para esta classe de palavras é <strong>substantivo</strong>. Exemplo: mesa, Maria, Lisboa.">
+        <p>2. "Cão" e "casa" são ______ (outro nome para nome).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex2" value="substantivo"> substantivo</label>
+          <label><input type="radio" name="t6-ex2" value="verbo"> verbo</label>
+          <label><input type="radio" name="t6-ex2" value="adjetivo"> adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="3" data-correct="adjetivo" data-explicacao="A palavra que <strong>qualifica</strong> o nome (diz como é: bonito, grande, azul) chama-se <strong>adjetivo</strong>. Exemplo: casa grande, céu azul.">
+        <p>3. A palavra que qualifica o nome é o...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex3" value="verbo"> verbo</label>
+          <label><input type="radio" name="t6-ex3" value="adjetivo"> adjetivo</label>
+          <label><input type="radio" name="t6-ex3" value="substantivo"> substantivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="4" data-correct="nome" data-explicacao="«Lisboa» é o nome de um <strong>lugar</strong> (cidade). Palavras que designam seres, coisas ou lugares chamam-se <strong>nome</strong> ou substantivo.">
+        <p>4. "Lisboa" é um ______ (cidade = ser/lugar).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex4" value="nome"> nome</label>
+          <label><input type="radio" name="t6-ex4" value="verbo"> verbo</label>
+          <label><input type="radio" name="t6-ex4" value="adjetivo"> adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="5" data-correct="verbo" data-explicacao="«Canta» indica a <strong>ação</strong> (o que a Maria faz). Palavras que indicam ação, estado ou fenómeno chamam-se <strong>verbo</strong>.">
+        <p>5. Em "A Maria canta.", "canta" é...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex5" value="nome"> nome</label>
+          <label><input type="radio" name="t6-ex5" value="verbo"> verbo</label>
+          <label><input type="radio" name="t6-ex5" value="adjetivo"> adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="6" data-correct="ação" data-explicacao="O <strong>verbo</strong> indica <strong>ação</strong> (correr, cantar), <strong>estado</strong> (ser, estar) ou <strong>fenómeno</strong> (chover, nevar). Exemplo: O João corre. Chove muito.">
+        <p>6. O verbo indica ______, estado ou fenómeno.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex6" value="ação"> ação</label>
+          <label><input type="radio" name="t6-ex6" value="cor"> cor</label>
+          <label><input type="radio" name="t6-ex6" value="lugar"> lugar</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="7" data-correct="adjetivo" data-explicacao="«Azul» <strong>qualifica</strong> o nome «céu» (diz a cor). Palavras que qualificam o nome chamam-se <strong>adjetivo</strong>.">
+        <p>7. Em "O céu azul", "azul" é...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex7" value="substantivo"> substantivo</label>
+          <label><input type="radio" name="t6-ex7" value="verbo"> verbo</label>
+          <label><input type="radio" name="t6-ex7" value="adjetivo"> adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="8" data-correct="qualifica" data-explicacao="O <strong>adjetivo</strong> <strong>qualifica</strong> o nome (diz como é: bonito, grande, azul). Exemplo: casa grande, céu azul, flor bonita.">
+        <p>8. O adjetivo ______ o nome.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex8" value="qualifica"> qualifica</label>
+          <label><input type="radio" name="t6-ex8" value="substitui"> substitui</label>
+          <label><input type="radio" name="t6-ex8" value="designa"> designa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="9" data-correct="nome" data-explicacao="«Alegria» designa um <strong>sentimento</strong> (uma coisa abstrata). Palavras que designam seres, coisas, lugares ou ideias chamam-se <strong>nome</strong> (substantivo).">
+        <p>9. "Alegria" designa um sentimento. É um...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex9" value="nome"> nome</label>
+          <label><input type="radio" name="t6-ex9" value="verbo"> verbo</label>
+          <label><input type="radio" name="t6-ex9" value="adjetivo"> adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="10" data-correct="correu" data-explicacao="O <strong>verbo</strong> é a palavra que indica a <strong>ação</strong>. Em «O menino correu até casa», a ação é <strong>correu</strong> (o que o menino fez).">
+        <p>10. Qual é o verbo em "O menino correu até casa."?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex10" value="correu"> correu</label>
+          <label><input type="radio" name="t6-ex10" value="menino"> menino</label>
+          <label><input type="radio" name="t6-ex10" value="casa"> casa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="11" data-correct="verbo" data-explicacao="«Chover» indica um <strong>fenómeno</strong> da natureza (como nevar, trovejar). O verbo pode indicar ação, estado ou fenómeno.">
+        <p>11. "Chover" é um verbo porque indica...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex11" value="um ser"> um ser</label>
+          <label><input type="radio" name="t6-ex11" value="verbo"> um fenómeno / ação</label>
+          <label><input type="radio" name="t6-ex11" value="qualidade"> qualidade</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="12" data-correct="bonita" data-explicacao="O <strong>adjetivo</strong> é a palavra que <strong>qualifica</strong> o nome (diz como é). Em «A flor bonita», <strong>bonita</strong> diz como é a flor.">
+        <p>12. Em "A flor bonita", qual é o adjetivo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex12" value="bonita"> bonita</label>
+          <label><input type="radio" name="t6-ex12" value="flor"> flor</label>
+          <label><input type="radio" name="t6-ex12" value="a"> a</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="13" data-correct="substantivo" data-explicacao="<strong>Nome</strong> e <strong>substantivo</strong> são a mesma coisa: a classe de palavras que designa seres, coisas e lugares. São dois nomes para a mesma classe.">
+        <p>13. Nome e ______ são a mesma classe de palavras.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex13" value="substantivo"> substantivo</label>
+          <label><input type="radio" name="t6-ex13" value="verbo"> verbo</label>
+          <label><input type="radio" name="t6-ex13" value="adjetivo"> adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="14" data-correct="designa" data-explicacao="O <strong>nome</strong> (ou substantivo) <strong>designa</strong> seres (Maria, cão), coisas (mesa, livro) e lugares (Lisboa, escola).">
+        <p>14. O nome ______ seres, coisas, lugares.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex14" value="designa"> designa</label>
+          <label><input type="radio" name="t6-ex14" value="qualifica"> qualifica</label>
+          <label><input type="radio" name="t6-ex14" value="substitui"> substitui</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="15" data-correct="feliz" data-explicacao="O <strong>adjetivo</strong> qualifica o nome (diz como alguém ou algo é). Em «O João está feliz», <strong>feliz</strong> diz como o João está.">
+        <p>15. Em "O João está feliz.", o adjetivo é ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex15" value="feliz"> feliz</label>
+          <label><input type="radio" name="t6-ex15" value="João"> João</label>
+          <label><input type="radio" name="t6-ex15" value="está"> está</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="16" data-correct="nome" data-explicacao="«Livro» designa uma <strong>coisa</strong>. Palavras que designam seres, coisas ou lugares chamam-se <strong>nome</strong> (ou substantivo).">
+        <p>16. "Livro" é um ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex16" value="nome"> nome</label>
+          <label><input type="radio" name="t6-ex16" value="verbo"> verbo</label>
+          <label><input type="radio" name="t6-ex16" value="adjetivo"> adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="17" data-correct="dorme" data-explicacao="O <strong>verbo</strong> indica a ação. Em «O bebé dorme», a ação é <strong>dorme</strong> (o que o bebé faz). «Bebé» é o nome (quem).">
+        <p>17. Qual é o verbo em "O bebé dorme."?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex17" value="dorme"> dorme</label>
+          <label><input type="radio" name="t6-ex17" value="bebé"> bebé</label>
+          <label><input type="radio" name="t6-ex17" value="o"> o</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="18" data-correct="grande" data-explicacao="O <strong>adjetivo</strong> qualifica o nome (diz como é). Em «A casa grande», <strong>grande</strong> diz o tamanho da casa. «Casa» é o nome.">
+        <p>18. Em "A casa grande", o adjetivo é ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex18" value="casa"> casa</label>
+          <label><input type="radio" name="t6-ex18" value="grande"> grande</label>
+          <label><input type="radio" name="t6-ex18" value="a"> a</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="19" data-correct="classes" data-explicacao="As palavras dividem-se em <strong>classes</strong> conforme a sua função: nome (substantivo), verbo, adjetivo, etc. Cada classe tem um papel na frase.">
+        <p>19. As palavras dividem-se em ______ conforme a função.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex19" value="classes"> classes</label>
+          <label><input type="radio" name="t6-ex19" value="sílabas"> sílabas</label>
+          <label><input type="radio" name="t6-ex19" value="letras"> letras</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="20" data-correct="verbo" data-explicacao="«Saltar», «rir» e «pensar» indicam <strong>ações</strong>. Palavras que indicam ação, estado ou fenómeno chamam-se <strong>verbos</strong>.">
+        <p>20. "Saltar", "rir" e "pensar" são...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex20" value="nomes"> nomes</label>
+          <label><input type="radio" name="t6-ex20" value="verbo"> verbos</label>
+          <label><input type="radio" name="t6-ex20" value="adjetivos"> adjetivos</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(6)">✅ Corrigir Tópico</button>
+      <div id="resumo-t6" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 7: Onomatopeias -->
+    <section id="t7" class="topic">
+      <h2>🔊 7. Onomatopeias</h2>
+      <div class="explicacao">
+        <h3>O que é uma onomatopeia?</h3>
+        <p>É uma palavra que <strong>imita</strong> um som da natureza ou de ações. Quando escreves o barulho que algo faz, estás a usar uma onomatopeia!</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• miau – som do gato<br>• au au – latir do cão<br>• toc toc – bater à porta<br>• boom – explosão<br>• ring ring – telefone<br>• plim plim – gotas de água<br>• pii – apito</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Nos livros de banda desenhada aparecem muitas onomatopeias: CRASH! BANG! ZZZ (a dormir).</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="7" data-ex="1" data-correct="miau">
+        <p>1. Que onomatopeia imita o gato?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex1" value="miau"> miau</label>
+          <label><input type="radio" name="t7-ex1" value="au au"> au au</label>
+          <label><input type="radio" name="t7-ex1" value="toc toc"> toc toc</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="2" data-correct="imitam" data-explicacao="As onomatopeias <strong>imitam</strong> sons (barulhos da natureza ou de ações). Exemplo: «miau» imita o gato, «toc toc» imita bater à porta.">
+        <p>2. As onomatopeias ______ sons.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex2" value="imitam"> imitam</label>
+          <label><input type="radio" name="t7-ex2" value="escrevem"> escrevem</label>
+          <label><input type="radio" name="t7-ex2" value="cantam"> cantam</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="3" data-correct="au au" data-explicacao="O cão <strong>lata</strong>. A onomatopeia do latir do cão é <strong>au au</strong>. O gato faz «miau».">
+        <p>3. O cão faz ______ ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex3" value="au au"> au au</label>
+          <label><input type="radio" name="t7-ex3" value="miau"> miau</label>
+          <label><input type="radio" name="t7-ex3" value="toc toc"> toc toc</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="4" data-correct="toc toc">
+        <p>4. Bater à porta: ______ ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex4" value="toc toc"> toc toc</label>
+          <label><input type="radio" name="t7-ex4" value="boom"> boom</label>
+          <label><input type="radio" name="t7-ex4" value="miau"> miau</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="5" data-correct="onomatopeia">
+        <p>5. Palavra que imita um som chama-se ______.</p>
+        <input type="text" class="resposta" name="t7-ex5" data-correct="onomatopeia" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="6" data-correct="boom">
+        <p>6. Uma explosão faz ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex6" value="miau"> miau</label>
+          <label><input type="radio" name="t7-ex6" value="boom"> boom</label>
+          <label><input type="radio" name="t7-ex6" value="toc toc"> toc toc</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="7" data-correct="telefone">
+        <p>7. "Ring ring" é o som do ______.</p>
+        <input type="text" class="resposta" name="t7-ex7" data-correct="telefone" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="8" data-correct="som">
+        <p>8. Onomatopeia = palavra que imita um ______.</p>
+        <input type="text" class="resposta" name="t7-ex8" data-correct="som" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="9" data-correct="cão">
+        <p>9. "Au au" é o latir do...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex9" value="gato"> gato</label>
+          <label><input type="radio" name="t7-ex9" value="cão"> cão</label>
+          <label><input type="radio" name="t7-ex9" value="pássaro"> pássaro</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="10" data-correct="gato">
+        <p>10. "Miau" é o som do ______.</p>
+        <input type="text" class="resposta" name="t7-ex10" data-correct="gato" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="11" data-correct="porta">
+        <p>11. "Toc toc" imita bater à ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex11" value="porta"> porta</label>
+          <label><input type="radio" name="t7-ex11" value="janela"> janela</label>
+          <label><input type="radio" name="t7-ex11" value="mesa"> mesa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="12" data-correct="natureza">
+        <p>12. As onomatopeias podem imitar sons da ______ ou de ações.</p>
+        <input type="text" class="resposta" name="t7-ex12" data-correct="natureza" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="13" data-correct="pii">
+        <p>13. Um apito faz ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex13" value="miau"> miau</label>
+          <label><input type="radio" name="t7-ex13" value="pii"> pii</label>
+          <label><input type="radio" name="t7-ex13" value="boom"> boom</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="14" data-correct="água">
+        <p>14. "Plim plim" pode imitar gotas de ______.</p>
+        <input type="text" class="resposta" name="t7-ex14" data-correct="água" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="15" data-correct="zzz">
+        <p>15. Nos livros, ______ representa alguém a dormir.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex15" value="miau"> miau</label>
+          <label><input type="radio" name="t7-ex15" value="zzz"> zzz</label>
+          <label><input type="radio" name="t7-ex15" value="toc"> toc</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="16" data-correct="crash">
+        <p>16. Quando algo cai e parte: ______!</p>
+        <input type="text" class="resposta" name="t7-ex16" data-correct="crash" placeholder="Escreve uma onomatopeia">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="17" data-correct="imita">
+        <p>17. A onomatopeia ______ o som real.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex17" value="imita"> imita</label>
+          <label><input type="radio" name="t7-ex17" value="escreve"> só escreve</label>
+          <label><input type="radio" name="t7-ex17" value="ignora"> ignora</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="18" data-correct="cucu">
+        <p>18. O cuco faz ______.</p>
+        <input type="text" class="resposta" name="t7-ex18" data-correct="cucu" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="19" data-correct="banda desenhada">
+        <p>19. Onde aparecem muitas onomatopeias? Na ______ ______.</p>
+        <input type="text" class="resposta" name="t7-ex19" data-correct="banda desenhada" placeholder="Duas palavras">
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="20" data-correct="explosão">
+        <p>20. "Boom" imita uma ______.</p>
+        <input type="text" class="resposta" name="t7-ex20" data-correct="explosão" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(7)">✅ Corrigir Tópico</button>
+      <div id="resumo-t7" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 8: Modos verbais -->
+    <section id="t8" class="topic">
+      <h2>⏱️ 8. Modos verbais</h2>
+      <div class="explicacao">
+        <h3>O que são modos verbais?</h3>
+        <p>O <strong>modo</strong> do verbo indica a atitude de quem fala perante a ação.</p>
+        <p><strong>Indicativo</strong> – apresenta a ação como real, certa (ex: Eu estudo. Ela correu.)<br>
+        <strong>Imperativo</strong> – exprime ordem, pedido ou conselho (ex: Estuda! Corre daqui!)</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• Indicativo: O João comeu o bolo. Amanhã vou à praia.<br>• Imperativo: Come a sopa! Não corras!</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Se a frase é uma ordem ou um pedido direto ("Faz isto!"), o verbo está no imperativo. Se é um facto ("Ele faz isto"), está no indicativo.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="8" data-ex="1" data-correct="indicativo">
+        <p>1. "Eu estudo todos os dias." O verbo está no modo...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex1" value="indicativo"> indicativo</label>
+          <label><input type="radio" name="t8-ex1" value="imperativo"> imperativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="2" data-correct="imperativo">
+        <p>2. "Estuda já!" O verbo está no modo ______.</p>
+        <input type="text" class="resposta" name="t8-ex2" data-correct="imperativo" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="3" data-correct="real">
+        <p>3. O indicativo apresenta a ação como ______ ou certa.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex3" value="real"> real</label>
+          <label><input type="radio" name="t8-ex3" value="ordem"> ordem</label>
+          <label><input type="radio" name="t8-ex3" value="dúvida"> dúvida</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="4" data-correct="ordem">
+        <p>4. O imperativo exprime ______, pedido ou conselho.</p>
+        <input type="text" class="resposta" name="t8-ex4" data-correct="ordem" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="5" data-correct="imperativo">
+        <p>5. "Fecha a janela!" Que modo verbal?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex5" value="indicativo"> indicativo</label>
+          <label><input type="radio" name="t8-ex5" value="imperativo"> imperativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="6" data-correct="indicativo">
+        <p>6. "A Maria fechou a janela." Modo ______.</p>
+        <input type="text" class="resposta" name="t8-ex6" data-correct="indicativo" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="7" data-correct="dois">
+        <p>7. Quantos modos verbais estudámos aqui?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex7" value="um"> um</label>
+          <label><input type="radio" name="t8-ex7" value="dois"> dois</label>
+          <label><input type="radio" name="t8-ex7" value="três"> três</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="8" data-correct="modo">
+        <p>8. O ______ do verbo indica a atitude de quem fala.</p>
+        <input type="text" class="resposta" name="t8-ex8" data-correct="modo" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="9" data-correct="imperativo">
+        <p>9. "Não corras!" O verbo "corras" está no...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex9" value="indicativo"> indicativo</label>
+          <label><input type="radio" name="t8-ex9" value="imperativo"> imperativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="10" data-correct="conselho">
+        <p>10. O imperativo pode dar ordem, pedido ou ______.</p>
+        <input type="text" class="resposta" name="t8-ex10" data-correct="conselho" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="11" data-correct="indicativo">
+        <p>11. "Eles comeram o bolo." Modo...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex11" value="indicativo"> indicativo</label>
+          <label><input type="radio" name="t8-ex11" value="imperativo"> imperativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="12" data-correct="pedido">
+        <p>12. "Por favor, ajuda-me!" é um ______ no imperativo.</p>
+        <input type="text" class="resposta" name="t8-ex12" data-correct="pedido" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="13" data-correct="imperativo">
+        <p>13. "Calem-se!" Que modo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex13" value="indicativo"> indicativo</label>
+          <label><input type="radio" name="t8-ex13" value="imperativo"> imperativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="14" data-correct="certa">
+        <p>14. No indicativo, a ação é apresentada como real e ______.</p>
+        <input type="text" class="resposta" name="t8-ex14" data-correct="certa" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="15" data-correct="indicativo">
+        <p>15. "Amanhã vou à escola." Modo ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex15" value="indicativo"> indicativo</label>
+          <label><input type="radio" name="t8-ex15" value="imperativo"> imperativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="16" data-correct="atitude">
+        <p>16. O modo indica a ______ de quem fala perante a ação.</p>
+        <input type="text" class="resposta" name="t8-ex16" data-correct="atitude" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="17" data-correct="imperativo">
+        <p>17. "Senta-te." (ordem) Modo...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex17" value="indicativo"> indicativo</label>
+          <label><input type="radio" name="t8-ex17" value="imperativo"> imperativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="18" data-correct="facto">
+        <p>18. Quando contamos um facto, usamos o modo ______.</p>
+        <input type="text" class="resposta" name="t8-ex18" data-correct="indicativo" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="19" data-correct="imperativo">
+        <p>19. "Ouve com atenção!" Modo ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex19" value="indicativo"> indicativo</label>
+          <label><input type="radio" name="t8-ex19" value="imperativo"> imperativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="20" data-correct="indicativo">
+        <p>20. "O João ouve com atenção." Modo ______.</p>
+        <input type="text" class="resposta" name="t8-ex20" data-correct="indicativo" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(8)">✅ Corrigir Tópico</button>
+      <div id="resumo-t8" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 9: Conjugação de verbos (com tabelas) -->
+    <section id="t9" class="topic">
+      <h2>📋 9. Conjugação de verbos</h2>
+      <div class="explicacao">
+        <h3>Tempos verbais</h3>
+        <p><strong>Presente</strong> – ação no momento atual (eu canto).<br>
+        <strong>Pretérito perfeito</strong> – ação passada acabada (eu cantei).<br>
+        <strong>Pretérito imperfeito</strong> – ação passada em curso ou habitual (eu cantava).<br>
+        <strong>Futuro</strong> – ação futura (eu cantarei).</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Verbo CANTAR – Presente do indicativo</h3>
+        <p>eu canto | tu cantas | ele/ela canta | nós cantamos | vós cantais | eles cantam</p>
+        <p><strong>Pretérito perfeito:</strong> eu cantei | tu cantaste | ele cantou | nós cantámos | vós cantastes | eles cantaram</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Para conjugar, substitui o final -ar, -er ou -ir do infinitivo pelas terminações do tempo e pessoa.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios – Conjugação (CANTAR)</h3>
+      <div class="exercicio" data-topic="9" data-ex="1">
+        <p>1. Completa o Presente do indicativo – Verbo CANTAR</p>
+        <table class="conjugacao">
+          <tr><th>Pessoa</th><th>Presente</th></tr>
+          <tr><td>eu</td><td><input type="text" name="t9-ex1-a" data-correct="canto" placeholder="..."></td></tr>
+          <tr><td>tu</td><td><input type="text" name="t9-ex1-b" data-correct="cantas" placeholder="..."></td></tr>
+          <tr><td>ele/ela</td><td><input type="text" name="t9-ex1-c" data-correct="canta" placeholder="..."></td></tr>
+        </table>
+              </div>
+      <div class="exercicio" data-topic="9" data-ex="2" data-correct="cantei">
+        <p>2. Pretérito perfeito: Eu ______ (cantar).</p>
+        <input type="text" class="resposta" name="t9-ex2" data-correct="cantei" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="3" data-correct="cantava">
+        <p>3. Pretérito imperfeito: Eu ______ (cantar).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex3" value="cantei"> cantei</label>
+          <label><input type="radio" name="t9-ex3" value="cantava"> cantava</label>
+          <label><input type="radio" name="t9-ex3" value="cantarei"> cantarei</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="4" data-correct="cantarei">
+        <p>4. Futuro: Eu ______ (cantar).</p>
+        <input type="text" class="resposta" name="t9-ex4" data-correct="cantarei" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="5" data-correct="presente">
+        <p>5. "Eu canto" está no tempo...</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex5" value="presente"> presente</label>
+          <label><input type="radio" name="t9-ex5" value="pretérito"> pretérito</label>
+          <label><input type="radio" name="t9-ex5" value="futuro"> futuro</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="6" data-correct="pretérito perfeito">
+        <p>6. "Eu cantei" está no ______ ______.</p>
+        <input type="text" class="resposta" name="t9-ex6" data-correct="pretérito perfeito" placeholder="Dois palavras">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="7" data-correct="pretérito imperfeito">
+        <p>7. "Eu cantava" está no pretérito ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex7" value="perfeito"> perfeito</label>
+          <label><input type="radio" name="t9-ex7" value="imperfeito"> imperfeito</label>
+          <label><input type="radio" name="t9-ex7" value="futuro"> futuro</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="8" data-correct="futuro">
+        <p>8. "Cantarei" é tempo ______.</p>
+        <input type="text" class="resposta" name="t9-ex8" data-correct="futuro" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="9" data-correct="cantas">
+        <p>9. Presente: Tu ______ (cantar).</p>
+        <input type="text" class="resposta" name="t9-ex9" data-correct="cantas" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="10" data-correct="cantou">
+        <p>10. Pretérito perfeito: Ele ______ (cantar).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex10" value="canta"> canta</label>
+          <label><input type="radio" name="t9-ex10" value="cantou"> cantou</label>
+          <label><input type="radio" name="t9-ex10" value="cantava"> cantava</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="11" data-correct="conjugação">
+        <p>11. Variar o verbo em pessoa e tempo chama-se ______.</p>
+        <input type="text" class="resposta" name="t9-ex11" data-correct="conjugação" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="12" data-correct="cantamos">
+        <p>12. Presente: Nós ______ (cantar).</p>
+        <input type="text" class="resposta" name="t9-ex12" data-correct="cantamos" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="13" data-correct="passada">
+        <p>13. O pretérito indica ação ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex13" value="presente"> presente</label>
+          <label><input type="radio" name="t9-ex13" value="passada"> passada</label>
+          <label><input type="radio" name="t9-ex13" value="futura"> futura</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="14" data-correct="cantavam">
+        <p>14. Pretérito imperfeito: Eles ______ (cantar).</p>
+        <input type="text" class="resposta" name="t9-ex14" data-correct="cantavam" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="15" data-correct="cantarão">
+        <p>15. Futuro: Eles ______ (cantar).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex15" value="cantam"> cantam</label>
+          <label><input type="radio" name="t9-ex15" value="cantaram"> cantaram</label>
+          <label><input type="radio" name="t9-ex15" value="cantarão"> cantarão</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="16" data-correct="cantaste">
+        <p>16. Pretérito perfeito: Tu ______ (cantar).</p>
+        <input type="text" class="resposta" name="t9-ex16" data-correct="cantaste" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="17" data-correct="quatro">
+        <p>17. Quantos tempos verbais estudámos? (presente, pretérito perfeito, imperfeito, futuro)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex17" value="três"> três</label>
+          <label><input type="radio" name="t9-ex17" value="quatro"> quatro</label>
+          <label><input type="radio" name="t9-ex17" value="cinco"> cinco</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="18" data-correct="atual">
+        <p>18. O presente indica ação no momento ______.</p>
+        <input type="text" class="resposta" name="t9-ex18" data-correct="atual" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="19" data-correct="canta">
+        <p>19. Presente: Ele ______ (cantar).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex19" value="canta"> canta</label>
+          <label><input type="radio" name="t9-ex19" value="cantou"> cantou</label>
+          <label><input type="radio" name="t9-ex19" value="cantava"> cantava</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="20" data-correct="futura">
+        <p>20. O futuro indica ação ______.</p>
+        <input type="text" class="resposta" name="t9-ex20" data-correct="futura" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(9)">✅ Corrigir Tópico</button>
+      <div id="resumo-t9" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 10: Pronomes pessoais -->
+    <section id="t10" class="topic">
+      <h2>👤 10. Pronomes pessoais</h2>
+      <div class="explicacao">
+        <h3>O que são pronomes pessoais?</h3>
+        <p>São palavras que substituem os nomes das pessoas (ou coisas) na frase. Ex: <strong>Eu</strong> vou. <strong>Tu</strong> comes. <strong>Ele</strong> corre.</p>
+        <p><strong>Formas tónicas</strong> – têm acento próprio na frase (eu, tu, ele, ela, nós, vós, eles, elas). Usam-se sozinhos ou após preposição.<br>
+        <strong>Formas átonas</strong> – não têm acento próprio, aparecem ligadas ao verbo (me, te, se, lhe, nos, vos, o, a, etc.).</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• Tónico: <strong>Eu</strong> gosto de ti. Isto é para <strong>mim</strong>.<br>• Átono: <strong>Me</strong> deram um presente. Ele <strong>te</strong> disse.</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Tónico = pode ficar sozinho (Quem veio? Eu.). Átono = vem colado ao verbo (Ele deu-me).</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="10" data-ex="1" data-correct="pronome">
+        <p>1. "Eu" e "tu" são ______ pessoais.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t10-ex1" value="pronome"> pronomes</label>
+          <label><input type="radio" name="t10-ex1" value="verbo"> verbos</label>
+          <label><input type="radio" name="t10-ex1" value="nome"> nomes</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="2" data-correct="substituem">
+        <p>2. Os pronomes pessoais ______ os nomes.</p>
+        <input type="text" class="resposta" name="t10-ex2" data-correct="substituem" placeholder="Escreve o verbo">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="3" data-correct="tónica">
+        <p>3. A forma que tem acento próprio é a forma ______.</p>
+        <input type="text" class="resposta" name="t10-ex3" data-correct="tónica" placeholder="tónica ou átona?">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="4" data-correct="átona">
+        <p>4. "Me" e "te" são formas ______ (ligadas ao verbo).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t10-ex4" value="tónica"> tónica</label>
+          <label><input type="radio" name="t10-ex4" value="átona"> átona</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="5" data-correct="eu">
+        <p>5. "______ vou à escola." (1ª pessoa singular)</p>
+        <input type="text" class="resposta" name="t10-ex5" data-correct="eu" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="6" data-correct="tu">
+        <p>6. "______ comes o bolo." (2ª pessoa singular)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t10-ex6" value="eu"> eu</label>
+          <label><input type="radio" name="t10-ex6" value="tu"> tu</label>
+          <label><input type="radio" name="t10-ex6" value="ele"> ele</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="7" data-correct="ele">
+        <p>7. 3ª pessoa singular: ______ ou ela.</p>
+        <input type="text" class="resposta" name="t10-ex7" data-correct="ele" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="8" data-correct="nós">
+        <p>8. Pronome para substituir «João e eu»: ______.</p>
+        <input type="text" class="resposta" name="t10-ex8" data-correct="nós" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="9" data-correct="eles">
+        <p>9. 3ª pessoa do plural (masculino): ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t10-ex9" value="nós"> nós</label>
+          <label><input type="radio" name="t10-ex9" value="vós"> vós</label>
+          <label><input type="radio" name="t10-ex9" value="eles"> eles</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="10" data-correct="mim">
+        <p>10. "Isto é para ______" (forma tónica de eu).</p>
+        <input type="text" class="resposta" name="t10-ex10" data-correct="mim" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="11" data-correct="me">
+        <p>11. "Ele deu-______ um livro." (forma átona)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t10-ex11" value="me"> me</label>
+          <label><input type="radio" name="t10-ex11" value="mim"> mim</label>
+          <label><input type="radio" name="t10-ex11" value="eu"> eu</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="12" data-correct="verbo">
+        <p>12. A forma átona aparece ligada ao ______.</p>
+        <input type="text" class="resposta" name="t10-ex12" data-correct="verbo" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="13" data-correct="ti">
+        <p>13. "Isto é para ______" (forma tónica de tu).</p>
+        <input type="text" class="resposta" name="t10-ex13" data-correct="ti" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="14" data-correct="pessoais">
+        <p>14. Eu, tu, ele, nós, vós, eles são pronomes ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t10-ex14" value="pessoais"> pessoais</label>
+          <label><input type="radio" name="t10-ex14" value="demonstrativos"> demonstrativos</label>
+          <label><input type="radio" name="t10-ex14" value="possessivos"> possessivos</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="15" data-correct="vós">
+        <p>15. 2ª pessoa do plural: ______.</p>
+        <input type="text" class="resposta" name="t10-ex15" data-correct="vós" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="16" data-correct="elas">
+        <p>16. 3ª pessoa do plural (feminino): ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t10-ex16" value="eles"> eles</label>
+          <label><input type="radio" name="t10-ex16" value="elas"> elas</label>
+          <label><input type="radio" name="t10-ex16" value="nós"> nós</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="17" data-correct="sozinha">
+        <p>17. A forma tónica pode ficar ______ na frase.</p>
+        <input type="text" class="resposta" name="t10-ex17" data-correct="sozinha" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="18" data-correct="preposição">
+        <p>18. Após preposição usamos a forma ______ (ex: para mim).</p>
+        <input type="text" class="resposta" name="t10-ex18" data-correct="tónica" placeholder="tónica ou átona?">
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="19" data-correct="te">
+        <p>19. "Ele disse-______" – forma átona de "ti".</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t10-ex19" value="ti"> ti</label>
+          <label><input type="radio" name="t10-ex19" value="te"> te</label>
+          <label><input type="radio" name="t10-ex19" value="tu"> tu</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="10" data-ex="20" data-correct="pessoas">
+        <p>20. Os pronomes pessoais referem-se às ______ do discurso.</p>
+        <input type="text" class="resposta" name="t10-ex20" data-correct="pessoas" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(10)">✅ Corrigir Tópico</button>
+      <div id="resumo-t10" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 11: Determinantes demonstrativos -->
+    <section id="t11" class="topic">
+      <h2>📌 11. Determinantes e pronomes demonstrativos</h2>
+      <div class="explicacao">
+        <h3>O que são?</h3>
+        <p>Indicam a <strong>posição</strong> no espaço ou no tempo em relação a quem fala.<br>
+        <strong>Este/esta</strong> – perto de quem fala.<br>
+        <strong>Esse/essa</strong> – perto de quem ouve.<br>
+        <strong>Aquele/aquela</strong> – longe dos dois.</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• Este lápis é meu. (perto de mim)<br>• Esse livro é teu? (perto de ti)<br>• Aquele carro é bonito. (longe)</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Este = aqui. Esse = aí. Aquele = ali.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="11" data-ex="1" data-correct="este">
+        <p>1. ______ lápis (perto de quem fala).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex1" value="este"> Este</label>
+          <label><input type="radio" name="t11-ex1" value="esse"> Esse</label>
+          <label><input type="radio" name="t11-ex1" value="aquele"> Aquele</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="2" data-correct="esse">
+        <p>2. ______ livro (perto de quem ouve).</p>
+        <input type="text" class="resposta" name="t11-ex2" data-correct="esse" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="3" data-correct="aquele">
+        <p>3. ______ casa (longe).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex3" value="este"> Este</label>
+          <label><input type="radio" name="t11-ex3" value="esse"> Esse</label>
+          <label><input type="radio" name="t11-ex3" value="aquele"> Aquele</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="4" data-correct="posição">
+        <p>4. Os demonstrativos indicam ______ no espaço ou tempo.</p>
+        <input type="text" class="resposta" name="t11-ex4" data-correct="posição" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="5" data-correct="esta">
+        <p>5. ______ caneta (feminino, perto de mim).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex5" value="esta"> Esta</label>
+          <label><input type="radio" name="t11-ex5" value="essa"> Essa</label>
+          <label><input type="radio" name="t11-ex5" value="aquela"> Aquela</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="6" data-correct="demonstrativos">
+        <p>6. Este, esse e aquele são determinantes ______.</p>
+        <input type="text" class="resposta" name="t11-ex6" data-correct="demonstrativos" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="7" data-correct="perto">
+        <p>7. "Este" indica algo ______ de quem fala.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex7" value="perto"> perto</label>
+          <label><input type="radio" name="t11-ex7" value="longe"> longe</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="8" data-correct="aquela">
+        <p>8. ______ flor (feminino, longe).</p>
+        <input type="text" class="resposta" name="t11-ex8" data-correct="aquela" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="9" data-correct="essa">
+        <p>9. ______ mesa (feminino, perto de ti).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex9" value="esta"> Esta</label>
+          <label><input type="radio" name="t11-ex9" value="essa"> Essa</label>
+          <label><input type="radio" name="t11-ex9" value="aquela"> Aquela</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="10" data-correct="fala">
+        <p>10. "Este" é perto de quem ______.</p>
+        <input type="text" class="resposta" name="t11-ex10" data-correct="fala" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="11" data-correct="ouve">
+        <p>11. "Esse" é perto de quem ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex11" value="fala"> fala</label>
+          <label><input type="radio" name="t11-ex11" value="ouve"> ouve</label>
+          <label><input type="radio" name="t11-ex11" value="vê"> vê</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="12" data-correct="longe">
+        <p>12. "Aquele" indica algo ______.</p>
+        <input type="text" class="resposta" name="t11-ex12" data-correct="longe" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="13" data-correct="estes">
+        <p>13. Plural de "este": ______.</p>
+        <input type="text" class="resposta" name="t11-ex13" data-correct="estes" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="14" data-correct="esses">
+        <p>14. Plural de "esse": ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex14" value="estes"> estes</label>
+          <label><input type="radio" name="t11-ex14" value="esses"> esses</label>
+          <label><input type="radio" name="t11-ex14" value="aqueles"> aqueles</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="15" data-correct="aqueles">
+        <p>15. Plural de "aquele": ______.</p>
+        <input type="text" class="resposta" name="t11-ex15" data-correct="aqueles" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="16" data-correct="determinante">
+        <p>16. Quando acompanha o nome, "este" é um ______.</p>
+        <input type="text" class="resposta" name="t11-ex16" data-correct="determinante" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="17" data-correct="três">
+        <p>17. Quantas posições básicas têm os demonstrativos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex17" value="duas"> duas</label>
+          <label><input type="radio" name="t11-ex17" value="três"> três</label>
+          <label><input type="radio" name="t11-ex17" value="quatro"> quatro</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="18" data-correct="espaço">
+        <p>18. Este/esse/aquele indicam posição no ______ ou no tempo.</p>
+        <input type="text" class="resposta" name="t11-ex18" data-correct="espaço" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="19" data-correct="tempo">
+        <p>19. "Este ano" – "este" pode indicar ______ (agora).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex19" value="tempo"> tempo</label>
+          <label><input type="radio" name="t11-ex19" value="lugar"> lugar</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="11" data-ex="20" data-correct="esta">
+        <p>20. ______ caneta aqui é azul. (feminino)</p>
+        <input type="text" class="resposta" name="t11-ex20" data-correct="esta" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(11)">✅ Corrigir Tópico</button>
+      <div id="resumo-t11" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 12: Determinantes possessivos -->
+    <section id="t12" class="topic">
+      <h2>💝 12. Determinantes possessivos</h2>
+      <div class="explicacao">
+        <h3>O que são?</h3>
+        <p>Indicam <strong>posse</strong>, a quem pertence algo. Concordam em género e número com a coisa possuída.</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• <strong>meu</strong> / minha – meu livro, minha casa<br>• <strong>teu</strong> / tua – teu lápis, tua mesa<br>• <strong>nosso</strong> / nossa – nosso quarto, nossa escola<br>• <strong>vosso</strong> / vossa – vosso cão, vossa casa<br>• <strong>seu</strong> / sua – seu caderno, sua caneta (dele/dela)</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Meu/minha = de mim. Teu/tua = de ti. Nosso/nossa = de nós. Seu/sua = dele/dela.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="12" data-ex="1" data-correct="possessivos">
+        <p>1. Meu, teu, nosso são determinantes ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t12-ex1" value="possessivos"> possessivos</label>
+          <label><input type="radio" name="t12-ex1" value="demonstrativos"> demonstrativos</label>
+          <label><input type="radio" name="t12-ex1" value="interrogativos"> interrogativos</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="2" data-correct="posse">
+        <p>2. Os possessivos indicam ______ (a quem pertence).</p>
+        <input type="text" class="resposta" name="t12-ex2" data-correct="posse" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="3" data-correct="meu">
+        <p>3. ______ livro (de mim).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t12-ex3" value="meu"> meu</label>
+          <label><input type="radio" name="t12-ex3" value="teu"> teu</label>
+          <label><input type="radio" name="t12-ex3" value="nosso"> nosso</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="4" data-correct="teu">
+        <p>4. ______ caderno (de ti).</p>
+        <input type="text" class="resposta" name="t12-ex4" data-correct="teu" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="5" data-correct="nossa">
+        <p>5. ______ escola (de nós, feminino).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t12-ex5" value="nosso"> nosso</label>
+          <label><input type="radio" name="t12-ex5" value="nossa"> nossa</label>
+          <label><input type="radio" name="t12-ex5" value="vossa"> vossa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="6" data-correct="minha">
+        <p>6. ______ casa (de mim, feminino).</p>
+        <input type="text" class="resposta" name="t12-ex6" data-correct="minha" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="7" data-correct="seu">
+        <p>7. ______ pai (dele).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t12-ex7" value="meu"> meu</label>
+          <label><input type="radio" name="t12-ex7" value="teu"> teu</label>
+          <label><input type="radio" name="t12-ex7" value="seu"> seu</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="8" data-correct="concordam">
+        <p>8. Os possessivos ______ em género e número com o nome.</p>
+        <input type="text" class="resposta" name="t12-ex8" data-correct="concordam" placeholder="Escreve o verbo">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="9" data-correct="vosso">
+        <p>9. ______ cão (de vós).</p>
+        <input type="text" class="resposta" name="t12-ex9" data-correct="vosso" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="10" data-correct="sua">
+        <p>10. ______ caneta (dela).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t12-ex10" value="seu"> seu</label>
+          <label><input type="radio" name="t12-ex10" value="sua"> sua</label>
+          <label><input type="radio" name="t12-ex10" value="minha"> minha</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="11" data-correct="mim">
+        <p>11. "Meu" indica posse de ______.</p>
+        <input type="text" class="resposta" name="t12-ex11" data-correct="mim" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="12" data-correct="ti">
+        <p>12. "Teu" indica posse de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t12-ex12" value="mim"> mim</label>
+          <label><input type="radio" name="t12-ex12" value="ti"> ti</label>
+          <label><input type="radio" name="t12-ex12" value="nós"> nós</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="13" data-correct="nós">
+        <p>13. "Nosso" indica posse de ______.</p>
+        <input type="text" class="resposta" name="t12-ex13" data-correct="nós" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="14" data-correct="dele">
+        <p>14. "Seu" pode indicar posse de ______ ou dela.</p>
+        <input type="text" class="resposta" name="t12-ex14" data-correct="dele" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="15" data-correct="tua">
+        <p>15. ______ mesa (de ti, feminino).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t12-ex15" value="teu"> teu</label>
+          <label><input type="radio" name="t12-ex15" value="tua"> tua</label>
+          <label><input type="radio" name="t12-ex15" value="minha"> minha</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="16" data-correct="meus">
+        <p>16. Plural de "meu": ______.</p>
+        <input type="text" class="resposta" name="t12-ex16" data-correct="meus" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="17" data-correct="nossos">
+        <p>17. ______ livros (de nós, masculino plural).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t12-ex17" value="nosso"> nosso</label>
+          <label><input type="radio" name="t12-ex17" value="nossos"> nossos</label>
+          <label><input type="radio" name="t12-ex17" value="nossa"> nossa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="18" data-correct="determinante">
+        <p>18. "Meu" antes do nome é um ______ possessivo.</p>
+        <input type="text" class="resposta" name="t12-ex18" data-correct="determinante" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="19" data-correct="vossa">
+        <p>19. ______ casa (de vós, feminino).</p>
+        <input type="text" class="resposta" name="t12-ex19" data-correct="vossa" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="12" data-ex="20" data-correct="pertence">
+        <p>20. O possessivo indica a quem ______ algo.</p>
+        <input type="text" class="resposta" name="t12-ex20" data-correct="pertence" placeholder="Escreve o verbo">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(12)">✅ Corrigir Tópico</button>
+      <div id="resumo-t12" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 13: Determinantes interrogativos -->
+    <section id="t13" class="topic">
+      <h2>❓ 13. Determinantes interrogativos</h2>
+      <div class="explicacao">
+        <h3>O que são?</h3>
+        <p>Usam-se em <strong>perguntas</strong> para questionar sobre o nome. Ex: <strong>Que</strong> livro? <strong>Qual</strong> caneta? <strong>Quantos</strong> anos?</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• Que dia é hoje? Qual é o teu nome? Quantos irmãos tens? Quantas páginas tem o livro?</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Que = coisa em geral. Qual/quais = escolha. Quantos/quantas = número.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="13" data-ex="1" data-correct="interrogativos">
+        <p>1. Que, qual e quantos são determinantes ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex1" value="interrogativos"> interrogativos</label>
+          <label><input type="radio" name="t13-ex1" value="possessivos"> possessivos</label>
+          <label><input type="radio" name="t13-ex1" value="demonstrativos"> demonstrativos</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="2" data-correct="perguntas">
+        <p>2. Os interrogativos usam-se em ______.</p>
+        <input type="text" class="resposta" name="t13-ex2" data-correct="perguntas" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="3" data-correct="que">
+        <p>3. ______ livro queres? (interrogativo)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex3" value="que"> Que</label>
+          <label><input type="radio" name="t13-ex3" value="qual"> Qual</label>
+          <label><input type="radio" name="t13-ex3" value="quantos"> Quantos</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="4" data-correct="qual">
+        <p>4. ______ é o teu nome?</p>
+        <input type="text" class="resposta" name="t13-ex4" data-correct="qual" placeholder="Que ou qual?">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="5" data-correct="quantos">
+        <p>5. ______ anos tens?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex5" value="que"> Que</label>
+          <label><input type="radio" name="t13-ex5" value="qual"> Qual</label>
+          <label><input type="radio" name="t13-ex5" value="quantos"> Quantos</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="6" data-correct="quantas">
+        <p>6. ______ páginas tem o livro? (feminino)</p>
+        <input type="text" class="resposta" name="t13-ex6" data-correct="quantas" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="7" data-correct="número">
+        <p>7. "Quantos" pergunta pelo ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex7" value="nome"> nome</label>
+          <label><input type="radio" name="t13-ex7" value="número"> número</label>
+          <label><input type="radio" name="t13-ex7" value="lugar"> lugar</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="8" data-correct="qual">
+        <p>8. "______ cor preferes?" – escolha.</p>
+        <input type="text" class="resposta" name="t13-ex8" data-correct="qual" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="9" data-correct="que">
+        <p>9. "______ horas são?"</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex9" value="que"> Que</label>
+          <label><input type="radio" name="t13-ex9" value="qual"> Qual</label>
+          <label><input type="radio" name="t13-ex9" value="quantos"> Quantos</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="10" data-correct="quais">
+        <p>10. Plural de "qual": ______.</p>
+        <input type="text" class="resposta" name="t13-ex10" data-correct="quais" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="11" data-correct="questionar">
+        <p>11. Os interrogativos servem para ______ sobre o nome.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex11" value="questionar"> questionar</label>
+          <label><input type="radio" name="t13-ex11" value="afirmar"> afirmar</label>
+          <label><input type="radio" name="t13-ex11" value="ordenar"> ordenar</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="12" data-correct="que">
+        <p>12. ______ dia é hoje?</p>
+        <input type="text" class="resposta" name="t13-ex12" data-correct="que" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="13" data-correct="escolha">
+        <p>13. "Qual" indica ______ entre opções.</p>
+        <input type="text" class="resposta" name="t13-ex13" data-correct="escolha" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="14" data-correct="quantos">
+        <p>14. ______ irmãos tens?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex14" value="que"> que</label>
+          <label><input type="radio" name="t13-ex14" value="qual"> qual</label>
+          <label><input type="radio" name="t13-ex14" value="quantos"> quantos</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="15" data-correct="determinante">
+        <p>15. "Que" antes do nome é um ______ interrogativo.</p>
+        <input type="text" class="resposta" name="t13-ex15" data-correct="determinante" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="16" data-correct="interrogação">
+        <p>16. Frases com interrogativos terminam em ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex16" value="ponto"> ponto</label>
+          <label><input type="radio" name="t13-ex16" value="interrogação"> interrogação</label>
+          <label><input type="radio" name="t13-ex16" value="exclamação"> exclamação</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="17" data-correct="qual">
+        <p>17. ______ é a tua cor favorita?</p>
+        <input type="text" class="resposta" name="t13-ex17" data-correct="qual" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="18" data-correct="coisa">
+        <p>18. "Que" questiona coisa em ______.</p>
+        <input type="text" class="resposta" name="t13-ex18" data-correct="geral" placeholder="geral?">
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="19" data-correct="quantas">
+        <p>19. ______ bonecas tens? (feminino)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t13-ex19" value="quantos"> quantos</label>
+          <label><input type="radio" name="t13-ex19" value="quantas"> quantas</label>
+          <label><input type="radio" name="t13-ex19" value="qual"> qual</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="13" data-ex="20" data-correct="nome">
+        <p>20. O determinante interrogativo acompanha o ______ na pergunta.</p>
+        <input type="text" class="resposta" name="t13-ex20" data-correct="nome" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(13)">✅ Corrigir Tópico</button>
+      <div id="resumo-t13" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 14: Conectores discursivos -->
+    <section id="t14" class="topic">
+      <h2>🔗 14. Conectores discursivos</h2>
+      <div class="explicacao">
+        <h3>O que são?</h3>
+        <p>Palavras que <strong>ligam</strong> partes do texto e mostram a relação entre ideias: adição (e), oposição (mas), causa (porque), ordem (depois, então), conclusão (por isso).</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• <strong>E</strong> – junta: Fui à escola e joguei.<br>• <strong>Mas</strong> – contraste: Gosto dele, mas não concordo.<br>• <strong>Porque</strong> – causa: Estudei porque tinha teste.<br>• <strong>Depois</strong> – ordem: Acordei, depois vesti-me.<br>• <strong>Então</strong> – conclusão/sequência: Choveu, então ficámos em casa.<br>• <strong>Por isso</strong> – conclusão: Estudei muito, por isso passei.</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Conectores tornam o texto mais claro e organizado. Sem eles, as frases ficam soltas!</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="14" data-ex="1" data-correct="conectores">
+        <p>1. "E", "mas", "porque" são ______ discursivos.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex1" value="conectores"> conectores</label>
+          <label><input type="radio" name="t14-ex1" value="verbos"> verbos</label>
+          <label><input type="radio" name="t14-ex1" value="nomes"> nomes</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="2" data-correct="ligam">
+        <p>2. Os conectores ______ partes do texto.</p>
+        <input type="text" class="resposta" name="t14-ex2" data-correct="ligam" placeholder="Escreve o verbo">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="3" data-correct="e">
+        <p>3. "Fui à praia ______ nadar." (adição)</p>
+        <input type="text" class="resposta" name="t14-ex3" data-correct="e" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="4" data-correct="mas">
+        <p>4. "Quero ir, ______ não posso." (oposição)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex4" value="e"> e</label>
+          <label><input type="radio" name="t14-ex4" value="mas"> mas</label>
+          <label><input type="radio" name="t14-ex4" value="porque"> porque</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="5" data-correct="porque">
+        <p>5. "Chorei ______ estava triste." (causa)</p>
+        <input type="text" class="resposta" name="t14-ex5" data-correct="porque" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="6" data-correct="depois">
+        <p>6. "Acordei, ______ vesti-me." (ordem no tempo)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex6" value="depois"> depois</label>
+          <label><input type="radio" name="t14-ex6" value="mas"> mas</label>
+          <label><input type="radio" name="t14-ex6" value="e"> e</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="7" data-correct="então">
+        <p>7. "Choveu, ______ ficámos em casa." (conclusão/sequência)</p>
+        <input type="text" class="resposta" name="t14-ex7" data-correct="então" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="8" data-correct="por isso">
+        <p>8. "Estudei, ______ passei." (conclusão)</p>
+        <input type="text" class="resposta" name="t14-ex8" data-correct="por isso" placeholder="Duas palavras">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="9" data-correct="adição">
+        <p>9. "E" indica ______ de ideias.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex9" value="adição"> adição</label>
+          <label><input type="radio" name="t14-ex9" value="oposição"> oposição</label>
+          <label><input type="radio" name="t14-ex9" value="causa"> causa</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="10" data-correct="oposição">
+        <p>10. "Mas" indica ______ (contraste).</p>
+        <input type="text" class="resposta" name="t14-ex10" data-correct="oposição" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="11" data-correct="causa">
+        <p>11. "Porque" indica ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex11" value="causa"> causa</label>
+          <label><input type="radio" name="t14-ex11" value="ordem"> ordem</label>
+          <label><input type="radio" name="t14-ex11" value="conclusão"> conclusão</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="12" data-correct="ordem">
+        <p>12. "Depois" indica ______ no tempo.</p>
+        <input type="text" class="resposta" name="t14-ex12" data-correct="ordem" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="13" data-correct="conclusão">
+        <p>13. "Por isso" indica ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex13" value="causa"> causa</label>
+          <label><input type="radio" name="t14-ex13" value="conclusão"> conclusão</label>
+          <label><input type="radio" name="t14-ex13" value="adição"> adição</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="14" data-correct="ideias">
+        <p>14. Os conectores mostram a relação entre ______.</p>
+        <input type="text" class="resposta" name="t14-ex14" data-correct="ideias" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="15" data-correct="e">
+        <p>15. "Comi bolo ______ gelado." Que conector?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex15" value="e"> e</label>
+          <label><input type="radio" name="t14-ex15" value="mas"> mas</label>
+          <label><input type="radio" name="t14-ex15" value="porque"> porque</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="16" data-correct="discursivos">
+        <p>16. Conectores ______ (tipo de palavra que liga).</p>
+        <input type="text" class="resposta" name="t14-ex16" data-correct="discursivos" placeholder="discursivos">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="17" data-correct="então">
+        <p>17. "Não sabia, ______ perguntei."</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex17" value="e"> e</label>
+          <label><input type="radio" name="t14-ex17" value="mas"> mas</label>
+          <label><input type="radio" name="t14-ex17" value="então"> então</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="18" data-correct="texto">
+        <p>18. Os conectores organizam o ______.</p>
+        <input type="text" class="resposta" name="t14-ex18" data-correct="texto" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="19" data-correct="porque">
+        <p>19. "Ficou em casa ______ estava doente." (causa)</p>
+        <input type="text" class="resposta" name="t14-ex19" data-correct="porque" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="14" data-ex="20" data-correct="mas">
+        <p>20. "É alto, ______ não joga basquetebol." (contraste)</p>
+        <input type="text" class="resposta" name="t14-ex20" data-correct="mas" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(14)">✅ Corrigir Tópico</button>
+      <div id="resumo-t14" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 15: Graus dos adjetivos -->
+    <section id="t15" class="topic">
+      <h2>📊 15. Graus dos adjetivos</h2>
+      <div class="explicacao">
+        <h3>O que são?</h3>
+        <p><strong>Grau normal</strong> – qualidade simples (alto, bonito).<br>
+        <strong>Comparativo</strong> – compara dois elementos (mais alto que, tão alto como).<br>
+        <strong>Superlativo</strong> – qualidade no máximo (altíssimo, o mais alto).</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• Normal: O João é alto.<br>• Comparativo: O João é mais alto que o Pedro. / É tão alto como o irmão.<br>• Superlativo: O João é altíssimo. / É o mais alto da turma.</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Comparativo = compara 2. Superlativo = o melhor/máximo.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="15" data-ex="1" data-correct="normal">
+        <p>1. "O céu é azul." – grau ______ do adjetivo.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex1" value="normal"> normal</label>
+          <label><input type="radio" name="t15-ex1" value="comparativo"> comparativo</label>
+          <label><input type="radio" name="t15-ex1" value="superlativo"> superlativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="2" data-correct="comparativo">
+        <p>2. "Mais alto que" é grau ______.</p>
+        <input type="text" class="resposta" name="t15-ex2" data-correct="comparativo" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="3" data-correct="superlativo">
+        <p>3. "Altíssimo" é grau ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex3" value="normal"> normal</label>
+          <label><input type="radio" name="t15-ex3" value="comparativo"> comparativo</label>
+          <label><input type="radio" name="t15-ex3" value="superlativo"> superlativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="4" data-correct="dois">
+        <p>4. O comparativo compara ______ elementos.</p>
+        <input type="text" class="resposta" name="t15-ex4" data-correct="dois" placeholder="Escreve o número">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="5" data-correct="mais">
+        <p>5. Comparativo de superioridade: ______ alto que.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex5" value="mais"> mais</label>
+          <label><input type="radio" name="t15-ex5" value="menos"> menos</label>
+          <label><input type="radio" name="t15-ex5" value="tão"> tão</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="6" data-correct="tão">
+        <p>6. Comparativo de igualdade: ______ alto como.</p>
+        <input type="text" class="resposta" name="t15-ex6" data-correct="tão" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="7" data-correct="máximo">
+        <p>7. O superlativo indica qualidade no ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex7" value="mínimo"> mínimo</label>
+          <label><input type="radio" name="t15-ex7" value="máximo"> máximo</label>
+          <label><input type="radio" name="t15-ex7" value="igual"> igual</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="8" data-correct="graus">
+        <p>8. Os adjetivos podem ter três ______: normal, comparativo, superlativo.</p>
+        <input type="text" class="resposta" name="t15-ex8" data-correct="graus" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="9" data-correct="bonito">
+        <p>9. "A casa é bonita." – grau ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex9" value="normal"> normal</label>
+          <label><input type="radio" name="t15-ex9" value="comparativo"> comparativo</label>
+          <label><input type="radio" name="t15-ex9" value="superlativo"> superlativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="10" data-correct="belíssimo">
+        <p>10. Superlativo de "belo": ______.</p>
+        <input type="text" class="resposta" name="t15-ex10" data-correct="belíssimo" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="11" data-correct="mais bonito">
+        <p>11. "Ele é ______ ______ que eu." (comparativo de bonito)</p>
+        <input type="text" class="resposta" name="t15-ex11" data-correct="mais bonito" placeholder="Duas palavras">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="12" data-correct="três">
+        <p>12. Quantos graus do adjetivo existem?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex12" value="dois"> dois</label>
+          <label><input type="radio" name="t15-ex12" value="três"> três</label>
+          <label><input type="radio" name="t15-ex12" value="quatro"> quatro</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="13" data-correct="o mais">
+        <p>13. Superlativo relativo: "______ ______ alto da turma."</p>
+        <input type="text" class="resposta" name="t15-ex13" data-correct="o mais" placeholder="Duas palavras">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="14" data-correct="qualidade">
+        <p>14. O adjetivo no grau normal exprime ______ simples.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex14" value="qualidade"> qualidade</label>
+          <label><input type="radio" name="t15-ex14" value="quantidade"> quantidade</label>
+          <label><input type="radio" name="t15-ex14" value="ação"> ação</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="15" data-correct="menos">
+        <p>15. Comparativo de inferioridade: ______ alto que.</p>
+        <input type="text" class="resposta" name="t15-ex15" data-correct="menos" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="16" data-correct="como">
+        <p>16. "Tão alto ______" – comparativo de igualdade.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex16" value="que"> que</label>
+          <label><input type="radio" name="t15-ex16" value="como"> como</label>
+          <label><input type="radio" name="t15-ex16" value="de"> de</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="17" data-correct="que">
+        <p>17. "Mais alto ______ o irmão."</p>
+        <input type="text" class="resposta" name="t15-ex17" data-correct="que" placeholder="que ou como?">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="18" data-correct="superlativo">
+        <p>18. "Rapidíssimo" é grau ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex18" value="normal"> normal</label>
+          <label><input type="radio" name="t15-ex18" value="comparativo"> comparativo</label>
+          <label><input type="radio" name="t15-ex18" value="superlativo"> superlativo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="19" data-correct="comparativo">
+        <p>19. "Menos rápido que" é grau ______.</p>
+        <input type="text" class="resposta" name="t15-ex19" data-correct="comparativo" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="15" data-ex="20" data-correct="adjetivo">
+        <p>20. Grau normal, comparativo e superlativo são graus do ______.</p>
+        <input type="text" class="resposta" name="t15-ex20" data-correct="adjetivo" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(15)">✅ Corrigir Tópico</button>
+      <div id="resumo-t15" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 16: Sujeito e predicado -->
+    <section id="t16" class="topic">
+      <h2>📐 16. Sujeito e predicado</h2>
+      <div class="explicacao">
+        <h3>O que são?</h3>
+        <p>A frase simples divide-se em duas partes:<br>
+        <strong>Sujeito</strong> – quem faz a ação (ou de quem se fala).<br>
+        <strong>Predicado</strong> – o que se diz sobre o sujeito (ação, estado).</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• "O cão / corre." → Sujeito: O cão. Predicado: corre.<br>• "O gato / dorme no sofá." → Sujeito: O gato. Predicado: dorme no sofá.<br>• "A Maria / correu para casa." → Sujeito: A Maria. Predicado: correu para casa.</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Pergunta "Quem?" ou "O quê?" antes do verbo = sujeito. O resto é predicado.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="16" data-ex="1" data-correct="sujeito">
+        <p>1. "O menino" em "O menino joga à bola" é o ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex1" value="sujeito"> sujeito</label>
+          <label><input type="radio" name="t16-ex1" value="predicado"> predicado</label>
+          <label><input type="radio" name="t16-ex1" value="verbo"> verbo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="2" data-correct="predicado">
+        <p>2. "Joga à bola" é o ______.</p>
+        <input type="text" class="resposta" name="t16-ex2" data-correct="predicado" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="3" data-correct="ação">
+        <p>3. O sujeito é quem faz a ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex3" value="ação"> ação</label>
+          <label><input type="radio" name="t16-ex3" value="pergunta"> pergunta</label>
+          <label><input type="radio" name="t16-ex3" value="resposta"> resposta</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="4" data-correct="diz">
+        <p>4. O predicado é o que se ______ sobre o sujeito.</p>
+        <input type="text" class="resposta" name="t16-ex4" data-correct="diz" placeholder="Escreve o verbo">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="5" data-correct="duas">
+        <p>5. A frase simples tem ______ partes: sujeito e predicado.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex5" value="uma"> uma</label>
+          <label><input type="radio" name="t16-ex5" value="duas"> duas</label>
+          <label><input type="radio" name="t16-ex5" value="três"> três</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="6" data-correct="quem">
+        <p>6. Para encontrar o sujeito pergunta: ______ faz a ação?</p>
+        <input type="text" class="resposta" name="t16-ex6" data-correct="quem" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="7" data-correct="o cão">
+        <p>7. Em "O cão corre.", o sujeito é ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex7" value="o cão"> O cão</label>
+          <label><input type="radio" name="t16-ex7" value="corre"> corre</label>
+          <label><input type="radio" name="t16-ex7" value="cão"> cão</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="8" data-correct="corre">
+        <p>8. Em "O cão corre.", o predicado é ______.</p>
+        <input type="text" class="resposta" name="t16-ex8" data-correct="corre" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="9" data-correct="verbo">
+        <p>9. O núcleo do predicado é normalmente o ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex9" value="nome"> nome</label>
+          <label><input type="radio" name="t16-ex9" value="verbo"> verbo</label>
+          <label><input type="radio" name="t16-ex9" value="adjetivo"> adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="10" data-correct="sujeito">
+        <p>10. O ______ pode ser simples (um nome) ou composto.</p>
+        <input type="text" class="resposta" name="t16-ex10" data-correct="sujeito" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="11" data-correct="Maria">
+        <p>11. Em "A Maria correu.", o sujeito é A ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex11" value="Maria"> Maria</label>
+          <label><input type="radio" name="t16-ex11" value="correu"> correu</label>
+          <label><input type="radio" name="t16-ex11" value="a"> A</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="12" data-correct="correu">
+        <p>12. Em "A Maria correu.", o predicado é ______.</p>
+        <input type="text" class="resposta" name="t16-ex12" data-correct="correu" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="13" data-correct="resto">
+        <p>13. Tudo o que não é sujeito é ______ (predicado).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex13" value="verbo"> verbo</label>
+          <label><input type="radio" name="t16-ex13" value="resto"> resto da frase</label>
+          <label><input type="radio" name="t16-ex13" value="nome"> nome</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="14" data-correct="fala">
+        <p>14. O sujeito é de quem se ______ na frase.</p>
+        <input type="text" class="resposta" name="t16-ex14" data-correct="fala" placeholder="Escreve o verbo">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="15" data-correct="predicado">
+        <p>15. "Comeu o bolo" em "O João comeu o bolo" é o ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex15" value="sujeito"> sujeito</label>
+          <label><input type="radio" name="t16-ex15" value="predicado"> predicado</label>
+          <label><input type="radio" name="t16-ex15" value="objeto"> objeto</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="16" data-correct="João">
+        <p>16. Em "O João comeu o bolo", o sujeito é O ______.</p>
+        <input type="text" class="resposta" name="t16-ex16" data-correct="joão" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="17" data-correct="antes">
+        <p>17. O sujeito normalmente vem ______ do verbo.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex17" value="antes"> antes</label>
+          <label><input type="radio" name="t16-ex17" value="depois"> depois</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="18" data-correct="estado">
+        <p>18. O predicado pode indicar ação ou ______.</p>
+        <input type="text" class="resposta" name="t16-ex18" data-correct="estado" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="19" data-correct="simples">
+        <p>19. Frase ______ = um sujeito e um predicado.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t16-ex19" value="simples"> simples</label>
+          <label><input type="radio" name="t16-ex19" value="composta"> composta</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="16" data-ex="20" data-correct="núcleo">
+        <p>20. O nome principal do sujeito chama-se ______ do sujeito.</p>
+        <input type="text" class="resposta" name="t16-ex20" data-correct="núcleo" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(16)">✅ Corrigir Tópico</button>
+      <div id="resumo-t16" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 17: Preposições -->
+    <section id="t17" class="topic">
+      <h2>🔗 17. Preposições</h2>
+      <div class="explicacao">
+        <h3>O que são?</h3>
+        <p>Palavras que <strong>ligam</strong> outras palavras e indicam relação (lugar, tempo, modo, posse, etc.).</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Exemplos</h3>
+        <p>• <strong>de</strong> – posse: livro de Maria<br>• <strong>em</strong> – lugar: estou em casa<br>• <strong>para</strong> – destino: vou para a escola<br>• <strong>com</strong> – companhia: fui com o João<br>• <strong>por</strong> – causa: por isso, passar por</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Preposição = palavra invariável que liga e indica relação. Não varia em género nem número.</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios</h3>
+      <div class="exercicio" data-topic="17" data-ex="1" data-correct="preposição">
+        <p>1. "De", "em", "para" são ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex1" value="preposição"> preposições</label>
+          <label><input type="radio" name="t17-ex1" value="verbos"> verbos</label>
+          <label><input type="radio" name="t17-ex1" value="nomes"> nomes</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="2" data-correct="ligam">
+        <p>2. As preposições ______ palavras.</p>
+        <input type="text" class="resposta" name="t17-ex2" data-correct="ligam" placeholder="Escreve o verbo">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="3" data-correct="de">
+        <p>3. "Livro ______ Maria" (posse).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex3" value="de"> de</label>
+          <label><input type="radio" name="t17-ex3" value="em"> em</label>
+          <label><input type="radio" name="t17-ex3" value="para"> para</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="4" data-correct="em">
+        <p>4. "Estou ______ casa." (lugar)</p>
+        <input type="text" class="resposta" name="t17-ex4" data-correct="em" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="5" data-correct="para">
+        <p>5. "Vou ______ a escola." (destino)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex5" value="de"> de</label>
+          <label><input type="radio" name="t17-ex5" value="em"> em</label>
+          <label><input type="radio" name="t17-ex5" value="para"> para</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="6" data-correct="com">
+        <p>6. "Fui ______ o João." (companhia)</p>
+        <input type="text" class="resposta" name="t17-ex6" data-correct="com" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="7" data-correct="por">
+        <p>7. "Passar ______ a rua." (através de)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex7" value="por"> por</label>
+          <label><input type="radio" name="t17-ex7" value="para"> para</label>
+          <label><input type="radio" name="t17-ex7" value="de"> de</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="8" data-correct="relação">
+        <p>8. A preposição indica ______ entre palavras.</p>
+        <input type="text" class="resposta" name="t17-ex8" data-correct="relação" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="9" data-correct="invariável">
+        <p>9. A preposição é ______ (não varia em género/número).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex9" value="variável"> variável</label>
+          <label><input type="radio" name="t17-ex9" value="invariável"> invariável</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="10" data-correct="posse">
+        <p>10. "De" pode indicar ______ (livro de Pedro).</p>
+        <input type="text" class="resposta" name="t17-ex10" data-correct="posse" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="11" data-correct="lugar">
+        <p>11. "Em casa" – "em" indica ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex11" value="tempo"> tempo</label>
+          <label><input type="radio" name="t17-ex11" value="lugar"> lugar</label>
+          <label><input type="radio" name="t17-ex11" value="modo"> modo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="12" data-correct="destino">
+        <p>12. "Para" indica ______ (para onde).</p>
+        <input type="text" class="resposta" name="t17-ex12" data-correct="destino" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="13" data-correct="companhia">
+        <p>13. "Com" indica ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex13" value="companhia"> companhia</label>
+          <label><input type="radio" name="t17-ex13" value="posse"> posse</label>
+          <label><input type="radio" name="t17-ex13" value="lugar"> lugar</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="14" data-correct="a">
+        <p>14. "Fui ______ escola." (preposição "a" antes de nome feminino)</p>
+        <input type="text" class="resposta" name="t17-ex14" data-correct="à" placeholder="a ou à?">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="15" data-correct="sem">
+        <p>15. "Ficou ______ mim." (falta de) – preposição ______.</p>
+        <input type="text" class="resposta" name="t17-ex15" data-correct="sem" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="16" data-correct="causa">
+        <p>16. "Por isso" – "por" pode indicar ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex16" value="causa"> causa</label>
+          <label><input type="radio" name="t17-ex16" value="lugar"> lugar</label>
+          <label><input type="radio" name="t17-ex16" value="tempo"> tempo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="17" data-correct="entre">
+        <p>17. "Entre" é uma preposição (______ duas coisas).</p>
+        <input type="text" class="resposta" name="t17-ex17" data-correct="entre" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="18" data-correct="sob">
+        <p>18. "Sob" significa debaixo ______.</p>
+        <input type="text" class="resposta" name="t17-ex18" data-correct="de" placeholder="Escreve (uma palavra)">
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="19" data-correct="sobre">
+        <p>19. "O livro está ______ a mesa." (em cima de)</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t17-ex19" value="sobre"> sobre</label>
+          <label><input type="radio" name="t17-ex19" value="sob"> sob</label>
+          <label><input type="radio" name="t17-ex19" value="em"> em</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="17" data-ex="20" data-correct="preposições">
+        <p>20. De, em, para, com, por são ______.</p>
+        <input type="text" class="resposta" name="t17-ex20" data-correct="preposições" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(17)">✅ Corrigir Tópico</button>
+      <div id="resumo-t17" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 18: Produção de texto -->
+    <section id="t18" class="topic">
+      <h2>✍️ 18. Produção de texto</h2>
+      <div class="explicacao">
+        <h3>O que é produzir texto?</h3>
+        <p>É <strong>escrever</strong> um texto com sentido: histórias, descrições, cartas. Precisas de ideias, organização e revisão.</p>
+      </div>
+      <div class="exemplos">
+        <h3>💡 Pequenos desafios</h3>
+        <p>• Escreve um pequeno texto sobre o teu animal favorito.<br>• Descreve um dia na praia.<br>• Escreve uma carta a um amigo.<br>• Conta o que fizeste no fim de semana.</p>
+      </div>
+      <div class="dicas">
+        <h3>✨ Dica</h3>
+        <p>Plano: início (apresentação), desenvolvimento (o que acontece), conclusão (fim). Revê ortografia e pontuação!</p>
+      </div>
+      <h3 class="exercicios-titulo">✏️ Exercícios (respostas sobre como escrever)</h3>
+      <div class="exercicio" data-topic="18" data-ex="1" data-correct="ideias">
+        <p>1. Para produzir texto precisamos de ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex1" value="ideias"> ideias</label>
+          <label><input type="radio" name="t18-ex1" value="só papel"> só papel</label>
+          <label><input type="radio" name="t18-ex1" value="nada"> nada</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="2" data-correct="organização">
+        <p>2. Um texto deve ter ______ (ordem, estrutura).</p>
+        <input type="text" class="resposta" name="t18-ex2" data-correct="organização" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="3" data-correct="conclusão">
+        <p>3. Partes de um texto: início, desenvolvimento e ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex3" value="meio"> meio</label>
+          <label><input type="radio" name="t18-ex3" value="conclusão"> conclusão</label>
+          <label><input type="radio" name="t18-ex3" value="fim"> fim</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="4" data-correct="conclusão">
+        <p>4. O ______ é o fim do texto.</p>
+        <input type="text" class="resposta" name="t18-ex4" data-correct="conclusão" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="5" data-correct="início">
+        <p>5. No ______ apresentamos o tema.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex5" value="início"> início</label>
+          <label><input type="radio" name="t18-ex5" value="meio"> meio</label>
+          <label><input type="radio" name="t18-ex5" value="fim"> fim</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="6" data-correct="desenvolvimento">
+        <p>6. No ______ contamos o que acontece.</p>
+        <input type="text" class="resposta" name="t18-ex6" data-correct="desenvolvimento" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="7" data-correct="revisão">
+        <p>7. Depois de escrever devemos fazer ______ (ver erros).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex7" value="revisão"> revisão</label>
+          <label><input type="radio" name="t18-ex7" value="apagar"> apagar</label>
+          <label><input type="radio" name="t18-ex7" value="nada"> nada</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="8" data-correct="ortografia">
+        <p>8. Na revisão verificamos ______ e pontuação.</p>
+        <input type="text" class="resposta" name="t18-ex8" data-correct="ortografia" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="9" data-correct="sentido">
+        <p>9. Um texto deve ter ______ (fazer sentido).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex9" value="sentido"> sentido</label>
+          <label><input type="radio" name="t18-ex9" value="riscos"> riscos</label>
+          <label><input type="radio" name="t18-ex9" value="nada"> nada</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="10" data-correct="escrever">
+        <p>10. Produção de texto = ______ um texto.</p>
+        <input type="text" class="resposta" name="t18-ex10" data-correct="escrever" placeholder="Escreve o verbo">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="11" data-correct="tema">
+        <p>11. No início apresentamos o ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex11" value="tema"> tema</label>
+          <label><input type="radio" name="t18-ex11" value="fim"> fim</label>
+          <label><input type="radio" name="t18-ex11" value="personagem"> personagem</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="12" data-correct="conectores">
+        <p>12. Para ligar ideias usamos ______ (e, mas, porque).</p>
+        <input type="text" class="resposta" name="t18-ex12" data-correct="conectores" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="13" data-correct="parágrafos">
+        <p>13. Um texto pode ter vários ______.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex13" value="parágrafos"> parágrafos</label>
+          <label><input type="radio" name="t18-ex13" value="palavras"> palavras</label>
+          <label><input type="radio" name="t18-ex13" value="letras"> letras</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="14" data-correct="pontuação">
+        <p>14. Devemos usar ______ correta (. ? ! ,).</p>
+        <input type="text" class="resposta" name="t18-ex14" data-correct="pontuação" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="15" data-correct="plano">
+        <p>15. Antes de escrever podemos fazer um ______ (ideias por ordem).</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex15" value="plano"> plano</label>
+          <label><input type="radio" name="t18-ex15" value="risco"> risco</label>
+          <label><input type="radio" name="t18-ex15" value="nada"> nada</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="16" data-correct="carta">
+        <p>16. Um tipo de texto é a ______ (para alguém).</p>
+        <input type="text" class="resposta" name="t18-ex16" data-correct="carta" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="17" data-correct="descrição">
+        <p>17. ______ = dizer como é algo ou alguém.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex17" value="descrição"> descrição</label>
+          <label><input type="radio" name="t18-ex17" value="carta"> carta</label>
+          <label><input type="radio" name="t18-ex17" value="lista"> lista</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="18" data-correct="narrativa">
+        <p>18. Contar uma história é uma ______.</p>
+        <input type="text" class="resposta" name="t18-ex18" data-correct="narrativa" placeholder="Escreve">
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="19" data-correct="ler">
+        <p>19. Para escrever melhor devemos ______ muito.</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex19" value="ler"> ler</label>
+          <label><input type="radio" name="t18-ex19" value="dormir"> dormir</label>
+          <label><input type="radio" name="t18-ex19" value="correr"> correr</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="20" data-correct="produção">
+        <p>20. ______ de texto = escrever textos.</p>
+        <input type="text" class="resposta" name="t18-ex20" data-correct="produção" placeholder="Escreve">
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(18)">✅ Corrigir Tópico</button>
+      <div id="resumo-t18" class="resumo-correcao"></div>
+    </section>
+  </div>
+
+  <script>
+    function getResposta(topic, ex) {
+      const radioName = 't' + topic + '-ex' + ex;
+      const radios = document.querySelectorAll('input[name="' + radioName + '"]');
+      for (let r of radios) {
+        if (r.checked) return (r.value || '').trim().toLowerCase();
+      }
+      const textInput = document.querySelector('input[name="' + radioName + '"]');
+      if (textInput && textInput.type === 'text') {
+        return (textInput.value || '').trim().toLowerCase();
+      }
+      const byData = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+      if (!byData) return '';
+      const inp = byData.querySelector('input[type="text"].resposta');
+      if (inp) return (inp.value || '').trim().toLowerCase();
+      const r = byData.querySelector('input[type="radio"]:checked');
+      return r ? (r.value || '').trim().toLowerCase() : '';
+    }
+
+    function getCorrect(topic, ex) {
+      const el = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+      if (!el) return '';
+      const inp = el.querySelector('input[type="text"].resposta, input[data-correct]');
+      if (inp && inp.getAttribute('data-correct')) return inp.getAttribute('data-correct').trim().toLowerCase();
+      const dataCorrect = el.getAttribute('data-correct');
+      if (dataCorrect) return dataCorrect.trim().toLowerCase();
+      return '';
+    }
+    var DEFAULT_EXPLICACOES_TOPICO = {
+      1: 'Lê de novo o texto «O Coelho e a Tartaruga» no início do tópico. A resposta está no texto.',
+      2: 'Separa a palavra em sílabas com hífens. Diz a palavra devagar: cada «golpe» de voz é uma sílaba (ex: ca-sa).',
+      3: 'Prefixo fica no início da palavra (in-, des-). Sufixo fica no fim (-mente, -inho). A palavra base é a que fica no meio.',
+      4: 'Família de palavras = palavras com a mesma raiz. Ex: mar, marinho, marinheiro têm a raiz «mar».',
+      5: 'Declarativa = afirma (.). Interrogativa = pergunta (?). Exclamativa = emoção (!). Imperativa = ordem ou pedido.',
+      6: 'Nome = ser, coisa, lugar. Verbo = ação (o que faz). Adjetivo = qualifica o nome (como é).',
+      7: 'Onomatopeia = palavra que imita o som (miau, au au, toc toc, boom).',
+      8: 'Indicativo = facto real («Eu estudo»). Imperativo = ordem ou pedido («Estuda!»).',
+      9: 'Conjuga o verbo no tempo pedido. Presente: canto, cantas, canta. Pretérito: cantei, cantaste, cantou. Futuro: cantarei.',
+      10: 'Forma tónica = sozinha (eu, tu, mim, ti). Forma átona = ligada ao verbo (me, te).',
+      11: 'Este/esta = perto de quem fala. Esse/essa = perto de quem ouve. Aquele/aquela = longe.',
+      12: 'Meu/minha = de mim. Teu/tua = de ti. Nosso/nossa = de nós. Seu/sua = dele/dela.',
+      13: 'Que = coisa. Qual/quais = escolha. Quantos/quantas = número.',
+      14: 'E = junta. Mas = contraste. Porque = causa. Depois/então = ordem. Por isso = conclusão.',
+      15: 'Normal = alto. Comparativo = mais alto que / tão alto como. Superlativo = altíssimo / o mais alto.',
+      16: 'Sujeito = quem faz (pergunta: Quem?). Predicado = o que se diz (resto da frase, com o verbo).',
+      17: 'Preposições ligam palavras: de (posse), em (lugar), para (destino), com (companhia), por (causa).',
+      18: 'Texto tem início (apresenta), desenvolvimento (o que acontece) e conclusão (fim). Revê ortografia e pontuação.'
+    };
+    function getExplicacao(topic, ex) {
+      const el = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+      const dataExp = el ? el.getAttribute('data-explicacao') : '';
+      if (dataExp) return dataExp;
+      return DEFAULT_EXPLICACOES_TOPICO[topic] || 'Lê a explicação e os exemplos no início deste tópico. A resposta está lá. Corrige e volta a corrigir.';
+    }
+
+    function normalize(text) {
+      if (text == null || text === '') return '';
+      return String(text).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').replace(/\s*-\s*/g, '-').trim();
+    }
+    function corrigirTopico(topic) {
+      const corretas = [];
+      const incorretas = [];
+      for (let ex = 1; ex <= 20; ex++) {
+        let ok = false;
+        if (topic === 9 && ex === 1) {
+          const a = normalize((document.querySelector('input[name="t9-ex1-a"]') || {}).value);
+          const b = normalize((document.querySelector('input[name="t9-ex1-b"]') || {}).value);
+          const c = normalize((document.querySelector('input[name="t9-ex1-c"]') || {}).value);
+          ok = (a === 'canto' && b === 'cantas' && c === 'canta');
+        } else {
+          const resp = normalize(getResposta(topic, ex));
+          const correct = normalize(getCorrect(topic, ex));
+          ok = correct && (resp === correct);
+        }
+        if (ok) corretas.push(ex);
+        else incorretas.push(ex);
+      }
+      const resumoEl = document.getElementById('resumo-t' + topic);
+      if (!resumoEl) return;
+      document.querySelectorAll('#t' + topic + ' .explicacao-errada-inline').forEach(function(el) { el.remove(); });
+      incorretas.forEach(function(n) {
+        const exercicioEl = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + n + '"]');
+        if (exercicioEl) {
+          const exp = getExplicacao(topic, n);
+          const div = document.createElement('div');
+          div.className = 'explicacao-errada-inline';
+          div.innerHTML = '<div class="explicacao-errada-titulo">❌ Pergunta ' + n + '</div><div class="explicacao-errada-texto"><strong>💡 Explicação:</strong><br>' + exp + '</div>';
+          exercicioEl.appendChild(div);
+        }
+      });
+      resumoEl.innerHTML = '<div class="corretas">CORRETAS: ' + (corretas.length ? corretas.join(',') : 'nenhuma') + '</div><div class="incorretas">INCORRETAS: ' + (incorretas.length ? incorretas.join(',') : 'nenhuma') + '</div>';
+      resumoEl.classList.add('visible');
+      var navLink = document.querySelector('nav a[href="#t' + topic + '"]');
+      if (navLink) {
+        var countSpan = navLink.querySelector('.nav-count');
+        if (countSpan) {
+          countSpan.textContent = ' (' + corretas.length + '/20)';
+          if (corretas.length === 20) {
+            navLink.classList.add('topic-ok');
+            countSpan.textContent = ' (20/20) ✓';
+          } else {
+            navLink.classList.remove('topic-ok');
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
