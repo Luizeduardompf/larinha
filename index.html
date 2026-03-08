@@ -377,9 +377,14 @@
     .resultados-partilhar-pais { background: #128C7E; }
     .resultados-partilhar-pais:hover { background: #0D7A6F; color: #fff; }
     .resultados-partilhar .resultados-partilhar-curto { display: none; }
+    .resultados-partilhar .resultados-partilhar-icon { display: none; }
+    .resultados-partilhar .resultados-partilhar-icon { gap: 6px; }
+    .resultados-partilhar .resultados-partilhar-icon svg { width: 22px; height: 22px; display: block; flex-shrink: 0; }
     @media (max-width: 600px) {
       .resultados-partilhar .resultados-partilhar-longo { display: none; }
-      .resultados-partilhar .resultados-partilhar-curto { display: inline; }
+      .resultados-partilhar .resultados-partilhar-curto,
+      .resultados-partilhar .resultados-partilhar-icon { display: inline-flex; align-items: center; justify-content: center; }
+      .resultados-partilhar { padding: 10px 12px; }
     }
     .resultados-concluidos { margin-bottom: 24px; padding: 14px; background: #E8F5E9; border-radius: 8px; border-left: 4px solid #2E7D32; }
     .resultados-concluidos h4 { margin: 0 0 10px 0; color: #1B5E20; }
@@ -4421,7 +4426,8 @@
       var textoPais = getTextoPartilhaPais();
       var urlWhatsAppPais = 'https://wa.me/?text=' + encodeURIComponent(textoPais);
       var html = '';
-      html += '<div class="resultados-partilhar-wrap"><a href="' + urlWhatsApp.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar" title="Partilhar resumo no WhatsApp"><span class="resultados-partilhar-longo">Partilhar os meus resultados com os amigos</span><span class="resultados-partilhar-curto">Partilhar com amigos.</span></a><a href="' + urlWhatsAppPais.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar resultados-partilhar-pais" title="Partilhar relatório completo com os pais"><span class="resultados-partilhar-longo">Partilhar resultados com os meus pais</span><span class="resultados-partilhar-curto">Partilhar com pais.</span></a></div>';
+      var iconPartilha = '<span class="resultados-partilhar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92 0-1.61-1.31-2.92-2.92-2.92z"/></svg></span>';
+      html += '<div class="resultados-partilhar-wrap"><a href="' + urlWhatsApp.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar" title="Partilhar com amigos" aria-label="Partilhar resultados com os amigos"><span class="resultados-partilhar-longo">Partilhar os meus resultados com os amigos</span><span class="resultados-partilhar-curto">AMIGOS</span>' + iconPartilha + '</a><a href="' + urlWhatsAppPais.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar resultados-partilhar-pais" title="Partilhar com os pais" aria-label="Partilhar resultados com os pais"><span class="resultados-partilhar-longo">Partilhar resultados com os meus pais</span><span class="resultados-partilhar-curto">PAIS</span>' + iconPartilha + '</a></div>';
       html += '<div class="resultados-concluidos"><h4>TÓPICOS CONCLUÍDOS</h4>';
       if (concluidos.length) {
         html += '<p>Respondeste corretamente a todas as questões destes tópicos:</p><ul>';
