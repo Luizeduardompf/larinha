@@ -370,6 +370,19 @@
     .explicacao-errada-texto { font-weight: normal; }
     .topic-resultados .resultados-intro { margin-bottom: 1rem; color: #555; }
     .resultados-conteudo { margin-top: 12px; }
+    .resultados-partilhar-wrap { margin-bottom: 1rem; display: flex; flex-wrap: nowrap; gap: 10px; align-items: center; }
+    .resultados-partilhar { display: inline-block; flex: 1 1 auto; min-width: 0; padding: 10px 12px; background: #25D366; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .resultados-partilhar:hover { background: #20BD5A; color: #fff; }
+    .resultados-partilhar:focus { outline: 2px solid #128C7E; outline-offset: 2px; }
+    .resultados-partilhar-pais { background: #128C7E; }
+    .resultados-partilhar-pais:hover { background: #0D7A6F; color: #fff; }
+    .resultados-concluidos { margin-bottom: 24px; padding: 14px; background: #E8F5E9; border-radius: 8px; border-left: 4px solid #2E7D32; }
+    .resultados-concluidos h4 { margin: 0 0 10px 0; color: #1B5E20; }
+    .resultados-concluidos ul { margin: 8px 0 0 0; padding-left: 1.2rem; }
+    .resultados-concluidos li { margin: 6px 0; }
+    .resultados-concluidos a { color: #2E7D32; text-decoration: none; font-weight: 500; }
+    .resultados-concluidos a:hover { text-decoration: underline; }
+    .resultados-concluidos-vazio { color: #555; font-style: italic; margin: 8px 0 0 0; }
     .resultados-dificuldades { margin-bottom: 24px; padding: 14px; background: #FFF8E1; border-radius: 8px; border-left: 4px solid #F9A825; }
     .resultados-dificuldades h4 { margin: 0 0 10px 0; color: #E65100; }
     .resultados-dificuldades ul { margin: 0; padding-left: 1.2rem; }
@@ -4280,6 +4293,93 @@
       if (typeof renderResultados === 'function') renderResultados();
     }
 
+    function getTextoPartilhaResultados() {
+      var TOTAL_TOPICOS = 18;
+      var concluidos = [];
+      document.querySelectorAll('section.topic.topic-done').forEach(function(section) {
+        var id = section.id;
+        if (id && id.indexOf('t') === 0) {
+          var n = parseInt(id.slice(1), 10);
+          if (n >= 1 && n <= TOTAL_TOPICOS) concluidos.push(n);
+        }
+      });
+      concluidos.sort(function(a, b) { return a - b; });
+      var linhas = [];
+      linhas.push('Olá, estou estudando para a prova.');
+      linhas.push('Português 4º Ano');
+      linhas.push('Meus resultados - Tópicos concluídos (' + concluidos.length + ' de ' + TOTAL_TOPICOS + '):');
+      concluidos.forEach(function(n) {
+        var section = document.getElementById('t' + n);
+        var h2 = section ? section.querySelector('h2') : null;
+        var txt = (h2 && h2.textContent) ? h2.textContent.replace(/^\s*\S+\s+/, '').trim() : ('Tópico ' + n);
+        linhas.push(txt);
+      });
+      linhas.push('');
+      linhas.push('Estude também, segue o link:');
+      linhas.push('https://luizeduardompf.github.io/larinha');
+      return linhas.join('\n');
+    }
+
+    function getTextoQuestao(topic, ex) {
+      var el = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+      if (!el) return 'Questão ' + ex;
+      var p = el.querySelector('p');
+      if (!p) return 'Questão ' + ex;
+      var clone = p.cloneNode(true);
+      clone.querySelectorAll('input').forEach(function(inp) {
+        var span = document.createElement('span');
+        span.textContent = '______';
+        if (inp.parentNode) inp.parentNode.replaceChild(span, inp);
+      });
+      return (clone.textContent || '').trim();
+    }
+
+    function getTextoPartilhaPais() {
+      var TOTAL_TOPICOS = 18;
+      var concluidos = [];
+      document.querySelectorAll('section.topic.topic-done').forEach(function(section) {
+        var id = section.id;
+        if (id && id.indexOf('t') === 0) {
+          var n = parseInt(id.slice(1), 10);
+          if (n >= 1 && n <= TOTAL_TOPICOS) concluidos.push(n);
+        }
+      });
+      concluidos.sort(function(a, b) { return a - b; });
+      var log = getLogErros();
+      var countByKey = {};
+      log.forEach(function(entry) {
+        var key = entry.topic + '-' + entry.ex;
+        countByKey[key] = (countByKey[key] || 0) + 1;
+      });
+      var dificuldadesKeys = Object.keys(countByKey).sort(function(a, b) {
+        var pa = a.split('-'), pb = b.split('-');
+        return Number(pa[0]) - Number(pb[0]) || Number(pa[1]) - Number(pb[1]);
+      });
+      var linhas = [];
+      linhas.push('TÓPICOS CONCLUÍDOS');
+      concluidos.forEach(function(n) {
+        var section = document.getElementById('t' + n);
+        var h2 = section ? section.querySelector('h2') : null;
+        var txt = (h2 && h2.textContent) ? h2.textContent.replace(/^\s*\S+\s+/, '').trim() : ('Tópico ' + n);
+        linhas.push('Tópico ' + n + ' - ' + txt);
+      });
+      if (!concluidos.length) linhas.push('(nenhum ainda)');
+      linhas.push('');
+      linhas.push('------------------------');
+      linhas.push('');
+      linhas.push('DIFICULDADES');
+      dificuldadesKeys.forEach(function(key) {
+        var p = key.split('-');
+        var t = p[0], ex = p[1];
+        var n = countByKey[key];
+        linhas.push('Tópico ' + t + ' – Questão ' + ex + ': ' + n + ' ' + (n === 1 ? 'Erro' : 'Erros'));
+        var qText = getTextoQuestao(t, ex);
+        if (qText) linhas.push('  - ' + qText);
+      });
+      if (!dificuldadesKeys.length) linhas.push('(nenhuma registada)');
+      return linhas.join('\n');
+    }
+
     function renderResultados() {
       var container = document.getElementById('resultados-conteudo');
       if (!container) return;
@@ -4302,7 +4402,31 @@
         var id = 't' + topic + '-ex' + ex;
         return '<a href="#' + id + '">' + (text || id) + '</a>';
       };
+      var concluidos = [];
+      document.querySelectorAll('section.topic.topic-done').forEach(function(section) {
+        var id = section.id;
+        if (id && id.indexOf('t') === 0) {
+          var n = parseInt(id.slice(1), 10);
+          if (n >= 1 && n <= 18) concluidos.push(n);
+        }
+      });
+      concluidos.sort(function(a, b) { return a - b; });
+      var textoPartilha = getTextoPartilhaResultados();
+      var urlWhatsApp = 'https://wa.me/?text=' + encodeURIComponent(textoPartilha);
+      var textoPais = getTextoPartilhaPais();
+      var urlWhatsAppPais = 'https://wa.me/?text=' + encodeURIComponent(textoPais);
       var html = '';
+      html += '<div class="resultados-partilhar-wrap"><a href="' + urlWhatsApp.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar" title="Partilhar resumo no WhatsApp">Partilhar os meus resultados com os amigos</a><a href="' + urlWhatsAppPais.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar resultados-partilhar-pais" title="Partilhar relatório completo com os pais">Partilhar resultados com os meus pais</a></div>';
+      html += '<div class="resultados-concluidos"><h4>TÓPICOS CONCLUÍDOS</h4>';
+      if (concluidos.length) {
+        html += '<p>Respondeste corretamente a todas as questões destes tópicos:</p><ul>';
+        concluidos.forEach(function(n) {
+          html += '<li><a href="#t' + n + '">Tópico ' + n + '</a></li>';
+        });
+        html += '</ul></div>';
+      } else {
+        html += '<p class="resultados-concluidos-vazio">Ainda nenhum tópico concluído. Responde a todas as questões de um tópico e clica em Corrigir para o marcar como concluído.</p></div>';
+      }
       if (summaryLines.length) {
         html += '<div class="resultados-dificuldades"><h4>DIFICULDADES</h4><ul>';
         summaryLines.forEach(function(line) {
