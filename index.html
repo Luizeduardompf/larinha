@@ -376,6 +376,11 @@
     .resultados-partilhar:focus { outline: 2px solid #128C7E; outline-offset: 2px; }
     .resultados-partilhar-pais { background: #128C7E; }
     .resultados-partilhar-pais:hover { background: #0D7A6F; color: #fff; }
+    .resultados-partilhar .resultados-partilhar-curto { display: none; }
+    @media (max-width: 600px) {
+      .resultados-partilhar .resultados-partilhar-longo { display: none; }
+      .resultados-partilhar .resultados-partilhar-curto { display: inline; }
+    }
     .resultados-concluidos { margin-bottom: 24px; padding: 14px; background: #E8F5E9; border-radius: 8px; border-left: 4px solid #2E7D32; }
     .resultados-concluidos h4 { margin: 0 0 10px 0; color: #1B5E20; }
     .resultados-concluidos ul { margin: 8px 0 0 0; padding-left: 1.2rem; }
@@ -4416,7 +4421,7 @@
       var textoPais = getTextoPartilhaPais();
       var urlWhatsAppPais = 'https://wa.me/?text=' + encodeURIComponent(textoPais);
       var html = '';
-      html += '<div class="resultados-partilhar-wrap"><a href="' + urlWhatsApp.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar" title="Partilhar resumo no WhatsApp">Partilhar os meus resultados com os amigos</a><a href="' + urlWhatsAppPais.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar resultados-partilhar-pais" title="Partilhar relatório completo com os pais">Partilhar resultados com os meus pais</a></div>';
+      html += '<div class="resultados-partilhar-wrap"><a href="' + urlWhatsApp.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar" title="Partilhar resumo no WhatsApp"><span class="resultados-partilhar-longo">Partilhar os meus resultados com os amigos</span><span class="resultados-partilhar-curto">Partilhar com amigos.</span></a><a href="' + urlWhatsAppPais.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar resultados-partilhar-pais" title="Partilhar relatório completo com os pais"><span class="resultados-partilhar-longo">Partilhar resultados com os meus pais</span><span class="resultados-partilhar-curto">Partilhar com pais.</span></a></div>';
       html += '<div class="resultados-concluidos"><h4>TÓPICOS CONCLUÍDOS</h4>';
       if (concluidos.length) {
         html += '<p>Respondeste corretamente a todas as questões destes tópicos:</p><ul>';
