@@ -192,6 +192,7 @@
     }
     header.header-sticky .nav-links a .nav-count { font-size: 0.65rem; }
     section.topic {
+      position: relative;
       background: white;
       padding: 16px 14px;
       margin-bottom: 20px;
@@ -199,6 +200,40 @@
       box-shadow: var(--sombra);
       scroll-margin-top: calc(var(--sticky-header-height) + var(--safe-top) + 10px);
     }
+    .btn-limpar-topico {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: none;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.06);
+      color: #666;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-limpar-topico:hover { background: rgba(255,99,71,0.2); color: #c62828; }
+    .btn-limpar-topico:active { background: rgba(255,99,71,0.3); }
+    .btn-limpar-topico:focus { outline: 2px solid var(--cor1); outline-offset: 2px; }
+    .link-preencher-topico {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 10px;
+      opacity: 0.2;
+      color: #666;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .link-preencher-topico:hover { opacity: 0.5; }
     section.topic h2 {
       color: var(--cor1);
       font-size: 1.35rem;
@@ -323,15 +358,30 @@
       display: none;
     }
     .resumo-correcao.visible { display: block; }
-    .resumo-correcao .corretas, .resumo-correcao .incorretas { padding: 10px; border-radius: 8px; margin: 5px 0; }
+    .resumo-correcao .corretas, .resumo-correcao .incorretas, .resumo-correcao .falta-responder { padding: 10px; border-radius: 8px; margin: 5px 0; }
     .resumo-correcao .corretas { color: #2E7D32; background: #E8F5E9; }
     .resumo-correcao .incorretas { color: #C62828; background: #FFEBEE; }
+    .resumo-correcao .falta-responder { color: #E65100; background: #FFF3E0; }
     .resumo-correcao .explicacoes-erradas { margin-top: 10px; }
     .resumo-correcao .incorreta-item { background: #FFF8E1; border-left: 4px solid #F9A825; padding: 10px 12px; margin: 8px 0; border-radius: 6px; font-weight: normal; font-size: 0.95rem; }
     .explicacao-errada-inline { background: #FFF8E1; border-left: 4px solid #E65100; padding: 10px 12px; margin-top: 10px; border-radius: 6px; font-size: 0.95rem; color: #333; }
     .explicacao-errada-inline strong { color: #BF360C; }
     .explicacao-errada-titulo { font-weight: bold; margin-bottom: 6px; }
     .explicacao-errada-texto { font-weight: normal; }
+    .topic-resultados .resultados-intro { margin-bottom: 1rem; color: #555; }
+    .resultados-conteudo { margin-top: 12px; }
+    .resultados-dificuldades { margin-bottom: 24px; padding: 14px; background: #FFF8E1; border-radius: 8px; border-left: 4px solid #F9A825; }
+    .resultados-dificuldades h4 { margin: 0 0 10px 0; color: #E65100; }
+    .resultados-dificuldades ul { margin: 0; padding-left: 1.2rem; }
+    .resultados-dificuldades li { margin: 6px 0; }
+    .resultados-dificuldades a { color: var(--cor2, #5c6bc0); text-decoration: none; }
+    .resultados-dificuldades a:hover { text-decoration: underline; }
+    .resultados-log h4 { margin: 0 0 10px 0; color: #333; }
+    .resultados-log-vazio { color: #666; font-style: italic; margin: 8px 0; }
+    .resultados-log-lista { padding-left: 1.2rem; margin: 8px 0; }
+    .resultados-log-lista li { margin: 8px 0; line-height: 1.4; }
+    .resultados-log-lista a { color: var(--cor2, #5c6bc0); text-decoration: none; }
+    .resultados-log-lista a:hover { text-decoration: underline; }
     table.conjugacao {
       width: 100%;
       max-width: 100%;
@@ -432,6 +482,7 @@
         <a href="#t16" title="Sujeito e predicado">16<span class="nav-count"></span></a>
         <a href="#t17" title="Preposições">17<span class="nav-count"></span></a>
         <a href="#t18" title="Produção de texto">18<span class="nav-count"></span></a>
+        <a href="#t19" title="Resultados">Resultados</a>
       </div>
     </nav>
   </header>
@@ -461,6 +512,7 @@
           <a href="#t16" title="Sujeito e predicado">16<span class="nav-count"></span></a>
           <a href="#t17" title="Preposições">17<span class="nav-count"></span></a>
           <a href="#t18" title="Produção de texto">18<span class="nav-count"></span></a>
+          <a href="#t19" title="Resultados">Resultados</a>
         </div>
       </nav>
     </header>
@@ -645,7 +697,7 @@
           <label><input type="radio" name="t1-ex20" value="empate"> Empate</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(1)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(1, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t1" class="resumo-correcao"></div>
     </section>
 
@@ -833,7 +885,7 @@
           <label><input type="radio" name="t2-ex20" value="por-tug-uês"> por-tug-uês</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(2)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(2, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t2" class="resumo-correcao"></div>
     </section>
 
@@ -1019,7 +1071,16 @@
           <label><input type="radio" name="t3-ex20" value="felicidade"> felicidade</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(3)">✅ Corrigir Tópico</button>
+      <div class="exercicio" data-topic="3" data-ex="21" data-correct="en" data-explicacao="O <strong>prefixo</strong> é a parte que aparece no início da palavra e ajuda a formar novas palavras. Em «encaracolada», o prefixo é <strong>en-</strong>.">
+        <p>21. Na palavra «encaracolada», qual é o prefixo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex21" value="en"> en</label>
+          <label><input type="radio" name="t3-ex21" value="cara"> cara</label>
+          <label><input type="radio" name="t3-ex21" value="col"> col</label>
+          <label><input type="radio" name="t3-ex21" value="ada"> ada</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(3, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t3" class="resumo-correcao"></div>
     </section>
 
@@ -1206,7 +1267,7 @@
           <label><input type="radio" name="t4-ex20" value="água"> água</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(4)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(4, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t4" class="resumo-correcao"></div>
     </section>
 
@@ -1396,7 +1457,16 @@
           <label><input type="radio" name="t5-ex20" value="explicação"> explicação</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(5)">✅ Corrigir Tópico</button>
+      <div class="exercicio" data-topic="5" data-ex="21" data-correct="frase interrogativa" data-explicacao="Quando uma frase faz uma pergunta e termina com «?», ela é uma frase interrogativa.">
+        <p>21. Numa entrevista aparece a pergunta: «Qual foi a pior notícia que já deu?» Que tipo de frase é esta?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex21" value="frase declarativa"> Frase declarativa</label>
+          <label><input type="radio" name="t5-ex21" value="frase interrogativa"> Frase interrogativa</label>
+          <label><input type="radio" name="t5-ex21" value="frase exclamativa"> Frase exclamativa</label>
+          <label><input type="radio" name="t5-ex21" value="frase imperativa"> Frase imperativa</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(5, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t5" class="resumo-correcao"></div>
     </section>
 
@@ -1586,7 +1656,43 @@
           <label><input type="radio" name="t6-ex20" value="adjetivos"> adjetivos</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(6)">✅ Corrigir Tópico</button>
+      <div class="exercicio" data-topic="6" data-ex="21" data-correct="quantificador numeral" data-explicacao="<strong>Dezanove</strong> indica um número. Palavras que indicam quantidade ou número chamam-se numerais (quantificador numeral).">
+        <p>21. Na frase: «O dia dezenove de maio foi escolhido para marcar este programa.» Qual é a classe gramatical da palavra «dezenove»?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex21" value="nome comum"> Nome comum</label>
+          <label><input type="radio" name="t6-ex21" value="quantificador numeral"> Quantificador numeral</label>
+          <label><input type="radio" name="t6-ex21" value="adjetivo"> Adjetivo</label>
+          <label><input type="radio" name="t6-ex21" value="advérbio"> Advérbio</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="22" data-correct="verbo" data-explicacao="Os verbos mostram ações ou estados. <strong>Foi</strong> vem do verbo «ser».">
+        <p>22. Na frase: «O dia dezenove de maio foi escolhido para marcar este programa.» Qual é a classe gramatical da palavra «foi»?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex22" value="verbo"> Verbo</label>
+          <label><input type="radio" name="t6-ex22" value="nome"> Nome</label>
+          <label><input type="radio" name="t6-ex22" value="determinante"> Determinante</label>
+          <label><input type="radio" name="t6-ex22" value="adjetivo"> Adjetivo</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="23" data-correct="nome comum" data-explicacao="Um nome (ou substantivo) serve para dar nome a coisas, pessoas ou lugares. <strong>Programa</strong> é o nome de uma coisa.">
+        <p>23. Na frase: «O dia dezenove de maio foi escolhido para marcar este programa.» Qual é a classe gramatical da palavra «programa»?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex23" value="verbo"> Verbo</label>
+          <label><input type="radio" name="t6-ex23" value="nome comum"> Nome comum</label>
+          <label><input type="radio" name="t6-ex23" value="adjetivo"> Adjetivo</label>
+          <label><input type="radio" name="t6-ex23" value="advérbio"> Advérbio</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="24" data-correct="advérbio de negação" data-explicacao="A palavra <strong>não</strong> serve para negar uma frase. Palavras que mudam o sentido do verbo são advérbios. O «não» é advérbio de negação.">
+        <p>24. Na frase «Já não penso nisso.» A palavra «não» pertence a que classe gramatical?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex24" value="advérbio de negação"> Advérbio de negação</label>
+          <label><input type="radio" name="t6-ex24" value="adjetivo"> Adjetivo</label>
+          <label><input type="radio" name="t6-ex24" value="preposição"> Preposição</label>
+          <label><input type="radio" name="t6-ex24" value="determinante"> Determinante</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(6, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t6" class="resumo-correcao"></div>
     </section>
 
@@ -1770,7 +1876,7 @@
           <label><input type="radio" name="t7-ex20" value="porta"> porta</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(7)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(7, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t7" class="resumo-correcao"></div>
     </section>
 
@@ -1949,7 +2055,7 @@
           <label><input type="radio" name="t8-ex20" value="conjuntivo"> conjuntivo</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(8)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(8, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t8" class="resumo-correcao"></div>
     </section>
 
@@ -1977,7 +2083,7 @@
         <p>Para conjugar, substitui o final -ar, -er ou -ir do infinitivo pelas terminações do tempo e pessoa.</p>
       </div>
       <h3 class="exercicios-titulo">✏️ Exercícios – Conjugação (CANTAR)</h3>
-      <div class="exercicio" data-topic="9" data-ex="1" data-explicacao="No <strong>presente</strong> do indicativo do verbo cantar: <strong>eu canto</strong>, <strong>tu cantas</strong>, <strong>ele/ela canta</strong>. As terminações são -o, -as, -a.">
+      <div class="exercicio" data-topic="9" data-ex="1" data-correct-a="canto" data-correct-b="cantas" data-correct-c="canta" data-explicacao="No <strong>presente</strong> do indicativo do verbo cantar: <strong>eu canto</strong>, <strong>tu cantas</strong>, <strong>ele/ela canta</strong>. As terminações são -o, -as, -a.">
         <p>1. Presente do indicativo – Verbo CANTAR</p>
         <p>1a. Eu ______ (cantar).</p>
         <div class="opcoes">
@@ -2038,7 +2144,7 @@
           <label><input type="radio" name="t9-ex6" value="futuro"> futuro</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="9" data-ex="7" data-correct="pretérito imperfeito" data-explicacao="«Eu cantava» é <strong>pretérito imperfeito</strong> (ação passada em curso ou repetida). «Cantei» é pretérito perfeito (ação acabada).">
+      <div class="exercicio" data-topic="9" data-ex="7" data-correct="imperfeito" data-explicacao="«Eu cantava» é <strong>pretérito imperfeito</strong> (ação passada em curso ou repetida). «Cantei» é pretérito perfeito (ação acabada).">
         <p>7. "Eu cantava" está no pretérito ______.</p>
         <div class="opcoes">
           <label><input type="radio" name="t9-ex7" value="perfeito"> perfeito</label>
@@ -2150,7 +2256,7 @@
           <label><input type="radio" name="t9-ex20" value="atual"> atual</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(9)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(9, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t9" class="resumo-correcao"></div>
     </section>
 
@@ -2335,7 +2441,7 @@
           <label><input type="radio" name="t10-ex20" value="lugares"> lugares</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(10)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(10, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t10" class="resumo-correcao"></div>
     </section>
 
@@ -2520,7 +2626,16 @@
           <label><input type="radio" name="t11-ex20" value="aquela"> Aquela</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(11)">✅ Corrigir Tópico</button>
+      <div class="exercicio" data-topic="11" data-ex="21" data-correct="determinante demonstrativo" data-explicacao="<strong>Este</strong>, <strong>esse</strong> e <strong>aquele</strong> mostram algo que está perto ou longe. São determinantes demonstrativos.">
+        <p>21. Na frase: «O dia dezenove de maio foi escolhido para marcar este programa.» Qual é a classe da palavra «este»?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t11-ex21" value="pronome pessoal"> Pronome pessoal</label>
+          <label><input type="radio" name="t11-ex21" value="determinante demonstrativo"> Determinante demonstrativo</label>
+          <label><input type="radio" name="t11-ex21" value="advérbio"> Advérbio</label>
+          <label><input type="radio" name="t11-ex21" value="preposição"> Preposição</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(11, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t11" class="resumo-correcao"></div>
     </section>
 
@@ -2704,7 +2819,7 @@
           <label><input type="radio" name="t12-ex20" value="ouve"> ouve</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(12)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(12, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t12" class="resumo-correcao"></div>
     </section>
 
@@ -2888,7 +3003,7 @@
           <label><input type="radio" name="t13-ex20" value="adjetivo"> adjetivo</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(13)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(13, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t13" class="resumo-correcao"></div>
     </section>
 
@@ -3072,7 +3187,16 @@
           <label><input type="radio" name="t14-ex20" value="e"> e</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(14)">✅ Corrigir Tópico</button>
+      <div class="exercicio" data-topic="14" data-ex="21" data-correct="porque" data-explicacao="<strong>Porque</strong> explica uma razão. Aqui diz o motivo de ir a pé: a escola é ao fundo da rua.">
+        <p>21. Escolhe o conector correto: «Vou a pé para a escola ___ a minha escola é ao fundo da rua.»</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t14-ex21" value="mas"> mas</label>
+          <label><input type="radio" name="t14-ex21" value="porque"> porque</label>
+          <label><input type="radio" name="t14-ex21" value="quando"> quando</label>
+          <label><input type="radio" name="t14-ex21" value="embora"> embora</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(14, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t14" class="resumo-correcao"></div>
     </section>
 
@@ -3162,7 +3286,7 @@
           <label><input type="radio" name="t15-ex8" value="pessoas"> pessoas</label>
         </div>
       </div>
-      <div class="exercicio" data-topic="15" data-ex="9" data-correct="bonito">
+      <div class="exercicio" data-topic="15" data-ex="9" data-correct="normal">
         <p>9. "A casa é bonita." – grau ______.</p>
         <div class="opcoes">
           <label><input type="radio" name="t15-ex9" value="normal"> normal</label>
@@ -3258,7 +3382,16 @@
           <label><input type="radio" name="t15-ex20" value="verbo"> verbo</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(15)">✅ Corrigir Tópico</button>
+      <div class="exercicio" data-topic="15" data-ex="21" data-correct="grau superlativo absoluto analítico" data-explicacao="Quando usamos palavras como <strong>muito</strong> antes de um adjetivo, estamos a reforçar a intensidade. É o grau superlativo absoluto analítico.">
+        <p>21. Lê a frase: «Queremos formar uma corrente muito grande.» Em que grau está o adjetivo «grande»?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t15-ex21" value="grau normal"> Grau normal</label>
+          <label><input type="radio" name="t15-ex21" value="grau comparativo de superioridade"> Grau comparativo de superioridade</label>
+          <label><input type="radio" name="t15-ex21" value="grau superlativo absoluto analítico"> Grau superlativo absoluto analítico</label>
+          <label><input type="radio" name="t15-ex21" value="grau superlativo absoluto sintético"> Grau superlativo absoluto sintético</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(15, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t15" class="resumo-correcao"></div>
     </section>
 
@@ -3442,7 +3575,7 @@
           <label><input type="radio" name="t16-ex20" value="predicado"> predicado</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(16)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(16, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t16" class="resumo-correcao"></div>
     </section>
 
@@ -3625,7 +3758,7 @@
           <label><input type="radio" name="t17-ex20" value="nomes"> nomes</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(17)">✅ Corrigir Tópico</button>
+      <button class="btn-corrigir" onclick="corrigirTopico(17, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t17" class="resumo-correcao"></div>
     </section>
 
@@ -3805,8 +3938,33 @@
           <label><input type="radio" name="t18-ex20" value="cópia"> Cópia</label>
         </div>
       </div>
-      <button class="btn-corrigir" onclick="corrigirTopico(18)">✅ Corrigir Tópico</button>
+      <div class="exercicio" data-topic="18" data-ex="21" data-correct="a minha rua tem muitos pássaros coloridos e barulhentos" data-explicacao="Ampliar uma frase é acrescentar mais informação usando adjetivos ou detalhes (muitos, coloridos, barulhentos).">
+        <p>21. Qual destas frases amplia corretamente a frase: «A minha rua tem pássaros.»?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex21" value="a rua tem pássaros"> A rua tem pássaros.</label>
+          <label><input type="radio" name="t18-ex21" value="a minha rua tem muitos pássaros coloridos e barulhentos"> A minha rua tem muitos pássaros coloridos e barulhentos.</label>
+          <label><input type="radio" name="t18-ex21" value="pássaros estão na rua"> Pássaros estão na rua.</label>
+          <label><input type="radio" name="t18-ex21" value="há pássaros"> Há pássaros.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="18" data-ex="22" data-correct="gosto de caminhar" data-explicacao="Reduzir uma frase é dizer a mesma ideia usando menos palavras. «Gosto de caminhar» mantém o sentido essencial.">
+        <p>22. Qual destas frases mantém o sentido essencial de: «Gosto muito de caminhar na minha rua.»?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t18-ex22" value="gosto de caminhar"> Gosto de caminhar.</label>
+          <label><input type="radio" name="t18-ex22" value="caminhar na rua é muito bonito"> Caminhar na rua é muito bonito.</label>
+          <label><input type="radio" name="t18-ex22" value="gosto muito da minha rua"> Gosto muito da minha rua.</label>
+          <label><input type="radio" name="t18-ex22" value="caminhar é divertido na rua"> Caminhar é divertido na rua.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(18, true)">✅ Corrigir Tópico</button>
       <div id="resumo-t18" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 19: Resultados (log de erros) -->
+    <section id="t19" class="topic topic-resultados">
+      <h2>📊 19. Resultados</h2>
+      <p class="resultados-intro">Resumo das dificuldades e registo de respostas erradas, para analisar o que precisas de rever.</p>
+      <div id="resultados-conteudo" class="resultados-conteudo"></div>
     </section>
   </div>
 
@@ -3814,6 +3972,8 @@
     // Persistência: localStorage (funciona com file:// e em servidor). Cookie como cópia para “limpar manualmente”.
     var STORAGE_KEY = 'larinha_respostas';
     var COOKIE_NAME = 'larinha_respostas';
+    var STORAGE_KEY_ERROS = 'larinha_log_erros';
+    var COOKIE_ERROS = 'larinha_log_erros';
     var COOKIE_MAX_AGE = 60 * 60 * 24 * 365 * 10;
 
     function setCookie(name, value, maxAge) {
@@ -3883,13 +4043,106 @@
       });
     }
 
+    function getLogErros() {
+      var json = '';
+      try {
+        json = localStorage.getItem(STORAGE_KEY_ERROS) || getCookie(COOKIE_ERROS);
+      } catch (e) {}
+      if (!json) return [];
+      try {
+        var arr = JSON.parse(json);
+        return Array.isArray(arr) ? arr : [];
+      } catch (e) { return []; }
+    }
+    function setLogErros(arr) {
+      var json = JSON.stringify(arr);
+      try {
+        localStorage.setItem(STORAGE_KEY_ERROS, json);
+        setCookie(COOKIE_ERROS, json);
+      } catch (e) {}
+    }
+    function addLogErro(topic, ex, wrongAnswer) {
+      var log = getLogErros();
+      log.push({ topic: Number(topic), ex: Number(ex), wrongAnswer: String(wrongAnswer || '').trim() });
+      setLogErros(log);
+    }
+
     function limparProgresso() {
       if (!confirm('Queres apagar todas as respostas e pontuação guardadas?')) return;
       try {
         localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(STORAGE_KEY_ERROS);
       } catch (e) {}
       document.cookie = COOKIE_NAME + '=; path=/; max-age=0';
+      document.cookie = COOKIE_ERROS + '=; path=/; max-age=0';
       location.reload();
+    }
+
+    function limparTopico(topic) {
+      if (!confirm('Apagar as respostas só deste tópico?')) return;
+      var prefix = 't' + topic + '-';
+      try {
+        var json = localStorage.getItem(STORAGE_KEY) || getCookie(COOKIE_NAME);
+        if (json) {
+          var data;
+          try { data = JSON.parse(json); } catch (e) { data = {}; }
+          Object.keys(data).forEach(function(k) {
+            if (k.indexOf(prefix) === 0) delete data[k];
+          });
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          setCookie(COOKIE_NAME, JSON.stringify(data));
+        }
+      } catch (e) {}
+      var section = document.getElementById('t' + topic);
+      if (section) {
+        section.querySelectorAll('input[name^="' + prefix + '"]').forEach(function(inp) {
+          if (inp.type === 'radio') inp.checked = false;
+          else inp.value = '';
+        });
+      }
+      corrigirTopico(topic);
+    }
+
+    function preencherTopico(topic) {
+      var sectionEl = document.getElementById('t' + topic);
+      if (!sectionEl) return;
+      var totalExercises = sectionEl.querySelectorAll('.exercicio[data-topic="' + topic + '"]').length;
+      for (var ex = 1; ex <= totalExercises; ex++) {
+        var el = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+        if (!el) continue;
+        var nameA = 't' + topic + '-ex' + ex + '-a';
+        if (document.querySelector('input[name="' + nameA + '"]')) {
+          var setRadio = function(name, val) {
+            var r = document.querySelector('input[name="' + name + '"][value="' + val + '"]');
+            if (r) r.checked = true;
+          };
+          var ca = el.getAttribute('data-correct-a');
+          var cb = el.getAttribute('data-correct-b');
+          var cc = el.getAttribute('data-correct-c');
+          if (ca) setRadio(nameA, ca.trim());
+          if (cb) setRadio('t' + topic + '-ex' + ex + '-b', cb.trim());
+          if (cc) setRadio('t' + topic + '-ex' + ex + '-c', cc.trim());
+        } else {
+          var correct = el.getAttribute('data-correct');
+          if (correct == null) continue;
+          correct = correct.trim();
+          var radios = el.querySelectorAll('input[type="radio"]');
+          var found = false;
+          for (var i = 0; i < radios.length; i++) {
+            if (normalize(radios[i].value) === normalize(correct)) {
+              radios[i].checked = true;
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            var textInp = el.querySelector('input[type="text"].resposta');
+            if (textInp) textInp.value = correct;
+          }
+        }
+      }
+      saveRespostas();
+      corrigirTopico(topic);
     }
 
     function getResposta(topic, ex) {
@@ -3950,27 +4203,46 @@
       if (text == null || text === '') return '';
       return String(text).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').replace(/\s*-\s*/g, '-').trim();
     }
-    function corrigirTopico(topic) {
+    function corrigirTopico(topic, fromUser) {
+      var sectionEl = document.getElementById('t' + topic);
+      var totalExercises = sectionEl ? sectionEl.querySelectorAll('.exercicio[data-topic="' + topic + '"]').length : 20;
       const corretas = [];
-      const incorretas = [];
-      for (let ex = 1; ex <= 20; ex++) {
+      const incorretasData = [];
+      for (let ex = 1; ex <= totalExercises; ex++) {
         let ok = false;
         let semResposta = false;
-        if (topic === 9 && ex === 1) {
+        var wrongAnswer = '';
+        const exercicioEl = sectionEl ? sectionEl.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]') : null;
+        const nameA = 't' + topic + '-ex' + ex + '-a';
+        const hasTriple = (Number(topic) === 9 && ex === 1) || (exercicioEl && document.querySelector('input[name="' + nameA + '"]'));
+        if (hasTriple && exercicioEl) {
+          const nameB = 't' + topic + '-ex' + ex + '-b';
+          const nameC = 't' + topic + '-ex' + ex + '-c';
+          const correctA = normalize(exercicioEl.getAttribute('data-correct-a') || '');
+          const correctB = normalize(exercicioEl.getAttribute('data-correct-b') || '');
+          const correctC = normalize(exercicioEl.getAttribute('data-correct-c') || '');
           const sel = (name) => (document.querySelector('input[name="' + name + '"]:checked') || {}).value || '';
-          const a = normalize(sel('t9-ex1-a'));
-          const b = normalize(sel('t9-ex1-b'));
-          const c = normalize(sel('t9-ex1-c'));
+          const a = normalize(sel(nameA));
+          const b = normalize(sel(nameB));
+          const c = normalize(sel(nameC));
+          wrongAnswer = [sel(nameA), sel(nameB), sel(nameC)].filter(Boolean).join(' | ') || '';
           semResposta = (a === '' && b === '' && c === '');
-          ok = (a === 'canto' && b === 'cantas' && c === 'canta');
+          ok = (correctA && correctB && correctC) && (a === correctA && b === correctB && c === correctC);
         } else {
           const resp = normalize(getResposta(topic, ex));
+          wrongAnswer = (getResposta(topic, ex) || '').trim();
           const correct = normalize(getCorrect(topic, ex));
           semResposta = (resp === '');
           ok = correct && (resp === correct);
         }
         if (ok) corretas.push(ex);
-        else if (!semResposta) incorretas.push(ex);
+        else if (!semResposta) incorretasData.push({ ex: ex, wrongAnswer: wrongAnswer });
+      }
+      var incorretas = incorretasData.map(function(d) { return d.ex; });
+      if (fromUser) incorretasData.forEach(function(d) { addLogErro(topic, d.ex, d.wrongAnswer); });
+      var faltaResponder = [];
+      for (var ex = 1; ex <= totalExercises; ex++) {
+        if (corretas.indexOf(ex) === -1 && incorretas.indexOf(ex) === -1) faltaResponder.push(ex);
       }
       const resumoEl = document.getElementById('resumo-t' + topic);
       if (!resumoEl) return;
@@ -3985,27 +4257,78 @@
           exercicioEl.appendChild(div);
         }
       });
-      resumoEl.innerHTML = '<div class="corretas">CORRETAS: ' + (corretas.length ? corretas.join(',') : 'nenhuma') + '</div><div class="incorretas">INCORRETAS: ' + (incorretas.length ? incorretas.join(',') : 'nenhuma') + '</div>';
+      resumoEl.innerHTML = '<div class="corretas">CORRETAS: ' + (corretas.length ? corretas.join(',') : 'nenhuma') + '</div><div class="incorretas">INCORRETAS: ' + (incorretas.length ? incorretas.join(',') : 'nenhuma') + '</div><div class="falta-responder">FALTA RESPONDER: ' + (faltaResponder.length ? faltaResponder.join(',') : 'nenhuma') + '</div>';
       resumoEl.classList.add('visible');
-      var sectionEl = document.getElementById('t' + topic);
       if (sectionEl) {
-        if (corretas.length === 20) sectionEl.classList.add('topic-done');
+        if (corretas.length === totalExercises) sectionEl.classList.add('topic-done');
         else sectionEl.classList.remove('topic-done');
       }
       var navLinks = document.querySelectorAll('a[href="#t' + topic + '"]');
       navLinks.forEach(function(navLink) {
         var countSpan = navLink.querySelector('.nav-count');
         if (countSpan) {
-          countSpan.textContent = ' (' + corretas.length + '/20)';
-          if (corretas.length === 20) {
+          countSpan.textContent = ' (' + corretas.length + '/' + totalExercises + ')';
+          if (corretas.length === totalExercises) {
             navLink.classList.add('topic-ok');
-            countSpan.textContent = ' (20/20) ✓';
+            countSpan.textContent = ' (' + totalExercises + '/' + totalExercises + ') ✓';
           } else {
             navLink.classList.remove('topic-ok');
           }
         }
       });
       saveRespostas();
+      if (typeof renderResultados === 'function') renderResultados();
+    }
+
+    function renderResultados() {
+      var container = document.getElementById('resultados-conteudo');
+      if (!container) return;
+      var log = getLogErros();
+      var countByKey = {};
+      log.forEach(function(entry) {
+        var key = entry.topic + '-' + entry.ex;
+        countByKey[key] = (countByKey[key] || 0) + 1;
+      });
+      var summaryLines = Object.keys(countByKey).sort(function(a, b) {
+        var pa = a.split('-'), pb = b.split('-');
+        return Number(pa[0]) - Number(pb[0]) || Number(pa[1]) - Number(pb[1]);
+      }).map(function(key) {
+        var p = key.split('-');
+        var t = p[0], ex = p[1];
+        var n = countByKey[key];
+        return 'Tópico ' + t + ' – Questão ' + ex + ': ' + n + ' ' + (n === 1 ? 'Erro' : 'Erros');
+      });
+      var link = function(topic, ex, text) {
+        var id = 't' + topic + '-ex' + ex;
+        return '<a href="#' + id + '">' + (text || id) + '</a>';
+      };
+      var html = '';
+      if (summaryLines.length) {
+        html += '<div class="resultados-dificuldades"><h4>DIFICULDADES</h4><ul>';
+        summaryLines.forEach(function(line) {
+          var m = line.match(/Tópico (\d+) – Questão (\d+)/);
+          if (m) html += '<li>' + link(m[1], m[2], line) + '</li>';
+          else html += '<li>' + line + '</li>';
+        });
+        html += '</ul></div>';
+      }
+      html += '<div class="resultados-log"><h4>LOG DE ERROS</h4>';
+      if (!log.length) html += '<p class="resultados-log-vazio">Ainda não há registos. Ao responderes errado a uma questão e corrigires o tópico, cada erro fica aqui registado.</p>';
+      else {
+        html += '<ul class="resultados-log-lista">';
+        log.forEach(function(entry) {
+          var resp = entry.wrongAnswer ? ': ' + escapeHtml(entry.wrongAnswer) : '';
+          html += '<li>Tópico ' + entry.topic + ' – Questão ' + entry.ex + ' – Responder errado' + resp + '</li>';
+        });
+        html += '</ul>';
+      }
+      html += '</div>';
+      container.innerHTML = html;
+    }
+    function escapeHtml(s) {
+      var div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
     }
 
     // Envolver o bloco de exercícios de cada tópico num painel expansível (fechado por defeito)
@@ -4037,11 +4360,47 @@
       }
     }
 
+    // Adicionar botão «limpar este tópico» e link «preencher» em cada secção
+    function initBotoesLimparTopico() {
+      for (var n = 1; n <= 18; n++) {
+        var section = document.getElementById('t' + n);
+        if (!section) continue;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn-limpar-topico';
+        btn.title = 'Apagar respostas só deste tópico';
+        btn.setAttribute('aria-label', 'Apagar respostas do tópico ' + n);
+        btn.innerHTML = '🗑';
+        btn.addEventListener('click', (function(t) { return function() { limparTopico(t); }; })(n));
+        section.insertBefore(btn, section.firstChild);
+        var link = document.createElement('a');
+        link.href = '#';
+        link.className = 'link-preencher-topico';
+        link.title = 'Preencher respostas corretas deste tópico';
+        link.setAttribute('aria-label', 'Preencher tópico ' + n);
+        link.innerHTML = '·';
+        link.addEventListener('click', (function(t) {
+          return function(e) {
+            e.preventDefault();
+            if (!confirm('Pagar tudo e parar de estudar? (Não faça isso)')) return;
+            preencherTopico(t);
+          };
+        })(n));
+        section.appendChild(link);
+      }
+    }
+
     // Restaurar respostas e pontuação ao carregar a página
     function initPersist() {
+      document.querySelectorAll('.exercicio[data-topic][data-ex]').forEach(function(el) {
+        var t = el.getAttribute('data-topic'), e = el.getAttribute('data-ex');
+        if (t && e) el.id = 't' + t + '-ex' + e;
+      });
       initPainéisExercicios();
+      initBotoesLimparTopico();
       loadRespostas();
       for (var t = 1; t <= 18; t++) corrigirTopico(t);
+      renderResultados();
       var inputs = document.querySelectorAll('input[name^="t"]');
       inputs.forEach(function(inp) {
         inp.addEventListener('change', saveRespostas);
