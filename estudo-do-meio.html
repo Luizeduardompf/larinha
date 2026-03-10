@@ -1,0 +1,2907 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="theme-color" content="#6C63FF">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>📚 Estudo do Meio 4º Ano - Guia de Estudo</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --cor1: #6C63FF;
+      --cor2: #FF6B9D;
+      --cor3: #4ECDC4;
+      --cor4: #FFE66D;
+      --cor5: #95E1D3;
+      --sombra: 0 4px 15px rgba(0,0,0,0.1);
+      --fundo: #F8F9FE;
+      --safe-top: env(safe-area-inset-top, 0);
+      --safe-bottom: env(safe-area-inset-bottom, 0);
+      --safe-left: env(safe-area-inset-left, 0);
+      --safe-right: env(safe-area-inset-right, 0);
+    }
+    /* ========== MOBILE-FIRST: base = telemóvel ========== */
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #E8EAF6 0%, #FCE4EC 50%, #E0F7FA 100%);
+      margin: 0;
+      padding: 0;
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+      padding-bottom: var(--safe-bottom);
+      font-size: 16px;
+      line-height: 1.55;
+      color: #333;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: rgba(108, 99, 255, 0.2);
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 10px 12px 20px;
+      min-width: 0;
+    }
+    header {
+      text-align: center;
+      padding: 12px 14px 14px;
+      background: linear-gradient(135deg, var(--cor1), var(--cor2));
+      border-radius: 14px;
+      color: white;
+      margin-bottom: 16px;
+      box-shadow: var(--sombra);
+    }
+    header.main-header .header-mensagem { font-size: 0.9rem; opacity: 0.95; margin: 0 0 4px 0; font-weight: 600; }
+    header.main-header h1 { font-size: 1.4rem; margin: 0; line-height: 1.2; }
+    header.main-header p { font-size: 0.95rem; opacity: 0.95; margin: 2px 0 0 0; }
+    /* Barra de tópicos dentro do header principal (wrap, sem scroll horizontal) */
+    header.main-header .header-nav {
+      margin-top: 12px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.3);
+    }
+    header.main-header .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 4px;
+      gap: 4px;
+    }
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      min-width: 34px;
+      min-height: 30px;
+      padding: 0 8px;
+      background: rgba(255,255,255,0.25);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-links a:hover, .nav-links a:focus { background: rgba(255,255,255,0.45); }
+    .nav-links a:active { background: rgba(255,255,255,0.5); }
+    .nav-links a .nav-count { font-weight: normal; opacity: 0.9; margin-left: 2px; }
+    .nav-links a.topic-ok { background: rgba(46, 125, 50, 0.9); color: white; }
+    .nav-links a.topic-ok:hover, .nav-links a.topic-ok:focus { background: rgba(46, 125, 50, 1); }
+    .nav-links a.topic-ok .nav-count { font-weight: bold; }
+    .nav-links a[href="#t10"] { background: rgba(255, 152, 0, 0.95); color: white; }
+    .nav-links a[href="#t10"]:hover, .nav-links a[href="#t10"]:focus { background: rgba(255, 152, 0, 1); }
+    .img-explicacao { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 10px 0; }
+    .img-explicacao-wrap { margin: 12px 0; }
+    /* Botão limpar progresso (lixeira): mobile = canto inferior direito do ecrã, desktop = superior direito do header */
+    header.main-header { position: relative; }
+    .link-menu-disciplinas { position: absolute; top: 10px; left: 14px; color: rgba(255,255,255,0.95); text-decoration: none; font-size: 0.85rem; font-weight: 600; z-index: 10; }
+    .link-menu-disciplinas:hover, .link-menu-disciplinas:focus { color: white; text-decoration: underline; }
+    @media (min-width: 600px) { .link-menu-disciplinas { left: 20px; top: 12px; } }
+    .btn-limpar-progresso {
+      position: fixed;
+      bottom: calc(12px + var(--safe-bottom));
+      right: calc(12px + var(--safe-right));
+      top: auto;
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      border: none;
+      border-radius: 6px;
+      background: rgba(108, 99, 255, 0.9);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.2s;
+      z-index: 101;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .btn-limpar-progresso:hover { background: rgba(108, 99, 255, 1); }
+    .btn-limpar-progresso:active { background: rgba(108, 99, 255, 0.95); }
+    .btn-limpar-progresso:focus { outline: 2px solid rgba(255,255,255,0.8); outline-offset: 2px; }
+    @media (min-width: 600px) {
+      .btn-limpar-progresso {
+        position: absolute;
+        top: calc(10px + var(--safe-top));
+        bottom: auto;
+        right: calc(10px + var(--safe-right));
+        background: rgba(255,255,255,0.3);
+        box-shadow: none;
+      }
+      .btn-limpar-progresso:hover { background: rgba(255,255,255,0.5); }
+      .btn-limpar-progresso:active { background: rgba(255,255,255,0.6); }
+    }
+    /* Header fixo ao fazer scroll (resumo fino, 2 linhas: título + tópicos) */
+    :root { --sticky-header-height: 80px; }
+    header.header-sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      min-height: calc(var(--sticky-header-height) + var(--safe-top));
+      padding: calc(6px + var(--safe-top)) calc(10px + var(--safe-right)) calc(6px) calc(10px + var(--safe-left));
+      background: linear-gradient(90deg, var(--cor1), var(--cor2));
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-100%);
+      transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s;
+    }
+    header.header-sticky.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    header.header-sticky .header-sticky-title {
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+      margin: 0 0 15px 0;
+      line-height: 1.2;
+    }
+    header.header-sticky .header-nav {
+      flex: 0 0 auto;
+      margin: 0;
+      padding: 0;
+      border: none;
+      overflow: visible;
+    }
+    header.header-sticky .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px;
+      overflow: visible;
+    }
+    header.header-sticky .nav-links a {
+      min-width: 26px;
+      min-height: 24px;
+      padding: 0 5px;
+      font-size: 0.72rem;
+    }
+    header.header-sticky .nav-links a .nav-count { font-size: 0.65rem; }
+    .header-sticky-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-bottom: 2px;
+    }
+    header.header-sticky .header-sticky-top .link-menu-disciplinas {
+      position: static;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.95);
+    }
+    header.header-sticky .header-sticky-top .link-menu-disciplinas:hover,
+    header.header-sticky .header-sticky-top .link-menu-disciplinas:focus { color: white; }
+    header.header-sticky .header-sticky-title { margin: 0; }
+    header.header-sticky .header-sticky-top .btn-limpar-progresso {
+      position: static;
+      top: auto;
+      bottom: auto;
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+      background: rgba(255,255,255,0.3);
+      box-shadow: none;
+      flex-shrink: 0;
+    }
+    header.header-sticky .header-sticky-top .btn-limpar-progresso:hover { background: rgba(255,255,255,0.5); }
+    header.header-sticky .header-sticky-top .btn-limpar-progresso:active { background: rgba(255,255,255,0.6); }
+    section.topic {
+      position: relative;
+      background: white;
+      padding: 16px 14px;
+      margin-bottom: 20px;
+      border-radius: 16px;
+      box-shadow: var(--sombra);
+      scroll-margin-top: calc(var(--sticky-header-height) + var(--safe-top) + 10px);
+    }
+    .btn-limpar-topico {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: none;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.06);
+      color: #666;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-limpar-topico:hover { background: rgba(255,99,71,0.2); color: #c62828; }
+    .btn-limpar-topico:active { background: rgba(255,99,71,0.3); }
+    .btn-limpar-topico:focus { outline: 2px solid var(--cor1); outline-offset: 2px; }
+    .link-preencher-topico {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 10px;
+      opacity: 0.2;
+      color: #666;
+      cursor: pointer;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .link-preencher-topico:hover { opacity: 0.5; }
+    section.topic h2 {
+      color: var(--cor1);
+      font-size: 1.35rem;
+      border-bottom: 3px solid var(--cor4);
+      padding-bottom: 8px;
+      margin-top: 0;
+      line-height: 1.3;
+      word-wrap: break-word;
+    }
+    section.topic.topic-done {
+      border-left: 5px solid #2e7d32;
+      background: linear-gradient(to right, rgba(46, 125, 50, 0.08), white);
+    }
+    section.topic.topic-done h2 { border-bottom-color: #2e7d32; color: #1b5e20; }
+    .explicacao, .exemplos, .dicas {
+      background: #f0f7ff;
+      padding: 14px;
+      border-radius: 10px;
+      margin: 12px 0;
+      border-left: 4px solid var(--cor3);
+    }
+    .exemplos { border-left-color: var(--cor2); background: #fff5f8; }
+    .dicas { border-left-color: var(--cor4); background: #fffef0; }
+    .explicacao h3, .exemplos h3, .dicas h3 { margin-top: 0; font-size: 1.1rem; }
+    .exercicios-titulo { font-size: 1.25rem; margin: 18px 0 12px 0; color: var(--cor2); }
+    /* Painel de exercícios expansível (inicialmente fechado) */
+    .painel-exercicios {
+      margin: 18px 0 12px 0;
+      border: 2px solid var(--cor3);
+      border-radius: 12px;
+      background: #fafbff;
+      overflow: hidden;
+    }
+    .painel-exercicios[open] { border-color: var(--cor2); background: #fff; }
+    .painel-exercicios-cabecalho {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--cor2);
+      padding: 14px 16px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .painel-exercicios-cabecalho::-webkit-details-marker { display: none; }
+    .painel-exercicios-cabecalho::marker { content: none; }
+    .painel-exercicios-icone {
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      color: var(--cor1);
+      transition: transform 0.2s ease;
+    }
+    .painel-exercicios[open] .painel-exercicios-icone { transform: rotate(180deg); }
+    .painel-exercicios-conteudo {
+      padding: 0 14px 14px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .painel-exercicios-conteudo .exercicios-titulo { display: none; }
+    .exercicio {
+      background: #fafafa;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 2px solid #eee;
+    }
+    .exercicio p { margin: 0 0 10px 0; font-size: 1rem; }
+    .opcoes label {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px 0;
+      min-height: 44px;
+      cursor: pointer;
+      font-size: 1rem;
+      gap: 10px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .opcoes input[type="radio"] {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      margin: 0;
+      accent-color: var(--cor1);
+    }
+    input[type="text"].resposta {
+      padding: 12px 14px;
+      font-size: 16px;
+      min-height: 44px;
+      border: 2px solid var(--cor3);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 100%;
+    }
+    .btn-corrigir {
+      display: inline-block;
+      margin: 16px 0;
+      padding: 14px 24px;
+      min-height: 48px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, var(--cor1), var(--cor2));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: var(--sombra);
+      transition: transform 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-corrigir:hover { transform: scale(1.02); }
+    .btn-corrigir:active { transform: scale(0.98); }
+    .resumo-correcao {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      display: none;
+    }
+    .resumo-correcao.visible { display: block; }
+    .resumo-correcao .corretas, .resumo-correcao .incorretas, .resumo-correcao .falta-responder { padding: 10px; border-radius: 8px; margin: 5px 0; }
+    .resumo-correcao .corretas { color: #2E7D32; background: #E8F5E9; }
+    .resumo-correcao .incorretas { color: #C62828; background: #FFEBEE; }
+    .resumo-correcao .falta-responder { color: #E65100; background: #FFF3E0; }
+    .resumo-correcao .explicacoes-erradas { margin-top: 10px; }
+    .resumo-correcao .incorreta-item { background: #FFF8E1; border-left: 4px solid #F9A825; padding: 10px 12px; margin: 8px 0; border-radius: 6px; font-weight: normal; font-size: 0.95rem; }
+    .explicacao-errada-inline { background: #FFF8E1; border-left: 4px solid #E65100; padding: 10px 12px; margin-top: 10px; border-radius: 6px; font-size: 0.95rem; color: #333; }
+    .explicacao-errada-inline strong { color: #BF360C; }
+    .explicacao-errada-titulo { font-weight: bold; margin-bottom: 6px; }
+    .explicacao-errada-texto { font-weight: normal; }
+    .topic-resultados .resultados-intro { margin-bottom: 1rem; color: #555; }
+    .resultados-conteudo { margin-top: 12px; }
+    .resultados-partilhar-wrap { margin-bottom: 1rem; display: flex; flex-wrap: nowrap; gap: 10px; align-items: center; }
+    .resultados-partilhar { display: inline-block; flex: 1 1 auto; min-width: 0; padding: 10px 12px; background: #25D366; color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .resultados-partilhar:hover { background: #20BD5A; color: #fff; }
+    .resultados-partilhar:focus { outline: 2px solid #128C7E; outline-offset: 2px; }
+    .resultados-partilhar-pais { background: #128C7E; }
+    .resultados-partilhar-pais:hover { background: #0D7A6F; color: #fff; }
+    .resultados-partilhar .resultados-partilhar-curto { display: none; }
+    .resultados-partilhar .resultados-partilhar-icon { display: none; }
+    .resultados-partilhar .resultados-partilhar-icon { gap: 6px; }
+    .resultados-partilhar .resultados-partilhar-icon svg { width: 22px; height: 22px; display: block; flex-shrink: 0; }
+    @media (max-width: 600px) {
+      .resultados-partilhar .resultados-partilhar-longo { display: none; }
+      .resultados-partilhar .resultados-partilhar-curto,
+      .resultados-partilhar .resultados-partilhar-icon { display: inline-flex; align-items: center; justify-content: center; }
+      .resultados-partilhar { padding: 10px 12px; }
+    }
+    .resultados-concluidos { margin-bottom: 24px; padding: 14px; background: #E8F5E9; border-radius: 8px; border-left: 4px solid #2E7D32; }
+    .resultados-concluidos h4 { margin: 0 0 10px 0; color: #1B5E20; }
+    .resultados-concluidos ul { margin: 8px 0 0 0; padding-left: 1.2rem; }
+    .resultados-concluidos li { margin: 6px 0; }
+    .resultados-concluidos a { color: #2E7D32; text-decoration: none; font-weight: 500; }
+    .resultados-concluidos a:hover { text-decoration: underline; }
+    .resultados-concluidos-vazio { color: #555; font-style: italic; margin: 8px 0 0 0; }
+    .resultados-dificuldades { margin-bottom: 24px; padding: 14px; background: #FFF8E1; border-radius: 8px; border-left: 4px solid #F9A825; }
+    .resultados-dificuldades h4 { margin: 0 0 10px 0; color: #E65100; }
+    .resultados-dificuldades ul { margin: 0; padding-left: 1.2rem; }
+    .resultados-dificuldades li { margin: 6px 0; }
+    .resultados-dificuldades a { color: var(--cor2, #5c6bc0); text-decoration: none; }
+    .resultados-dificuldades a:hover { text-decoration: underline; }
+    .resultados-log h4 { margin: 0 0 10px 0; color: #333; }
+    .resultados-log-vazio { color: #666; font-style: italic; margin: 8px 0; }
+    .resultados-log-lista { padding-left: 1.2rem; margin: 8px 0; }
+    .resultados-log-lista li { margin: 8px 0; line-height: 1.4; }
+    .resultados-log-lista a { color: var(--cor2, #5c6bc0); text-decoration: none; }
+    .resultados-log-lista a:hover { text-decoration: underline; }
+    table.conjugacao {
+      width: 100%;
+      max-width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.9rem;
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    table.conjugacao td, table.conjugacao th {
+      border: 2px solid var(--cor3);
+      padding: 10px 8px;
+      text-align: left;
+    }
+    table.conjugacao th { background: var(--cor5); }
+    table.conjugacao input { width: 100%; padding: 8px; font-size: 16px; min-height: 40px; }
+    .texto-leitura { background: #E3F2FD; padding: 14px; border-radius: 10px; margin: 12px 0; font-style: italic; font-size: 0.98rem; }
+    .video-explicacao { margin: 14px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 100%; }
+    .video-explicacao iframe { display: block; width: 100%; height: 200px; border: 0; pointer-events: auto; }
+    .video-link-fallback { background: #FFF3E0; border: 1px solid #FFB74D; padding: 14px; }
+    .video-link-fallback .video-fallback-text { margin: 0 0 10px 0; font-size: 0.95rem; color: #333; }
+    .video-link-fallback .video-fallback-btn {
+      display: inline-block;
+      background: #E65100;
+      color: #fff;
+      padding: 12px 18px;
+      min-height: 44px;
+      line-height: 1.3;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .video-link-fallback .video-fallback-btn:hover { background: #BF360C; }
+    .video-link-fallback .video-fallback-btn + .video-fallback-btn { margin-left: 10px; }
+    /* ========== Tablet e desktop: min-width ========== */
+    @media (min-width: 600px) {
+      body { font-size: 17px; }
+      .container { padding: 14px 20px 28px; }
+      header.main-header { padding: 14px 20px 16px; margin-bottom: 20px; }
+      header.main-header .header-mensagem { font-size: 0.95rem; margin: 0 0 6px 0; }
+      header.main-header h1 { font-size: 1.65rem; }
+      header.main-header p { font-size: 1rem; margin: 4px 0 0 0; }
+      header.main-header .header-nav { margin-top: 14px; padding-top: 10px; }
+      .nav-links a { min-width: auto; min-height: 28px; padding: 0 10px; font-size: 0.8rem; }
+      header.header-sticky .nav-links a { min-width: 26px; min-height: 24px; font-size: 0.75rem; }
+      section.topic { padding: 24px 22px; margin-bottom: 26px; border-radius: 20px; }
+      section.topic h2 { font-size: 1.65rem; border-bottom-width: 4px; padding-bottom: 10px; }
+      .explicacao, .exemplos, .dicas { padding: 18px; margin: 15px 0; border-left-width: 5px; }
+      .explicacao h3, .exemplos h3, .dicas h3 { font-size: 1.2rem; }
+      .exercicios-titulo { font-size: 1.4rem; margin: 22px 0 14px 0; }
+      .exercicio { padding: 18px; margin: 12px 0; }
+      .exercicio p { font-size: 1.05rem; }
+      .opcoes label { margin: 8px 0; padding: 6px 0; min-height: auto; font-size: 1.05rem; }
+      .opcoes input[type="radio"] { width: 18px; height: 18px; }
+      input[type="text"].resposta { font-size: 1.05rem; min-height: auto; max-width: 400px; }
+      .btn-corrigir { padding: 15px 30px; min-height: auto; font-size: 1.2rem; margin: 20px 0; }
+      .btn-corrigir:hover { transform: scale(1.05); }
+      .resumo-correcao { padding: 20px; font-size: 1.1rem; margin-top: 20px; }
+      table.conjugacao { font-size: 1rem; max-width: 400px; display: table; margin: 15px 0; }
+      table.conjugacao td, table.conjugacao th { padding: 12px; }
+      table.conjugacao input { font-size: 1rem; min-height: auto; }
+      .texto-leitura { padding: 20px; margin: 15px 0; }
+      .video-explicacao { max-width: 360px; margin: 16px 0; }
+      .video-explicacao iframe { height: 202px; }
+      .video-link-fallback .video-fallback-btn { min-height: auto; padding: 10px 18px; margin-top: 0; }
+    }
+    @media (min-width: 900px) {
+      body { font-size: 18px; }
+      .container { padding: 16px 24px 32px; }
+      section.topic { padding: 30px; margin-bottom: 30px; }
+      section.topic h2 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header fixo (aparece ao fazer scroll) -->
+  <header class="header-sticky" id="header-sticky" aria-hidden="true">
+    <div class="header-sticky-top">
+      <a href="index.html" class="link-menu-disciplinas" title="Voltar ao menu de disciplinas">← Menu</a>
+      <span class="header-sticky-title">📚 Estudo do Meio 4º Ano</span>
+      <button type="button" class="btn-limpar-progresso" id="btn-limpar-progresso-sticky" title="Limpar respostas e pontuação guardadas" aria-label="Limpar progresso">🗑</button>
+    </div>
+    <nav class="header-nav" aria-label="Tópicos">
+      <div class="nav-links">
+        <a href="#t1" title="Tecnologia">1<span class="nav-count"></span></a>
+        <a href="#t2" title="Profissões">2<span class="nav-count"></span></a>
+        <a href="#t3" title="Localidade">3<span class="nav-count"></span></a>
+        <a href="#t4" title="Sistema Solar">4<span class="nav-count"></span></a>
+        <a href="#t5" title="Mapas">5<span class="nav-count"></span></a>
+        <a href="#t6" title="Pontos cardeais">6<span class="nav-count"></span></a>
+        <a href="#t7" title="Rochas e solo">7<span class="nav-count"></span></a>
+        <a href="#t8" title="Água">8<span class="nav-count"></span></a>
+        <a href="#t9" title="Ambiente">9<span class="nav-count"></span></a>
+        <a href="#t10" title="Resultados">Resultados</a>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <header class="main-header" id="main-header">
+      <a href="index.html" class="link-menu-disciplinas" title="Voltar ao menu de disciplinas">← Menu</a>
+      <button type="button" class="btn-limpar-progresso" id="btn-limpar-progresso" title="Limpar respostas e pontuação guardadas" aria-label="Limpar progresso">🗑</button>
+      <p class="header-mensagem">Força LARINHA, Foca em MUITO BOM! 💪</p>
+      <h1>📚 Estudo do Meio 4º Ano</h1>
+      <p>Professora Odília — Prova dia 12/03/2026!</p>
+      <nav class="header-nav" aria-label="Menu de tópicos">
+        <div class="nav-links">
+          <a href="#t1" title="Tecnologia">1<span class="nav-count"></span></a>
+          <a href="#t2" title="Profissões">2<span class="nav-count"></span></a>
+          <a href="#t3" title="Localidade">3<span class="nav-count"></span></a>
+          <a href="#t4" title="Sistema Solar">4<span class="nav-count"></span></a>
+          <a href="#t5" title="Mapas">5<span class="nav-count"></span></a>
+          <a href="#t6" title="Pontos cardeais">6<span class="nav-count"></span></a>
+          <a href="#t7" title="Rochas e solo">7<span class="nav-count"></span></a>
+          <a href="#t8" title="Água">8<span class="nav-count"></span></a>
+          <a href="#t9" title="Ambiente">9<span class="nav-count"></span></a>
+          <a href="#t10" title="Resultados">Resultados</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- TÓPICO 1: EVOLUÇÃO DA TECNOLOGIA - TRANSPORTES E TELECOMUNICAÇÕES -->
+    <section id="t1" class="topic">
+      <h2>1. EVOLUÇÃO DA TECNOLOGIA - TRANSPORTES E TELECOMUNICAÇÕES</h2>
+      <div class="explicacao"><p>A tecnologia é o conjunto de todas as invenções que os seres humanos criam para facilitar a vida (tornar as tarefas mais rápidas, seguras ou fáceis).<br></p><p>1. TRANSPORTES:<br></p><p>- Antigamente: As deslocações eram muito lentas. As pessoas iam a pé ou usavam animais (cavalos, burros, carroças). Para atravessar oceanos, usavam caravelas que dependiam do vento.<br></p><p>- Evolução: Surgiu a máquina a vapor (comboios e barcos a vapor). Mais tarde, os motores a combustível permitiram criar o automóvel e o avião.<br></p><p>- Hoje: Temos aviões rápidos, comboios de alta velocidade e carros elétricos que protegem o ambiente.<br></p><p>2. TELECOMUNICAÇÕES:<br></p><p>- Antigamente: Comunicar à distância era difícil. Usavam-se cartas que demoravam semanas a chegar, ou mensageiros.<br></p><p>- Evolução: Inventou-se o telégrafo, depois o telefone fixo e a rádio.<br></p><p>- Hoje: Usamos telemóveis, internet e videochamadas. A informação viaja à velocidade da luz!<br></p><p>- O Telefone: Inventado por Graham Bell em 1876. Substituiu o Telégrafo.<br></p><p>- O Avião: No início eram feitos de madeira e lona. Hoje transportam centenas de pessoas.<br></p><p>- A Internet: Antigamente pesquisava-se em enciclopédias pesadas; hoje temos tudo no telemóvel.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo – Meios de comunicação:</p>
+          <a href="https://www.youtube.com/watch?v=rXJhXvOEhII" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+          <p class="video-fallback-text">📺 Vídeo – Evolução dos transportes:</p>
+          <a href="https://www.youtube.com/watch?v=cdsFPfwipOk" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
+      </div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="1" data-ex="1" data-correct="b">
+        <p>1. O que define a tecnologia?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex1" value="a"> Algo que serve apenas para brincar.</label>
+          <label><input type="radio" name="t1-ex1" value="b"> Invenções humanas para tornar a vida mais fácil.</label>
+          <label><input type="radio" name="t1-ex1" value="c"> Coisas que só funcionam com eletricidade.</label>
+          <label><input type="radio" name="t1-ex1" value="d"> Plantas e animais da floresta.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="2" data-correct="b">
+        <p>2. Como as pessoas se deslocavam antes de existirem motores?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex2" value="a"> De avião e helicóptero.</label>
+          <label><input type="radio" name="t1-ex2" value="b"> A pé, a cavalo ou em carroças.</label>
+          <label><input type="radio" name="t1-ex2" value="c"> De foguetão.</label>
+          <label><input type="radio" name="t1-ex2" value="d"> Apenas por videochamada.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="3" data-correct="c">
+        <p>3. Qual destes é um meio de transporte que circula sobre carris?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex3" value="a"> Automóvel.</label>
+          <label><input type="radio" name="t1-ex3" value="b"> Barco.</label>
+          <label><input type="radio" name="t1-ex3" value="c"> Comboio.</label>
+          <label><input type="radio" name="t1-ex3" value="d"> Avião.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="4" data-correct="b">
+        <p>4. Antigamente, qual era o principal meio de comunicação à distância?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex4" value="a"> Internet.</label>
+          <label><input type="radio" name="t1-ex4" value="b"> Cartas.</label>
+          <label><input type="radio" name="t1-ex4" value="c"> Televisão.</label>
+          <label><input type="radio" name="t1-ex4" value="d"> Satélite.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="5" data-correct="b">
+        <p>5. Qual é uma vantagem dos transportes modernos em comparação com os antigos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex5" value="a"> São mais lentos.</label>
+          <label><input type="radio" name="t1-ex5" value="b"> São mais rápidos e confortáveis.</label>
+          <label><input type="radio" name="t1-ex5" value="c"> Não existem transportes modernos.</label>
+          <label><input type="radio" name="t1-ex5" value="d"> São puxados por animais.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="6" data-correct="c">
+        <p>6. O que usamos hoje para ver e ouvir uma pessoa em tempo real, mesmo estando longe?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex6" value="a"> Telégrafo.</label>
+          <label><input type="radio" name="t1-ex6" value="b"> Carta registada.</label>
+          <label><input type="radio" name="t1-ex6" value="c"> Videochamada.</label>
+          <label><input type="radio" name="t1-ex6" value="d"> Jornal de papel.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="7" data-correct="b">
+        <p>7. Qual destes é um exemplo de telecomunicação moderna?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex7" value="a"> Carroça.</label>
+          <label><input type="radio" name="t1-ex7" value="b"> Telemóvel.</label>
+          <label><input type="radio" name="t1-ex7" value="c"> Bicicleta.</label>
+          <label><input type="radio" name="t1-ex7" value="d"> Barco a remos.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="8" data-correct="a">
+        <p>8. A internet mudou a forma como comunicamos porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex8" value="a"> Tornou a comunicação instantânea.</label>
+          <label><input type="radio" name="t1-ex8" value="b"> Fez com que as pessoas deixassem de falar.</label>
+          <label><input type="radio" name="t1-ex8" value="c"> Serve apenas para ver desenhos animados.</label>
+          <label><input type="radio" name="t1-ex8" value="d"> Tornou tudo mais difícil.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="9" data-correct="b">
+        <p>9. Qual transporte revolucionou as viagens através dos oceanos pela sua rapidez?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex9" value="a"> Caravela.</label>
+          <label><input type="radio" name="t1-ex9" value="b"> Avião.</label>
+          <label><input type="radio" name="t1-ex9" value="c"> Cavalo.</label>
+          <label><input type="radio" name="t1-ex9" value="d"> Carro.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="10" data-correct="b">
+        <p>10. O que é necessário para usar a maioria das telecomunicações modernas hoje?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex10" value="a"> Selos de correio.</label>
+          <label><input type="radio" name="t1-ex10" value="b"> Internet.</label>
+          <label><input type="radio" name="t1-ex10" value="c"> Ferraduras.</label>
+          <label><input type="radio" name="t1-ex10" value="d"> Velas de barco.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="11" data-correct="b">
+        <p>11. Os primeiros comboios moviam-se com a ajuda de:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex11" value="a"> Eletricidade solar.</label>
+          <label><input type="radio" name="t1-ex11" value="b"> Máquina a vapor.</label>
+          <label><input type="radio" name="t1-ex11" value="c"> Pilhas pequenas.</label>
+          <label><input type="radio" name="t1-ex11" value="d"> Força do vento apenas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="12" data-correct="b">
+        <p>12. Se quisermos enviar uma mensagem escrita urgente hoje, usamos:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex12" value="a"> Pombo-correio.</label>
+          <label><input type="radio" name="t1-ex12" value="b"> E-mail ou mensagens instantâneas.</label>
+          <label><input type="radio" name="t1-ex12" value="c"> Uma carta enviada por barco.</label>
+          <label><input type="radio" name="t1-ex12" value="d"> Sinais de fumo.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="13" data-correct="b">
+        <p>13. Qual destes transportes é considerado &quot;amigo do ambiente&quot; por não usar combustíveis fósseis?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex13" value="a"> Carro a gasolina.</label>
+          <label><input type="radio" name="t1-ex13" value="b"> Carro elétrico.</label>
+          <label><input type="radio" name="t1-ex13" value="c"> Avião comercial.</label>
+          <label><input type="radio" name="t1-ex13" value="d"> Camião de carga.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="14" data-correct="c">
+        <p>14. O que mudou nos transportes e telecomunicações ao longo do tempo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex14" value="a"> Nada mudou.</label>
+          <label><input type="radio" name="t1-ex14" value="b"> Tornaram-se mais lentos.</label>
+          <label><input type="radio" name="t1-ex14" value="c"> Mudaram muito para facilitar a vida.</label>
+          <label><input type="radio" name="t1-ex14" value="d"> Deixaram de existir.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="15" data-correct="c">
+        <p>15. Qual é o meio de transporte mais rápido para ir de Portugal ao Brasil?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex15" value="a"> Navio.</label>
+          <label><input type="radio" name="t1-ex15" value="b"> Autocarro.</label>
+          <label><input type="radio" name="t1-ex15" value="c"> Avião.</label>
+          <label><input type="radio" name="t1-ex15" value="d"> Comboio.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="16" data-correct="b">
+        <p>16. O telemóvel serve para:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex16" value="a"> Apenas fazer chamadas.</label>
+          <label><input type="radio" name="t1-ex16" value="b"> Comunicar, pesquisar e jogar.</label>
+          <label><input type="radio" name="t1-ex16" value="c"> Substituir a comida.</label>
+          <label><input type="radio" name="t1-ex16" value="d"> Lavar a roupa.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="17" data-correct="b">
+        <p>17. Antigamente, as notícias demoravam dias a chegar. Hoje sabemos o que acontece no mundo na hora graças à:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex17" value="a"> Carroça.</label>
+          <label><input type="radio" name="t1-ex17" value="b"> Tecnologia e internet.</label>
+          <label><input type="radio" name="t1-ex17" value="c"> Caminhada a pé.</label>
+          <label><input type="radio" name="t1-ex17" value="d"> Escrita à mão.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="18" data-correct="b">
+        <p>18. Qual destes é um transporte aquático moderno?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex18" value="a"> Canoa de madeira antiga.</label>
+          <label><input type="radio" name="t1-ex18" value="b"> Navio transatlântico.</label>
+          <label><input type="radio" name="t1-ex18" value="c"> Carro elétrico.</label>
+          <label><input type="radio" name="t1-ex18" value="d"> Helicóptero.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="19" data-correct="a">
+        <p>19. A evolução da tecnologia nos transportes permitiu:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex19" value="a"> Encurtar as distâncias (chegar mais depressa).</label>
+          <label><input type="radio" name="t1-ex19" value="b"> Que as viagens fossem mais perigosas.</label>
+          <label><input type="radio" name="t1-ex19" value="c"> Que as pessoas andassem mais a pé.</label>
+          <label><input type="radio" name="t1-ex19" value="d"> Que o mundo ficasse isolado.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="1" data-ex="20" data-correct="b">
+        <p>20. Qual a principal função das telecomunicações?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t1-ex20" value="a"> Transportar mercadorias pesadas.</label>
+          <label><input type="radio" name="t1-ex20" value="b"> Permitir a comunicação entre pessoas distantes.</label>
+          <label><input type="radio" name="t1-ex20" value="c"> Criar novos tipos de plantas.</label>
+          <label><input type="radio" name="t1-ex20" value="d"> Construir estradas.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(1, true)">Corrigir Tópico</button>
+      <div id="resumo-t1" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 2: SERES VIVOS EM EXTINÇÃO E EXTINTOS -->
+    <section id="t2" class="topic">
+      <h2>2. SERES VIVOS EM EXTINÇÃO E EXTINTOS</h2>
+      <div class="explicacao"><p>A biodiversidade é a variedade de vida na Terra. Ao longo do tempo, algumas espécies desaparecem e outras ficam em perigo.<br></p><p>1. SERES EXTINTOS:<br></p><p>- Significa que já não resta nenhum ser vivo dessa espécie no mundo inteiro.<br></p><p>- Quando morre o último, a espécie desaparece para sempre.<br></p><p>- Exemplos: Dinossauros, Pássaro Dodo, Mamute.<br></p><p>2. SERES EM RISCO DE EXTINÇÃO:<br></p><p>- São espécies que ainda existem, mas em números muito pequenos.<br></p><p>- Se não forem protegidas, podem tornar-se extintas em breve.<br></p><p>- Exemplos: Lince-Ibérico, Panda Gigante, Baleia-Azul, Tartaruga-Marinha.<br></p><p>3. CAUSAS DO DESAPARECIMENTO:<br></p><p>- Destruição de habitats (cortar florestas, poluir rios).<br></p><p>- Poluição (plásticos no mar, químicos no solo).<br></p><p>- Caça e pesca excessiva ou ilegal.<br></p><p>- Alterações climáticas (o planeta aquece e o gelo derrete).<br></p><p>4. PROTEÇÃO E CONSERVAÇÃO:<br></p><p>- Criação de Parques Naturais e Reservas.<br></p><p>- Leis que proíbem a caça de animais protegidos.<br></p><p>- Centros de recuperação e reprodução (como o do Lince-Ibérico).<br></p><p>- O Dodo: Vivia na ilha Maurícia. Era uma ave que não voava. Ficou extinta porque não estava preparada para os cães e porcos que os humanos levaram para a ilha.<br></p><p>- O Lince-Ibérico: É um dos felinos mais raros do mundo. Portugal e Espanha têm trabalhado muito para o salvar e hoje a população está a crescer!</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo – Seres vivos em extinção e extintos:</p>
+          <a href="https://www.youtube.com/watch?v=7WZ5PmIUAj0" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
+      </div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="2" data-ex="1" data-correct="b">
+        <p>1. O que significa dizer que um animal está &quot;extinto&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex1" value="a"> Que ele está a dormir.</label>
+          <label><input type="radio" name="t2-ex1" value="b"> Que ele já não existe mais no planeta.</label>
+          <label><input type="radio" name="t2-ex1" value="c"> Que ele mudou de floresta.</label>
+          <label><input type="radio" name="t2-ex1" value="d"> Que ele é muito veloz.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="2" data-correct="b">
+        <p>2. O Lince-Ibérico é um exemplo de um animal que está:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex2" value="a"> Extinto há milhões de anos.</label>
+          <label><input type="radio" name="t2-ex2" value="b"> Em risco de extinção.</label>
+          <label><input type="radio" name="t2-ex2" value="c"> Em todo o lado, como os pombos.</label>
+          <label><input type="radio" name="t2-ex2" value="d"> A viver no fundo do mar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="3" data-correct="b">
+        <p>3. Qual destes animais já está extinto?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex3" value="a"> Cavalo.</label>
+          <label><input type="radio" name="t2-ex3" value="b"> Dinossauro.</label>
+          <label><input type="radio" name="t2-ex3" value="c"> Gato.</label>
+          <label><input type="radio" name="t2-ex3" value="d"> Elefante.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="4" data-correct="b">
+        <p>4. O que é o &quot;habitat&quot; de um animal?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex4" value="a"> O nome do seu melhor amigo.</label>
+          <label><input type="radio" name="t2-ex4" value="b"> O lugar natural onde ele vive e encontra comida.</label>
+          <label><input type="radio" name="t2-ex4" value="c"> Um tipo de comida enlatada.</label>
+          <label><input type="radio" name="t2-ex4" value="d"> Uma peça de roupa para animais.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="5" data-correct="b">
+        <p>5. Qual é uma das principais causas da extinção de espécies causada pelo Homem?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex5" value="a"> Tirar fotografias aos animais.</label>
+          <label><input type="radio" name="t2-ex5" value="b"> Destruir as florestas para construir cidades.</label>
+          <label><input type="radio" name="t2-ex5" value="c"> Dar nomes aos animais.</label>
+          <label><input type="radio" name="t2-ex5" value="d"> Plantar flores nos jardins.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="6" data-correct="b">
+        <p>6. Porque é que a poluição dos oceanos é perigosa para as tartarugas marinhas?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex6" value="a"> Porque elas gostam de comer plástico.</label>
+          <label><input type="radio" name="t2-ex6" value="b"> Porque podem confundir plástico com comida e ficar doentes.</label>
+          <label><input type="radio" name="t2-ex6" value="c"> Porque a água fica com cores mais bonitas.</label>
+          <label><input type="radio" name="t2-ex6" value="d"> Porque as tartarugas aprendem a nadar melhor.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="7" data-correct="b">
+        <p>7. Os Parques Naturais servem para:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex7" value="a"> Construir muitos centros comerciais.</label>
+          <label><input type="radio" name="t2-ex7" value="b"> Proteger a natureza e os seres vivos que lá moram.</label>
+          <label><input type="radio" name="t2-ex7" value="c"> Caçar todos os animais que lá vivem.</label>
+          <label><input type="radio" name="t2-ex7" value="d"> Estacionar carros de brincar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="8" data-correct="b">
+        <p>8. O que acontece se cortarmos todas as árvores de uma floresta?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex8" value="a"> Os animais ficam com mais espaço para brincar.</label>
+          <label><input type="radio" name="t2-ex8" value="b"> Os animais perdem o abrigo e o alimento.</label>
+          <label><input type="radio" name="t2-ex8" value="c"> Nascem mais árvores automaticamente.</label>
+          <label><input type="radio" name="t2-ex8" value="d"> O ar fica mais limpo.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="9" data-correct="b">
+        <p>9. O Panda Gigante é conhecido por ser um símbolo de:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex9" value="a"> Rapidez e agilidade.</label>
+          <label><input type="radio" name="t2-ex9" value="b"> Conservação e proteção de espécies em risco.</label>
+          <label><input type="radio" name="t2-ex9" value="c"> Animais que vivem no deserto.</label>
+          <label><input type="radio" name="t2-ex9" value="d"> Animais extintos como os dinossauros.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="10" data-correct="b">
+        <p>10. A caça ilegal é:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex10" value="a"> Caçar animais permitidos na época certa.</label>
+          <label><input type="radio" name="t2-ex10" value="b"> Caçar animais protegidos por lei, o que é proibido.</label>
+          <label><input type="radio" name="t2-ex10" value="c"> Brincar às escondidas com animais.</label>
+          <label><input type="radio" name="t2-ex10" value="d"> Ajudar animais feridos na floresta.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="11" data-correct="b">
+        <p>11. Qual destes fatores pode levar à extinção natural (sem ajuda do Homem)?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex11" value="a"> Reciclagem de papel.</label>
+          <label><input type="radio" name="t2-ex11" value="b"> Grandes alterações no clima ou queda de meteoritos.</label>
+          <label><input type="radio" name="t2-ex11" value="c"> Plantação de novas florestas.</label>
+          <label><input type="radio" name="t2-ex11" value="d"> Criação de leis de proteção.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="12" data-correct="b">
+        <p>12. Para evitar a extinção, as pessoas devem:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex12" value="a"> Poluir os rios.</label>
+          <label><input type="radio" name="t2-ex12" value="b"> Proteger os ecossistemas e a biodiversidade.</label>
+          <label><input type="radio" name="t2-ex12" value="c"> Caçar mais animais raros.</label>
+          <label><input type="radio" name="t2-ex12" value="d"> Comprar objetos feitos de peles de animais em risco.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="13" data-correct="a">
+        <p>13. O que é a &quot;biodiversidade&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex13" value="a"> É a variedade de diferentes seres vivos no nosso planeta.</label>
+          <label><input type="radio" name="t2-ex13" value="b"> É o nome de um tipo de carro elétrico.</label>
+          <label><input type="radio" name="t2-ex13" value="c"> É quando só existe uma espécie de animal no mundo.</label>
+          <label><input type="radio" name="t2-ex13" value="d"> É um programa de televisão sobre robôs.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="14" data-correct="a">
+        <p>14. O Urso Polar está em risco principalmente por causa de:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex14" value="a"> Falta de gelo devido ao aquecimento do planeta.</label>
+          <label><input type="radio" name="t2-ex14" value="b"> Ter demasiada comida disponível.</label>
+          <label><input type="radio" name="t2-ex14" value="c"> Viver em cidades muito barulhentas.</label>
+          <label><input type="radio" name="t2-ex14" value="d"> Não saber nadar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="15" data-correct="b">
+        <p>15. O Pássaro Dodo ficou extinto porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex15" value="a"> Aprendeu a voar e fugiu da Terra.</label>
+          <label><input type="radio" name="t2-ex15" value="b"> Não tinha como se defender de novos animais trazidos pelos humanos.</label>
+          <label><input type="radio" name="t2-ex15" value="c"> Gostava de viver no deserto.</label>
+          <label><input type="radio" name="t2-ex15" value="d"> Era um animal imortal.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="16" data-correct="b">
+        <p>16. O que podemos fazer no dia a dia para ajudar o planeta?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex16" value="a"> Deixar as luzes sempre ligadas.</label>
+          <label><input type="radio" name="t2-ex16" value="b"> Reduzir, reutilizar e reciclar o lixo.</label>
+          <label><input type="radio" name="t2-ex16" value="c"> Deitar pilhas no lixo comum.</label>
+          <label><input type="radio" name="t2-ex16" value="d"> Gastar muita água sem necessidade.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="17" data-correct="b">
+        <p>17. Os jardins zoológicos modernos têm programas para:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex17" value="a"> Ensinar os animais a fazer truques de circo.</label>
+          <label><input type="radio" name="t2-ex17" value="b"> Ajudar na reprodução de espécies em risco para depois as libertar.</label>
+          <label><input type="radio" name="t2-ex17" value="c"> Esconder os animais das pessoas.</label>
+          <label><input type="radio" name="t2-ex17" value="d"> Fazer festas de aniversário barulhentas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="18" data-correct="b">
+        <p>18. Qual é o papel dos cientistas na proteção dos animais?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex18" value="a"> Eles não fazem nada.</label>
+          <label><input type="radio" name="t2-ex18" value="b"> Estudam os animais para saber como os salvar e proteger.</label>
+          <label><input type="radio" name="t2-ex18" value="c"> Eles caçam os animais para os contar.</label>
+          <label><input type="radio" name="t2-ex18" value="d"> Eles transformam os animais em robôs.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="19" data-correct="b">
+        <p>19. Se uma espécie de planta desaparecer, o que acontece aos animais que a comiam?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex19" value="a"> Eles ficam muito contentes.</label>
+          <label><input type="radio" name="t2-ex19" value="b"> Eles podem passar fome e também entrar em risco.</label>
+          <label><input type="radio" name="t2-ex19" value="c"> Eles começam a comer pedras.</label>
+          <label><input type="radio" name="t2-ex19" value="d"> Eles mudam de cor instantaneamente.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="2" data-ex="20" data-correct="a">
+        <p>20. Proteger a natureza é importante porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t2-ex20" value="a"> A Terra é a nossa casa e todos os seres vivos dependem uns dos outros.</label>
+          <label><input type="radio" name="t2-ex20" value="b"> É divertido destruir coisas.</label>
+          <label><input type="radio" name="t2-ex20" value="c"> Só os animais bonitos são importantes.</label>
+          <label><input type="radio" name="t2-ex20" value="d"> Não tem qualquer importância.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(2, true)">Corrigir Tópico</button>
+      <div id="resumo-t2" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 3: PROTEÇÃO DO OCEANO E MEIO AMBIENTE -->
+    <section id="t3" class="topic">
+      <h2>3. PROTEÇÃO DO OCEANO E MEIO AMBIENTE</h2>
+      <div class="explicacao"><p>O nosso planeta precisa que cuidemos dele para que a água continue limpa e o ar puro.<br></p><p>1. A IMPORTÂNCIA DO OCEANO:<br></p><p>- Dá-nos oxigénio (através das algas e plantas marinhas).<br></p><p>- Regula a temperatura da Terra.<br></p><p>- É a casa de milhares de espécies.<br></p><p>2. AMEAÇAS AO MEIO AMBIENTE:<br></p><p>- Poluição Marinha: O plástico é o maior perigo. Animais como tartarugas e baleias podem morrer ao comer lixo.<br></p><p>- Desperdício de Recursos: Gastar água e luz sem necessidade prejudica o planeta.<br></p><p>3. OS 3 R'S DA SUSTENTABILIDADE:<br></p><p>- REDUZIR: Comprar menos coisas e evitar embalagens desnecessárias.<br></p><p>- REUTILIZAR: Usar os objetos mais do que uma vez (ex: garrafa de água reutilizável).<br></p><p>- RECICLAR: Separar o lixo para que seja transformado em novos materiais.<br></p><p>4. SEPARAÇÃO NO ECOPONTO:<br></p><p>- AMARELO: Plástico e Metal (latas, pacotes de leite, iogurtes).<br></p><p>- AZUL: Papel e Cartão (caixas, revistas, cadernos velhos).<br></p><p>- VERDE: Vidro (garrafas e frascos). *Atenção: Espelhos e loiça não vão aqui!<br></p><p>Para não esqueceres: "Azul é papel, Verde é vidro, Amarelo é o resto das embalagens!"<br></p><p>- Microplásticos:<br></p><p>- Às vezes o plástico não desaparece.<br></p><p>- Ele parte-se em pedacinhos muito, muito pequenos, quase como pó.<br></p><p>- Esses pedacinhos chamam-se microplásticos.<br></p><p>- Eles são tão pequenos que:<br></p><p>- os peixes podem engolir sem perceber<br></p><p>- entram na água e nos rios<br></p><p>- podem acabar na comida dos animais<br></p><p>- Exemplo fácil de imaginar:<br></p><p>- Imagina uma garrafa de plástico no mar.<br></p><p>- Com o sol, o vento e as ondas ela vai quebrando em pedaços cada vez menores.<br></p><p>- Primeiro vira pedaços grandes…<br></p><p>- Depois pedaços pequenos…<br></p><p>- Depois pó de plástico.<br></p><p>- Esse "pó de plástico" são os microplásticos.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo – Microplástico:</p>
+          <a href="https://www.youtube.com/watch?v=adc0cOqE4qs" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+          <p class="video-fallback-text">📺 Vídeo – Ciclo de vida de uma garrafa:</p>
+          <a href="https://www.youtube.com/watch?v=EWqnWXnXURw" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+          <p class="video-fallback-text">📺 Vídeo – Impacto e mudança climática:</p>
+          <a href="https://www.youtube.com/watch?v=PH5halrNnfI" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
+      </div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="3" data-ex="1" data-correct="b">
+        <p>1. Por que razão o oceano é chamado de &quot;pulmão do planeta&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex1" value="a"> Porque tem muitos peixes.</label>
+          <label><input type="radio" name="t3-ex1" value="b"> Porque produz grande parte do oxigénio que respiramos.</label>
+          <label><input type="radio" name="t3-ex1" value="c"> Porque a água é azul.</label>
+          <label><input type="radio" name="t3-ex1" value="d"> Porque o oceano sabe respirar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="2" data-correct="c">
+        <p>2. Qual destes materiais demora centenas de anos a desaparecer na natureza?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex2" value="a"> Casca de maçã.</label>
+          <label><input type="radio" name="t3-ex2" value="b"> Papel de jornal.</label>
+          <label><input type="radio" name="t3-ex2" value="c"> Plástico.</label>
+          <label><input type="radio" name="t3-ex2" value="d"> Folha de árvore.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="3" data-correct="b">
+        <p>3. Onde devemos colocar uma lata de refrigerante vazia?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex3" value="a"> No ecoponto azul.</label>
+          <label><input type="radio" name="t3-ex3" value="b"> No ecoponto amarelo.</label>
+          <label><input type="radio" name="t3-ex3" value="c"> No ecoponto verde.</label>
+          <label><input type="radio" name="t3-ex3" value="d"> No lixo comum.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="4" data-correct="b">
+        <p>4. O que significa &quot;Reduzir&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex4" value="a"> Comprar muitas coisas novas.</label>
+          <label><input type="radio" name="t3-ex4" value="b"> Usar apenas o que é necessário para evitar o desperdício.</label>
+          <label><input type="radio" name="t3-ex4" value="c"> Transformar lixo em brinquedos.</label>
+          <label><input type="radio" name="t3-ex4" value="d"> Deitar lixo no chão.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="5" data-correct="b">
+        <p>5. Se usares um frasco de vidro de maionese para guardar sementes, estás a:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex5" value="a"> Reciclar.</label>
+          <label><input type="radio" name="t3-ex5" value="b"> Reutilizar.</label>
+          <label><input type="radio" name="t3-ex5" value="c"> Reduzir.</label>
+          <label><input type="radio" name="t3-ex5" value="d"> Poluir.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="6" data-correct="a">
+        <p>6. Qual é o destino correto para uma caixa de cartão de uma pizza (sem gordura)?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex6" value="a"> Ecoponto Azul.</label>
+          <label><input type="radio" name="t3-ex6" value="b"> Ecoponto Verde.</label>
+          <label><input type="radio" name="t3-ex6" value="c"> Ecoponto Amarelo.</label>
+          <label><input type="radio" name="t3-ex6" value="d"> Sanita.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="7" data-correct="b">
+        <p>7. O que acontece aos animais marinhos que comem plástico por engano?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex7" value="a"> Ficam mais fortes.</label>
+          <label><input type="radio" name="t3-ex7" value="b"> Podem ficar muito doentes ou morrer.</label>
+          <label><input type="radio" name="t3-ex7" value="c"> Aprendem a nadar mais depressa.</label>
+          <label><input type="radio" name="t3-ex7" value="d"> Mudam de cor.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="8" data-correct="c">
+        <p>8. Qual destas ações ajuda a poupar água em casa?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex8" value="a"> Tomar banhos de imersão muito longos.</label>
+          <label><input type="radio" name="t3-ex8" value="b"> Deixar a torneira aberta enquanto lavamos os dentes.</label>
+          <label><input type="radio" name="t3-ex8" value="c"> Fechar a torneira enquanto nos ensaboamos no banho.</label>
+          <label><input type="radio" name="t3-ex8" value="d"> Lavar o carro todos os dias com a mangueira.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="9" data-correct="b">
+        <p>9. O que são microplásticos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex9" value="a"> Brinquedos de plástico muito pequenos.</label>
+          <label><input type="radio" name="t3-ex9" value="b"> Pedacinhos muito pequenos de plástico que ficam na água e no mar.</label>
+          <label><input type="radio" name="t3-ex9" value="c"> Peixes que parecem feitos de plástico.</label>
+          <label><input type="radio" name="t3-ex9" value="d"> Garrafas de plástico novas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="10" data-correct="b">
+        <p>10. As pilhas usadas devem ser colocadas no:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex10" value="a"> Ecoponto amarelo.</label>
+          <label><input type="radio" name="t3-ex10" value="b"> Pilhão.</label>
+          <label><input type="radio" name="t3-ex10" value="c"> Ecoponto verde.</label>
+          <label><input type="radio" name="t3-ex10" value="d"> Mar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="11" data-correct="b">
+        <p>11. O que não devemos fazer quando vamos à praia?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex11" value="a"> Usar protetor solar.</label>
+          <label><input type="radio" name="t3-ex11" value="b"> Deixar beatas de cigarro ou lixo na areia.</label>
+          <label><input type="radio" name="t3-ex11" value="c"> Nadar com vigilância.</label>
+          <label><input type="radio" name="t3-ex11" value="d"> Apanhar conchas (com moderação).</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="12" data-correct="b">
+        <p>12. O papel higiénico e os lenços de papel sujos devem ir para o:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex12" value="a"> Ecoponto Azul.</label>
+          <label><input type="radio" name="t3-ex12" value="b"> Lixo comum (indiferenciado).</label>
+          <label><input type="radio" name="t3-ex12" value="c"> Ecoponto Amarelo.</label>
+          <label><input type="radio" name="t3-ex12" value="d"> Ecoponto Verde.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="13" data-correct="b">
+        <p>13. Reciclar é importante porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex13" value="a"> Dá muito trabalho.</label>
+          <label><input type="radio" name="t3-ex13" value="b"> Permite fabricar novos objetos sem gastar tantos recursos da natureza.</label>
+          <label><input type="radio" name="t3-ex13" value="c"> Faz o lixo desaparecer por magia.</label>
+          <label><input type="radio" name="t3-ex13" value="d"> Serve para decorar a rua com contentores coloridos.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="14" data-correct="c">
+        <p>14. Qual o ecoponto para uma garrafa de água de plástico?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex14" value="a"> Verde.</label>
+          <label><input type="radio" name="t3-ex14" value="b"> Azul.</label>
+          <label><input type="radio" name="t3-ex14" value="c"> Amarelo.</label>
+          <label><input type="radio" name="t3-ex14" value="d"> Vermelho.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="15" data-correct="b">
+        <p>15. Como podemos ajudar a reduzir a poluição do ar?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex15" value="a"> Usar mais o carro para ir a todo o lado.</label>
+          <label><input type="radio" name="t3-ex15" value="b"> Andar mais a pé ou de bicicleta.</label>
+          <label><input type="radio" name="t3-ex15" value="c"> Queimar lixo no jardim.</label>
+          <label><input type="radio" name="t3-ex15" value="d"> Cortar as árvores da rua.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="16" data-correct="b">
+        <p>16. O que é o &quot;consumo sustentável&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex16" value="a"> Comprar tudo o que vemos na televisão.</label>
+          <label><input type="radio" name="t3-ex16" value="b"> Comprar apenas o necessário, pensando no bem do planeta.</label>
+          <label><input type="radio" name="t3-ex16" value="c"> Comer apenas doces.</label>
+          <label><input type="radio" name="t3-ex16" value="d"> Gastar toda a eletricidade de uma vez.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="17" data-correct="b">
+        <p>17. No ecoponto verde, colocamos:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex17" value="a"> Relva e folhas.</label>
+          <label><input type="radio" name="t3-ex17" value="b"> Garrafas, boiões e frascos de vidro.</label>
+          <label><input type="radio" name="t3-ex17" value="c"> Espelhos partidos.</label>
+          <label><input type="radio" name="t3-ex17" value="d"> Pratos de cerâmica.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="18" data-correct="c">
+        <p>18. Qual é a cor do ecoponto para as embalagens de iogurte?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex18" value="a"> Azul.</label>
+          <label><input type="radio" name="t3-ex18" value="b"> Verde.</label>
+          <label><input type="radio" name="t3-ex18" value="c"> Amarelo.</label>
+          <label><input type="radio" name="t3-ex18" value="d"> Cinzento.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="19" data-correct="b">
+        <p>19. Por que não devemos deitar óleo de fritar no cano do lava-loiça?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex19" value="a"> Porque cheira mal.</label>
+          <label><input type="radio" name="t3-ex19" value="b"> Porque polui a água e entope os canos.</label>
+          <label><input type="radio" name="t3-ex19" value="c"> Porque o óleo ajuda os peixes a nadar.</label>
+          <label><input type="radio" name="t3-ex19" value="d"> Porque o óleo transforma-se em ouro.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="3" data-ex="20" data-correct="b">
+        <p>20. Qual é a melhor forma de levar o lanche para a escola para não poluir?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t3-ex20" value="a"> Envolto em muito papel de alumínio.</label>
+          <label><input type="radio" name="t3-ex20" value="b"> Dentro de uma lancheira reutilizável.</label>
+          <label><input type="radio" name="t3-ex20" value="c"> Num saco de plástico descartável todos os dias.</label>
+          <label><input type="radio" name="t3-ex20" value="d"> Sem proteção nenhuma dentro da mochila.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(3, true)">Corrigir Tópico</button>
+      <div id="resumo-t3" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 4: A TERRA NO ESPAÇO (O SISTEMA SOLAR) -->
+    <section id="t4" class="topic">
+      <h2>4. A TERRA NO ESPAÇO (O SISTEMA SOLAR)</h2>
+      <div class="explicacao"><p>O Sistema Solar é o conjunto de astros que giram em torno de uma estrela central: o Sol.<br></p><p>1. O SOL:<br></p><p>- É a nossa estrela. Fornece luz e calor essenciais à vida.<br></p><p>- É muito maior que todos os planetas juntos.<br></p><p>2. OS PLANETAS (8 principais):<br></p><p>- Planetas Rochosos (perto do Sol): Mercúrio, Vénus, Terra e Marte.<br></p><p>- Planetas Gasosos/Gigantes (mais distantes): Júpiter, Saturno, Urano e Neptuno.<br></p><p></p><p class="img-explicacao-wrap"><img src="assets/sistema_solar.png" alt="Sistema Solar" class="img-explicacao"></p><p><p>3. A TERRA E A LUA:<br></p><p>- A Terra é o 3º planeta a contar do Sol.<br></p><p>- A Lua é o nosso único satélite natural. Ela não brilha por si, reflete a luz solar.<br></p><p>4. MOVIMENTOS DA TERRA:<br></p><p>- ROTAÇÃO: A Terra gira sobre si mesma (como um pião). Demora 24 horas e cria o DIA e a NOITE.<br></p><p>- TRANSLAÇÃO: A Terra gira à volta do Sol. Demora 365 dias (1 ano) e cria as ESTAÇÕES DO ANO.<br></p><p>- Saturno não é o único com anéis, mas são os mais brilhantes e bonitos!<br></p><p>- Júpiter é tão grande que caberiam 1300 Terras dentro dele.<br></p><p>- Mercúrio é o mais rápido a dar a volta ao Sol, mas Vénus é o mais quente.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo – Sistema Solar:</p>
+          <a href="https://www.youtube.com/watch?v=OavjdCXHK1U" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
+      </div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="4" data-ex="1" data-correct="c">
+        <p>1. Qual é o astro que está no centro do Sistema Solar?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex1" value="a"> A Lua.</label>
+          <label><input type="radio" name="t4-ex1" value="b"> A Terra.</label>
+          <label><input type="radio" name="t4-ex1" value="c"> O Sol.</label>
+          <label><input type="radio" name="t4-ex1" value="d"> Marte.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="2" data-correct="b">
+        <p>2. Quantos planetas principais existem no nosso Sistema Solar?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex2" value="a"> 5</label>
+          <label><input type="radio" name="t4-ex2" value="b"> 8</label>
+          <label><input type="radio" name="t4-ex2" value="c"> 10</label>
+          <label><input type="radio" name="t4-ex2" value="d"> 12</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="3" data-correct="c">
+        <p>3. Qual é a posição da Terra em relação à distância do Sol?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex3" value="a"> 1º lugar.</label>
+          <label><input type="radio" name="t4-ex3" value="b"> 2º lugar.</label>
+          <label><input type="radio" name="t4-ex3" value="c"> 3º lugar.</label>
+          <label><input type="radio" name="t4-ex3" value="d"> 8º lugar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="4" data-correct="c">
+        <p>4. O Sol é classificado como:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex4" value="a"> Um planeta.</label>
+          <label><input type="radio" name="t4-ex4" value="b"> Um satélite.</label>
+          <label><input type="radio" name="t4-ex4" value="c"> Uma estrela.</label>
+          <label><input type="radio" name="t4-ex4" value="d"> Um cometa.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="5" data-correct="b">
+        <p>5. Qual é o maior planeta do Sistema Solar?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex5" value="a"> Terra.</label>
+          <label><input type="radio" name="t4-ex5" value="b"> Júpiter.</label>
+          <label><input type="radio" name="t4-ex5" value="c"> Saturno.</label>
+          <label><input type="radio" name="t4-ex5" value="d"> Marte.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="6" data-correct="c">
+        <p>6. Qual destes planetas é conhecido pelos seus grandes anéis visíveis?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex6" value="a"> Neptuno.</label>
+          <label><input type="radio" name="t4-ex6" value="b"> Mercúrio.</label>
+          <label><input type="radio" name="t4-ex6" value="c"> Saturno.</label>
+          <label><input type="radio" name="t4-ex6" value="d"> Vénus.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="7" data-correct="a">
+        <p>7. A Lua é considerada:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex7" value="a"> O satélite natural da Terra.</label>
+          <label><input type="radio" name="t4-ex7" value="b"> Uma estrela pequena.</label>
+          <label><input type="radio" name="t4-ex7" value="c"> O planeta mais perto da Terra.</label>
+          <label><input type="radio" name="t4-ex7" value="d"> Um pedaço de queijo espacial.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="8" data-correct="c">
+        <p>8. Qual é o planeta conhecido como o &quot;Planeta Vermelho&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex8" value="a"> Júpiter.</label>
+          <label><input type="radio" name="t4-ex8" value="b"> Vénus.</label>
+          <label><input type="radio" name="t4-ex8" value="c"> Marte.</label>
+          <label><input type="radio" name="t4-ex8" value="d"> Urano.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="9" data-correct="b">
+        <p>9. Por que razão a Terra é o único planeta conhecido com vida?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex9" value="a"> Porque tem anéis coloridos.</label>
+          <label><input type="radio" name="t4-ex9" value="b"> Porque tem água líquida, ar e a temperatura certa.</label>
+          <label><input type="radio" name="t4-ex9" value="c"> Porque é o planeta mais pequeno.</label>
+          <label><input type="radio" name="t4-ex9" value="d"> Porque está muito longe do Sol.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="10" data-correct="c">
+        <p>10. Qual é o planeta mais próximo do Sol?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex10" value="a"> Vénus.</label>
+          <label><input type="radio" name="t4-ex10" value="b"> Marte.</label>
+          <label><input type="radio" name="t4-ex10" value="c"> Mercúrio.</label>
+          <label><input type="radio" name="t4-ex10" value="d"> Terra.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="11" data-correct="b">
+        <p>11. O que aconteceria se o Sol deixasse de existir?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex11" value="a"> A Terra ficaria mais iluminada.</label>
+          <label><input type="radio" name="t4-ex11" value="b"> Ficaria tudo escuro e gelado, e a vida acabaria.</label>
+          <label><input type="radio" name="t4-ex11" value="c"> Os planetas ficariam mais quentes.</label>
+          <label><input type="radio" name="t4-ex11" value="d"> Nada mudaria.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="12" data-correct="b">
+        <p>12. A Lua tem luz própria?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex12" value="a"> Sim, brilha como uma lâmpada.</label>
+          <label><input type="radio" name="t4-ex12" value="b"> Não, ela reflete a luz do Sol.</label>
+          <label><input type="radio" name="t4-ex12" value="c"> Sim, mas apenas durante o dia.</label>
+          <label><input type="radio" name="t4-ex12" value="d"> Não, ela reflete a luz das cidades da Terra.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="13" data-correct="b">
+        <p>13. Qual destes é o planeta mais distante do Sol?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex13" value="a"> Urano.</label>
+          <label><input type="radio" name="t4-ex13" value="b"> Neptuno.</label>
+          <label><input type="radio" name="t4-ex13" value="c"> Saturno.</label>
+          <label><input type="radio" name="t4-ex13" value="d"> Júpiter.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="14" data-correct="b">
+        <p>14. Como se chama o caminho que os planetas fazem à volta do Sol?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex14" value="a"> Estrada espacial.</label>
+          <label><input type="radio" name="t4-ex14" value="b"> Órbita.</label>
+          <label><input type="radio" name="t4-ex14" value="c"> Pista de corrida.</label>
+          <label><input type="radio" name="t4-ex14" value="d"> Rotação.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="15" data-correct="b">
+        <p>15. Qual é o planeta mais quente do Sistema Solar?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex15" value="a"> Mercúrio (por estar mais perto).</label>
+          <label><input type="radio" name="t4-ex15" value="b"> Vénus (por causa da sua atmosfera espessa).</label>
+          <label><input type="radio" name="t4-ex15" value="c"> Marte.</label>
+          <label><input type="radio" name="t4-ex15" value="d"> Júpiter.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="16" data-correct="b">
+        <p>16. O movimento que a Terra faz à volta de si mesma chama-se:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex16" value="a"> Translação.</label>
+          <label><input type="radio" name="t4-ex16" value="b"> Rotação.</label>
+          <label><input type="radio" name="t4-ex16" value="c"> Salto.</label>
+          <label><input type="radio" name="t4-ex16" value="d"> Órbita.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="17" data-correct="b">
+        <p>17. O movimento de Rotação da Terra (girar como um pião) dá origem a:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex17" value="a"> As estações do ano.</label>
+          <label><input type="radio" name="t4-ex17" value="b"> Os dias e as noites.</label>
+          <label><input type="radio" name="t4-ex17" value="c"> Os anos bissextos.</label>
+          <label><input type="radio" name="t4-ex17" value="d"> As fases da Lua.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="18" data-correct="b">
+        <p>18. A Via Láctea é o nome:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex18" value="a"> De um chocolate espacial.</label>
+          <label><input type="radio" name="t4-ex18" value="b"> Da nossa galáxia, onde está o Sistema Solar.</label>
+          <label><input type="radio" name="t4-ex18" value="c"> Do satélite de Marte.</label>
+          <label><input type="radio" name="t4-ex18" value="d"> Da primeira nave a ir à Lua.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="19" data-correct="b">
+        <p>19. O instrumento usado para observar melhor os planetas e estrelas é o:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex19" value="a"> Microscópio.</label>
+          <label><input type="radio" name="t4-ex19" value="b"> Telescópio.</label>
+          <label><input type="radio" name="t4-ex19" value="c"> Termómetro.</label>
+          <label><input type="radio" name="t4-ex19" value="d"> Estetoscópio.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="4" data-ex="20" data-correct="b">
+        <p>20. Qual destes planetas é um &quot;gigante gelado&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t4-ex20" value="a"> Mercúrio.</label>
+          <label><input type="radio" name="t4-ex20" value="b"> Urano.</label>
+          <label><input type="radio" name="t4-ex20" value="c"> Vénus.</label>
+          <label><input type="radio" name="t4-ex20" value="d"> Marte.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(4, true)">Corrigir Tópico</button>
+      <div id="resumo-t4" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 5: REPRESENTAÇÕES DA TERRA (GLOBO E MAPAS) -->
+    <section id="t5" class="topic">
+      <h2>5. REPRESENTAÇÕES DA TERRA (GLOBO E MAPAS)</h2>
+      <div class="explicacao"><p>Para estudarmos a Terra, precisamos de modelos que a representem, pois o planeta é demasiado grande para vermos todo de uma vez.<br></p><p>1. GLOBO TERRESTRE:<br></p><p>- É a representação mais fiel e exata da Terra.<br></p><p>- Tem forma esférica.<br></p><p>- Não deforma os continentes, mas não permite ver o mundo todo ao mesmo tempo.<br></p><p>2. PLANISFÉRIO (MAPA-MÚNDI):<br></p><p>- É uma representação plana (numa folha).<br></p><p>- Permite ver todos os continentes e oceanos de uma só vez.<br></p><p>- Provoca pequenas deformações nas formas e tamanhos para conseguir "esticar" a esfera no papel.<br></p><p>3. ELEMENTOS DE UM MAPA:<br></p><p>- TÍTULO: Indica o que o mapa mostra.<br></p><p>- LEGENDA: Explica os símbolos e as cores.<br></p><p>- ESCALA: Indica quantas vezes a realidade foi reduzida.<br></p><p>- ROSA DOS VENTOS: Indica a orientação (Norte, Sul, Este, Oeste).<br></p><p>Antigamente, como os navegadores não conheciam todo o mundo, os mapas tinham espaços em branco ou desenhos de monstros onde hoje sabemos que existem continentes!</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo – Globo e mapas:</p>
+          <a href="https://www.youtube.com/watch?v=QikXk_k_TV4" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
+      </div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="5" data-ex="1" data-correct="b">
+        <p>1. Qual é a representação da Terra que mais se aproxima da sua forma real?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex1" value="a"> O mapa de estradas.</label>
+          <label><input type="radio" name="t5-ex1" value="b"> O globo terrestre.</label>
+          <label><input type="radio" name="t5-ex1" value="c"> O planisfério.</label>
+          <label><input type="radio" name="t5-ex1" value="d"> Um desenho de uma montanha.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="2" data-correct="a">
+        <p>2. O que é um planisfério?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex2" value="a"> Uma representação da Terra numa superfície plana (papel).</label>
+          <label><input type="radio" name="t5-ex2" value="b"> Uma fotografia da Lua.</label>
+          <label><input type="radio" name="t5-ex2" value="c"> Um instrumento para medir a temperatura.</label>
+          <label><input type="radio" name="t5-ex2" value="d"> Uma bola colorida.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="3" data-correct="b">
+        <p>3. Qual é a principal vantagem de usar um planisfério em vez de um globo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex3" value="a"> É mais redondo.</label>
+          <label><input type="radio" name="t5-ex3" value="b"> Permite ver todos os continentes e oceanos ao mesmo tempo.</label>
+          <label><input type="radio" name="t5-ex3" value="c"> Mostra apenas o fundo do mar.</label>
+          <label><input type="radio" name="t5-ex3" value="d"> Não tem cores.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="4" data-correct="b">
+        <p>4. Como se chama a pessoa que desenha e faz mapas?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex4" value="a"> Astronauta.</label>
+          <label><input type="radio" name="t5-ex4" value="b"> Cartógrafo.</label>
+          <label><input type="radio" name="t5-ex4" value="c"> Engenheiro.</label>
+          <label><input type="radio" name="t5-ex4" value="d"> Biólogo.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="5" data-correct="b">
+        <p>5. Num mapa, o que nos ajuda a perceber o que significam os símbolos e cores?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex5" value="a"> O título.</label>
+          <label><input type="radio" name="t5-ex5" value="b"> A legenda.</label>
+          <label><input type="radio" name="t5-ex5" value="c"> A escala.</label>
+          <label><input type="radio" name="t5-ex5" value="d"> O verso do papel.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="6" data-correct="b">
+        <p>6. A &quot;Rosa dos Ventos&quot; num mapa serve para:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex6" value="a"> Enfeitar o desenho com flores.</label>
+          <label><input type="radio" name="t5-ex6" value="b"> Indicar a orientação (pontos cardeais).</label>
+          <label><input type="radio" name="t5-ex6" value="c"> Mostrar onde estão os jardins.</label>
+          <label><input type="radio" name="t5-ex6" value="d"> Medir a distância entre as cidades.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="7" data-correct="b">
+        <p>7. O que nos indica o &quot;Título&quot; de um mapa?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex7" value="a"> O preço do mapa.</label>
+          <label><input type="radio" name="t5-ex7" value="b"> O assunto ou o lugar que o mapa representa.</label>
+          <label><input type="radio" name="t5-ex7" value="c"> O nome de quem o comprou.</label>
+          <label><input type="radio" name="t5-ex7" value="d"> A cor favorita do cartógrafo.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="8" data-correct="c">
+        <p>8. Por que razão o globo terrestre tem de ser rodado?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex8" value="a"> Para ganhar velocidade.</label>
+          <label><input type="radio" name="t5-ex8" value="b"> Porque a Terra real também está sempre a rodar.</label>
+          <label><input type="radio" name="t5-ex8" value="c"> Para conseguirmos ver o outro lado do planeta.</label>
+          <label><input type="radio" name="t5-ex8" value="d"> Porque é um brinquedo.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="9" data-correct="b">
+        <p>9. A escala num mapa serve para:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex9" value="a"> Pesar o mapa.</label>
+          <label><input type="radio" name="t5-ex9" value="b"> Saber quantas vezes a realidade foi reduzida.</label>
+          <label><input type="radio" name="t5-ex9" value="c"> Escolher a cor das montanhas.</label>
+          <label><input type="radio" name="t5-ex9" value="d"> Desenhar animais pequenos.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="10" data-correct="b">
+        <p>10. Qual destas cores é quase sempre usada para representar oceanos e rios?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex10" value="a"> Amarelo.</label>
+          <label><input type="radio" name="t5-ex10" value="b"> Azul.</label>
+          <label><input type="radio" name="t5-ex10" value="c"> Vermelho.</label>
+          <label><input type="radio" name="t5-ex10" value="d"> Cinzento.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="11" data-correct="b">
+        <p>11. Se quisermos levar um mapa na mochila para uma caminhada, o que é mais prático?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex11" value="a"> Um globo terrestre gigante.</label>
+          <label><input type="radio" name="t5-ex11" value="b"> Um mapa em papel dobrável.</label>
+          <label><input type="radio" name="t5-ex11" value="c"> Uma estátua da Terra.</label>
+          <label><input type="radio" name="t5-ex11" value="d"> O Sol.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="12" data-correct="a">
+        <p>12. Os mapas antigos eram menos precisos porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex12" value="a"> As pessoas não tinham satélites nem conheciam o mundo todo.</label>
+          <label><input type="radio" name="t5-ex12" value="b"> As pessoas não sabiam desenhar.</label>
+          <label><input type="radio" name="t5-ex12" value="c"> Não existia papel.</label>
+          <label><input type="radio" name="t5-ex12" value="d"> O mundo era mais pequeno antigamente.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="13" data-correct="b">
+        <p>13. Onde é que a forma dos continentes aparece mais &quot;deformada&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex13" value="a"> No globo terrestre.</label>
+          <label><input type="radio" name="t5-ex13" value="b"> No planisfério.</label>
+          <label><input type="radio" name="t5-ex13" value="c"> Numa fotografia real.</label>
+          <label><input type="radio" name="t5-ex13" value="d"> Ninguém sabe.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="14" data-correct="b">
+        <p>14. Numa legenda, um triângulo preto costuma representar:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex14" value="a"> Uma praia.</label>
+          <label><input type="radio" name="t5-ex14" value="b"> Uma montanha ou um pico.</label>
+          <label><input type="radio" name="t5-ex14" value="c"> Um aeroporto.</label>
+          <label><input type="radio" name="t5-ex14" value="d"> Uma floresta.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="15" data-correct="b">
+        <p>15. A linha imaginária que divide a Terra em Hemisfério Norte e Sul chama-se:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex15" value="a"> Linha do Horizonte.</label>
+          <label><input type="radio" name="t5-ex15" value="b"> Equador.</label>
+          <label><input type="radio" name="t5-ex15" value="c"> Caminho de Ferro.</label>
+          <label><input type="radio" name="t5-ex15" value="d"> Linha de Meta.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="16" data-correct="b">
+        <p>16. Qual é o nome do mapa que representa todo o mundo de forma plana?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex16" value="a"> Mapa de Portugal.</label>
+          <label><input type="radio" name="t5-ex16" value="b"> Planisfério ou Mapa-múndi.</label>
+          <label><input type="radio" name="t5-ex16" value="c"> Globo de Neve.</label>
+          <label><input type="radio" name="t5-ex16" value="d"> Esfera.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="17" data-correct="b">
+        <p>17. Os satélites ajudam a fazer mapas modernos porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex17" value="a"> Eles desenham com lápis de cor.</label>
+          <label><input type="radio" name="t5-ex17" value="b"> Eles tiram fotografias exatas do espaço.</label>
+          <label><input type="radio" name="t5-ex17" value="c"> Eles vivem dentro dos telemóveis.</label>
+          <label><input type="radio" name="t5-ex17" value="d"> Eles mudam a forma dos continentes.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="18" data-correct="b">
+        <p>18. O que representa a cor verde na maioria dos mapas físicos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex18" value="a"> Desertos de areia.</label>
+          <label><input type="radio" name="t5-ex18" value="b"> Florestas ou planícies (zonas baixas com vegetação).</label>
+          <label><input type="radio" name="t5-ex18" value="c"> Oceanos profundos.</label>
+          <label><input type="radio" name="t5-ex18" value="d"> Cidades muito grandes.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="19" data-correct="b">
+        <p>19. Para que serve um mapa político?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex19" value="a"> Para ver onde estão as montanhas e rios.</label>
+          <label><input type="radio" name="t5-ex19" value="b"> Para ver as fronteiras entre países e cidades.</label>
+          <label><input type="radio" name="t5-ex19" value="c"> Para saber o tempo que vai fazer amanhã.</label>
+          <label><input type="radio" name="t5-ex19" value="d"> Para encontrar tesouros escondidos.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="5" data-ex="20" data-correct="c">
+        <p>20. Qual é a forma geométrica que mais se parece com o globo terrestre?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t5-ex20" value="a"> Cubo.</label>
+          <label><input type="radio" name="t5-ex20" value="b"> Pirâmide.</label>
+          <label><input type="radio" name="t5-ex20" value="c"> Esfera.</label>
+          <label><input type="radio" name="t5-ex20" value="d"> Quadrado.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(5, true)">Corrigir Tópico</button>
+      <div id="resumo-t5" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 6: LOCALIZAÇÃO E ORIENTAÇÃO (PONTOS CARDEAIS) -->
+    <section id="t6" class="topic">
+      <h2>6. LOCALIZAÇÃO E ORIENTAÇÃO (PONTOS CARDEAIS)</h2>
+      <div class="explicacao"><p>Para não nos perdermos, precisamos de saber onde estamos e para onde vamos.<br></p><p>1. OS PONTOS CARDEAIS:<br></p><p>- NORTE (N): À nossa frente (quando orientados pelo sol).<br></p><p>- SUL (S): Atrás de nós.<br></p><p>- ESTE (E) ou NASCENTE: Onde o Sol nasce.<br></p><p>- OESTE (O) ou POENTE: Onde o Sol se põe.<br></p><p>2. ORIENTAÇÃO PELO SOL:<br></p><p>- Braço direito para o Nascente (Este).<br></p><p>- Braço esquerdo para o Poente (Oeste).<br></p><p>- À frente: Norte.<br></p><p>- Atrás: Sul.<br></p><p>3. INSTRUMENTOS:<br></p><p>- BÚSSOLA: Tem uma agulha magnética que aponta para o Norte.<br></p><p></p><p class="img-explicacao-wrap"><img src="assets/bussola.png" alt="Bússola" class="img-explicacao"></p><p>- GPS: Usa satélites para dar a localização exata no telemóvel ou carro.<br></p><p></p><p>- ROSA DOS VENTOS: Desenho que mostra as direções nos mapas.<br></p><p></p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo – Pontos cardeais e orientação:</p>
+          <a href="https://www.youtube.com/watch?v=Sfls7kuhzVI" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
+      </div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="6" data-ex="1" data-correct="b">
+        <p>1. Quantos são os pontos cardeais principais?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex1" value="a"> 2</label>
+          <label><input type="radio" name="t6-ex1" value="b"> 4</label>
+          <label><input type="radio" name="t6-ex1" value="c"> 6</label>
+          <label><input type="radio" name="t6-ex1" value="d"> 8</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="2" data-correct="c">
+        <p>2. Onde é que o Sol nasce todas as manhãs?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex2" value="a"> No Norte.</label>
+          <label><input type="radio" name="t6-ex2" value="b"> No Sul.</label>
+          <label><input type="radio" name="t6-ex2" value="c"> No Este (Nascente).</label>
+          <label><input type="radio" name="t6-ex2" value="d"> No Oeste (Poente).</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="3" data-correct="b">
+        <p>3. Como se chama o ponto cardeal oposto ao Norte?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex3" value="a"> Este.</label>
+          <label><input type="radio" name="t6-ex3" value="b"> Sul.</label>
+          <label><input type="radio" name="t6-ex3" value="c"> Oeste.</label>
+          <label><input type="radio" name="t6-ex3" value="d"> Nordeste.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="4" data-correct="c">
+        <p>4. A agulha magnética de uma bússola aponta sempre para o:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex4" value="a"> Sul.</label>
+          <label><input type="radio" name="t6-ex4" value="b"> Este.</label>
+          <label><input type="radio" name="t6-ex4" value="c"> Norte.</label>
+          <label><input type="radio" name="t6-ex4" value="d"> Sol.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="5" data-correct="c">
+        <p>5. Se o teu braço direito aponta para o Este, o que tens à tua frente?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex5" value="a"> O Sul.</label>
+          <label><input type="radio" name="t6-ex5" value="b"> O Oeste.</label>
+          <label><input type="radio" name="t6-ex5" value="c"> O Norte.</label>
+          <label><input type="radio" name="t6-ex5" value="d"> A Lua.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="6" data-correct="d">
+        <p>6. Qual é a sigla utilizada para representar o Oeste?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex6" value="a"> N</label>
+          <label><input type="radio" name="t6-ex6" value="b"> S</label>
+          <label><input type="radio" name="t6-ex6" value="c"> E</label>
+          <label><input type="radio" name="t6-ex6" value="d"> O</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="7" data-correct="b">
+        <p>7. O &quot;Poente&quot; é outro nome para o ponto cardeal:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex7" value="a"> Este.</label>
+          <label><input type="radio" name="t6-ex7" value="b"> Oeste.</label>
+          <label><input type="radio" name="t6-ex7" value="c"> Norte.</label>
+          <label><input type="radio" name="t6-ex7" value="d"> Sul.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="8" data-correct="b">
+        <p>8. Para que serve a Rosa dos Ventos nos mapas?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex8" value="a"> Para mostrar as cores das flores.</label>
+          <label><input type="radio" name="t6-ex8" value="b"> Para indicar a orientação e os pontos cardeais.</label>
+          <label><input type="radio" name="t6-ex8" value="c"> Para medir a temperatura.</label>
+          <label><input type="radio" name="t6-ex8" value="d"> Para desenhar o vento.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="9" data-correct="c">
+        <p>9. Qual destes é um instrumento moderno de localização que usa satélites?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex9" value="a"> Bússola.</label>
+          <label><input type="radio" name="t6-ex9" value="b"> Termómetro.</label>
+          <label><input type="radio" name="t6-ex9" value="c"> GPS.</label>
+          <label><input type="radio" name="t6-ex9" value="d"> Régua.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="10" data-correct="c">
+        <p>10. O Sol põe-se ao fim do dia no:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex10" value="a"> Nascente.</label>
+          <label><input type="radio" name="t6-ex10" value="b"> Norte.</label>
+          <label><input type="radio" name="t6-ex10" value="c"> Poente (Oeste).</label>
+          <label><input type="radio" name="t6-ex10" value="d"> Sul.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="11" data-correct="b">
+        <p>11. Os marinheiros de antigamente usavam o quê para se orientarem à noite?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex11" value="a"> O Sol.</label>
+          <label><input type="radio" name="t6-ex11" value="b"> As estrelas (como a Estrela Polar).</label>
+          <label><input type="radio" name="t6-ex11" value="c"> Lanternas de pilhas.</label>
+          <label><input type="radio" name="t6-ex11" value="d"> O relógio.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="12" data-correct="c">
+        <p>12. O ponto colateral que fica entre o Norte e o Este chama-se:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex12" value="a"> Sudeste.</label>
+          <label><input type="radio" name="t6-ex12" value="b"> Noroeste.</label>
+          <label><input type="radio" name="t6-ex12" value="c"> Nordeste.</label>
+          <label><input type="radio" name="t6-ex12" value="d"> Sudoeste.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="13" data-correct="b">
+        <p>13. Se quiseres ir para uma cidade que fica a Sul, mas estás a caminhar para Norte, estás a ir na direção:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex13" value="a"> Correta.</label>
+          <label><input type="radio" name="t6-ex13" value="b"> Oposta.</label>
+          <label><input type="radio" name="t6-ex13" value="c"> Do Sol.</label>
+          <label><input type="radio" name="t6-ex13" value="d"> Da direita.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="14" data-correct="b">
+        <p>14. A bússola funciona porque a Terra se comporta como um gigante:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex14" value="a"> Balão.</label>
+          <label><input type="radio" name="t6-ex14" value="b"> Íman.</label>
+          <label><input type="radio" name="t6-ex14" value="c"> Aquário.</label>
+          <label><input type="radio" name="t6-ex14" value="d"> Espelho.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="15" data-correct="c">
+        <p>15. Qual é o nome do ponto cardeal que fica à esquerda de quem olha para o Norte?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex15" value="a"> Sul.</label>
+          <label><input type="radio" name="t6-ex15" value="b"> Este.</label>
+          <label><input type="radio" name="t6-ex15" value="c"> Oeste.</label>
+          <label><input type="radio" name="t6-ex15" value="d"> Nordeste.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="16" data-correct="b">
+        <p>16. Num mapa, o Norte costuma estar representado na parte:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex16" value="a"> De baixo.</label>
+          <label><input type="radio" name="t6-ex16" value="b"> De cima.</label>
+          <label><input type="radio" name="t6-ex16" value="c"> Direita.</label>
+          <label><input type="radio" name="t6-ex16" value="d"> Esquerda.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="17" data-correct="b">
+        <p>17. O GPS pode ser encontrado em:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex17" value="a"> Livros de papel apenas.</label>
+          <label><input type="radio" name="t6-ex17" value="b"> Telemóveis e carros.</label>
+          <label><input type="radio" name="t6-ex17" value="c"> Dentro de garrafas de água.</label>
+          <label><input type="radio" name="t6-ex17" value="d"> Nas árvores.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="18" data-correct="b">
+        <p>18. Qual é o movimento da Terra que faz parecer que o Sol se move no céu?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex18" value="a"> Translação.</label>
+          <label><input type="radio" name="t6-ex18" value="b"> Rotação.</label>
+          <label><input type="radio" name="t6-ex18" value="c"> Salto.</label>
+          <label><input type="radio" name="t6-ex18" value="d"> Eclipse.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="19" data-correct="b">
+        <p>19. Se estiveres perdido numa floresta num dia de sol, podes descobrir o Norte usando:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex19" value="a"> Uma pedra.</label>
+          <label><input type="radio" name="t6-ex19" value="b"> A tua posição em relação ao Sol.</label>
+          <label><input type="radio" name="t6-ex19" value="c"> O barulho das aves.</label>
+          <label><input type="radio" name="t6-ex19" value="d"> As folhas secas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="6" data-ex="20" data-correct="b">
+        <p>20. Para que serve saber os pontos cardeais?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t6-ex20" value="a"> Para saber as horas.</label>
+          <label><input type="radio" name="t6-ex20" value="b"> Para nos conseguirmos localizar e orientar em qualquer lugar.</label>
+          <label><input type="radio" name="t6-ex20" value="c"> Para contar os planetas.</label>
+          <label><input type="radio" name="t6-ex20" value="d"> Para aprender a desenhar círculos.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(6, true)">Corrigir Tópico</button>
+      <div id="resumo-t6" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 7: SISMOS E VULCÕES -->
+    <section id="t7" class="topic">
+      <h2>7. SISMOS E VULCÕES</h2>
+      <div class="explicacao"><p>A Terra parece parada, mas o seu interior está em constante movimento!<br></p><p>1. SISMOS (TERRAMOTOS):<br></p><p>- São vibrações da superfície terrestre.<br></p><p>- Causa: Movimento das placas tectónicas (peças do puzzle da crosta terrestre).<br></p><p>- HIPOCENTRO: Lugar no interior da Terra onde o sismo começa.<br></p><p>- EPICENTRO: Lugar na superfície, por cima do hipocentro, onde o sismo é mais forte.<br></p><p>2. VULCÕES:<br></p><p>- São aberturas na crosta terrestre que ligam o interior quente ao exterior.<br></p><p>- MAGMA: Rocha derretida enquanto está dentro da Terra.<br></p><p>- LAVA: Nome do magma quando sai para o exterior.<br></p><p>- PARTES: Cratera (abertura no topo), Chaminé (canal de subida), Cone (formato de montanha).<br></p><p>3. SEGURANÇA (EM CASO DE SISMO):<br></p><p>- BAIXAR, PROTEGER e AGUARDAR.<br></p><p>- Não usar elevadores.<br></p><p>- Afastar-se de janelas ou objetos que possam cair.<br></p><p>- Vulcões Adormecidos: Existem vulcões que não "explodem" há centenas de anos, mas podem acordar!<br></p><p>- Ilhas Novas: Ilhas como os Açores foram criadas por lava que arrefeceu no mar.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo – Sismos e vulcões:</p>
+          <a href="https://www.youtube.com/watch?v=mfbdguMynRI" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
+      </div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="7" data-ex="1" data-correct="b">
+        <p>1. O que causa um sismo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex1" value="a"> O vento muito forte.</label>
+          <label><input type="radio" name="t7-ex1" value="b"> O movimento das placas tectónicas.</label>
+          <label><input type="radio" name="t7-ex1" value="c"> A queda das folhas das árvores.</label>
+          <label><input type="radio" name="t7-ex1" value="d"> O barulho dos carros.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="2" data-correct="b">
+        <p>2. Como se chama o ponto no interior da Terra onde o sismo tem origem?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex2" value="a"> Epicentro.</label>
+          <label><input type="radio" name="t7-ex2" value="b"> Hipocentro.</label>
+          <label><input type="radio" name="t7-ex2" value="c"> Cratera.</label>
+          <label><input type="radio" name="t7-ex2" value="d"> Chaminé.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="3" data-correct="b">
+        <p>3. O que é o epicentro?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex3" value="a"> O lugar onde o magma é guardado.</label>
+          <label><input type="radio" name="t7-ex3" value="b"> O ponto na superfície da Terra onde o sismo é sentido com mais intensidade.</label>
+          <label><input type="radio" name="t7-ex3" value="c"> O nome de um vulcão famoso.</label>
+          <label><input type="radio" name="t7-ex3" value="d"> Uma ferramenta para medir a chuva.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="4" data-correct="b">
+        <p>4. Um vulcão é uma abertura na crosta terrestre que liberta:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex4" value="a"> Apenas água fria.</label>
+          <label><input type="radio" name="t7-ex4" value="b"> Lava, gases e cinzas.</label>
+          <label><input type="radio" name="t7-ex4" value="c"> Flores e plantas.</label>
+          <label><input type="radio" name="t7-ex4" value="d"> Ar fresco.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="5" data-correct="b">
+        <p>5. Qual é a diferença entre magma e lava?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex5" value="a"> Não há diferença.</label>
+          <label><input type="radio" name="t7-ex5" value="b"> O magma está dentro da Terra; a lava é quando ele sai para o exterior.</label>
+          <label><input type="radio" name="t7-ex5" value="c"> A lava é fria e o magma é quente.</label>
+          <label><input type="radio" name="t7-ex5" value="d"> O magma é azul e a lava é verde.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="6" data-correct="c">
+        <p>6. Como se chama o &quot;buraco&quot; no topo do vulcão por onde sai a lava?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex6" value="a"> Chaminé.</label>
+          <label><input type="radio" name="t7-ex6" value="b"> Cone.</label>
+          <label><input type="radio" name="t7-ex6" value="c"> Cratera.</label>
+          <label><input type="radio" name="t7-ex6" value="d"> Porta.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="7" data-correct="b">
+        <p>7. O que devemos fazer se estivermos dentro de casa durante um sismo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex7" value="a"> Correr para o elevador.</label>
+          <label><input type="radio" name="t7-ex7" value="b"> Proteger a cabeça debaixo de uma mesa resistente.</label>
+          <label><input type="radio" name="t7-ex7" value="c"> Ir para a janela ver o que se passa.</label>
+          <label><input type="radio" name="t7-ex7" value="d"> Gritar muito alto.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="8" data-correct="b">
+        <p>8. Como se chama o canal por onde o magma sobe até à superfície?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex8" value="a"> Túnel.</label>
+          <label><input type="radio" name="t7-ex8" value="b"> Chaminé vulcânica.</label>
+          <label><input type="radio" name="t7-ex8" value="c"> Estrada de fogo.</label>
+          <label><input type="radio" name="t7-ex8" value="d"> Rio de lava.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="9" data-correct="b">
+        <p>9. Um vulcão que pode entrar em erupção a qualquer momento chama-se:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex9" value="a"> Extinto.</label>
+          <label><input type="radio" name="t7-ex9" value="b"> Ativo.</label>
+          <label><input type="radio" name="t7-ex9" value="c"> Gelado.</label>
+          <label><input type="radio" name="t7-ex9" value="d"> Adormecido.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="10" data-correct="b">
+        <p>10. As cinzas vulcânicas podem ser perigosas porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex10" value="a"> São muito coloridas.</label>
+          <label><input type="radio" name="t7-ex10" value="b"> Podem dificultar a respiração e tapar a luz do Sol.</label>
+          <label><input type="radio" name="t7-ex10" value="c"> São feitas de açúcar.</label>
+          <label><input type="radio" name="t7-ex10" value="d"> Não são perigosas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="11" data-correct="b">
+        <p>11. Qual é o aparelho que os cientistas usam para medir a força dos sismos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex11" value="a"> Termómetro.</label>
+          <label><input type="radio" name="t7-ex11" value="b"> Sismógrafo.</label>
+          <label><input type="radio" name="t7-ex11" value="c"> Telescópio.</label>
+          <label><input type="radio" name="t7-ex11" value="d"> Régua.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="12" data-correct="b">
+        <p>12. O sismo que ocorre no fundo do mar e pode causar ondas gigantes chama-se:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex12" value="a"> Tornado.</label>
+          <label><input type="radio" name="t7-ex12" value="b"> Maremoto (ou Tsunami).</label>
+          <label><input type="radio" name="t7-ex12" value="c"> Tempestade.</label>
+          <label><input type="radio" name="t7-ex12" value="d"> Furacão.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="13" data-correct="b">
+        <p>13. Por que razão não devemos usar o elevador durante um sismo?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex13" value="a"> Porque é mais lento que as escadas.</label>
+          <label><input type="radio" name="t7-ex13" value="b"> Porque a eletricidade pode falhar e podemos ficar presos.</label>
+          <label><input type="radio" name="t7-ex13" value="c"> Porque o elevador pode ficar tonto.</label>
+          <label><input type="radio" name="t7-ex13" value="d"> Porque o elevador é só para convidados.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="14" data-correct="b">
+        <p>14. As placas tectónicas movem-se:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex14" value="a"> Muito depressa, como um carro de corrida.</label>
+          <label><input type="radio" name="t7-ex14" value="b"> Muito devagar, apenas alguns centímetros por ano.</label>
+          <label><input type="radio" name="t7-ex14" value="c"> Apenas quando chove.</label>
+          <label><input type="radio" name="t7-ex14" value="d"> Só durante a noite.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="15" data-correct="b">
+        <p>15. O que é um vulcão extinto?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex15" value="a"> Um vulcão que está cheio de água.</label>
+          <label><input type="radio" name="t7-ex15" value="b"> Um vulcão que os cientistas acham que nunca mais entrará em erupção.</label>
+          <label><input type="radio" name="t7-ex15" value="c"> Um vulcão que mudou de sítio.</label>
+          <label><input type="radio" name="t7-ex15" value="d"> Um vulcão que é muito pequeno.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="16" data-correct="b">
+        <p>16. Depois de um sismo passar, o que devemos fazer?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex16" value="a"> Ligar o fogão imediatamente.</label>
+          <label><input type="radio" name="t7-ex16" value="b"> Ficar atento às notícias e seguir as instruções dos adultos.</label>
+          <label><input type="radio" name="t7-ex16" value="c"> Ir brincar para o meio da rua.</label>
+          <label><input type="radio" name="t7-ex16" value="d"> Não fazer nada.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="17" data-correct="a">
+        <p>17. A lava, quando arrefece, transforma-se em:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex17" value="a"> Rocha sólida.</label>
+          <label><input type="radio" name="t7-ex17" value="b"> Algodão doce.</label>
+          <label><input type="radio" name="t7-ex17" value="c"> Água líquida.</label>
+          <label><input type="radio" name="t7-ex17" value="d"> Vidro transparente.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="18" data-correct="b">
+        <p>18. A zona com mais vulcões no mundo chama-se:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex18" value="a"> Círculo de Gelo.</label>
+          <label><input type="radio" name="t7-ex18" value="b"> Anel de Fogo do Pacífico.</label>
+          <label><input type="radio" name="t7-ex18" value="c"> Triângulo das Bermudas.</label>
+          <label><input type="radio" name="t7-ex18" value="d"> Deserto do Saara.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="19" data-correct="b">
+        <p>19. O que é um sismo de baixa intensidade?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex19" value="a"> Um sismo que destrói cidades inteiras.</label>
+          <label><input type="radio" name="t7-ex19" value="b"> Um sismo muito fraco que às vezes nem se sente.</label>
+          <label><input type="radio" name="t7-ex19" value="c"> Um sismo que dura um mês.</label>
+          <label><input type="radio" name="t7-ex19" value="d"> Um sismo que só acontece na Lua.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="7" data-ex="20" data-correct="a">
+        <p>20. Os vulcões podem ser úteis porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t7-ex20" value="a"> Criam terras novas e solos muito férteis para a agricultura.</label>
+          <label><input type="radio" name="t7-ex20" value="b"> Fazem com que o inverno seja mais quente.</label>
+          <label><input type="radio" name="t7-ex20" value="c"> Dão luz às cidades à noite.</label>
+          <label><input type="radio" name="t7-ex20" value="d"> São ótimos para nadar.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(7, true)">Corrigir Tópico</button>
+      <div id="resumo-t7" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 8: AMEAÇAS AOS OCEANOS E INTERVENÇÃO HUMANA -->
+    <section id="t8" class="topic">
+      <h2>8. AMEAÇAS AOS OCEANOS E INTERVENÇÃO HUMANA</h2>
+      <div class="explicacao"><p>O oceano sofre com várias atividades humanas:<br></p><p>1. PESCA EXCESSIVA: Retirar peixes do mar mais depressa do que eles nascem.<br></p><p>2. DERRAMES DE PETRÓLEO: Acidentes com navios que sujam a água com óleo preto e colante.<br></p><p>3. LIXO MARINHO: Plásticos que formam ilhas gigantes e sufocam animais.<br></p><p>4. DESTRUIÇÃO DE HABITATS: Estragar "casas" como os recifes de coral.</p></div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="8" data-ex="1" data-correct="b">
+        <p>1. O que acontece na &quot;pesca excessiva&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex1" value="a"> Os peixes têm mais espaço para nadar.</label>
+          <label><input type="radio" name="t8-ex1" value="b"> Pesca-se mais depressa do que os peixes conseguem nascer.</label>
+          <label><input type="radio" name="t8-ex1" value="c"> Os peixes mudam de cor.</label>
+          <label><input type="radio" name="t8-ex1" value="d"> O mar fica mais limpo.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="2" data-correct="a">
+        <p>2. Qual é o principal perigo de um derrame de petróleo para as aves marinhas?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex2" value="a"> Elas ficam com as penas coladas e não conseguem voar ou manter o calor.</label>
+          <label><input type="radio" name="t8-ex2" value="b"> Elas aprendem a nadar melhor.</label>
+          <label><input type="radio" name="t8-ex2" value="c"> O petróleo serve de alimento.</label>
+          <label><input type="radio" name="t8-ex2" value="d"> Elas mudam de ninho.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="3" data-correct="c">
+        <p>3. As &quot;ilhas de lixo&quot; no oceano são formadas principalmente por:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex3" value="a"> Conchas de caracóis.</label>
+          <label><input type="radio" name="t8-ex3" value="b"> Restos de comida.</label>
+          <label><input type="radio" name="t8-ex3" value="c"> Pequenos e grandes pedaços de plástico.</label>
+          <label><input type="radio" name="t8-ex3" value="d"> Areia da praia.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="4" data-correct="b">
+        <p>4. O que é um habitat marinho?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex4" value="a"> Um tipo de barco de pesca.</label>
+          <label><input type="radio" name="t8-ex4" value="b"> O lugar natural onde os seres marinhos vivem (ex: recifes de coral).</label>
+          <label><input type="radio" name="t8-ex4" value="c"> Uma ferramenta de mergulho.</label>
+          <label><input type="radio" name="t8-ex4" value="d"> Um peixe muito grande.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="5" data-correct="a">
+        <p>5. Porque é que a destruição dos corais é má para os peixes pequenos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex5" value="a"> Porque eles perdem o lugar onde se escondem e vivem.</label>
+          <label><input type="radio" name="t8-ex5" value="b"> Porque os corais fazem muito barulho.</label>
+          <label><input type="radio" name="t8-ex5" value="c"> Porque os peixes gostam de comer plástico.</label>
+          <label><input type="radio" name="t8-ex5" value="d"> Porque a água fica mais fria.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="6" data-correct="b">
+        <p>6. O que são os microplásticos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex6" value="a"> Brinquedos de plástico muito caros.</label>
+          <label><input type="radio" name="t8-ex6" value="b"> Pedacinhos minúsculos de plástico que os animais comem por engano.</label>
+          <label><input type="radio" name="t8-ex6" value="c"> Peixes que parecem feitos de plástico.</label>
+          <label><input type="radio" name="t8-ex6" value="d"> Moedas usadas no fundo do mar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="7" data-correct="b">
+        <p>7. As redes de pesca &quot;fantasma&quot; são:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex7" value="a"> Redes feitas de lençóis velhos.</label>
+          <label><input type="radio" name="t8-ex7" value="b"> Redes perdidas que continuam a prender animais sozinhas.</label>
+          <label><input type="radio" name="t8-ex7" value="c"> Redes que brilham no escuro.</label>
+          <label><input type="radio" name="t8-ex7" value="d"> Redes usadas por piratas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="8" data-correct="b">
+        <p>8. Como podemos evitar que o lixo chegue ao oceano?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex8" value="a"> Atirar o lixo para o rio.</label>
+          <label><input type="radio" name="t8-ex8" value="b"> Praticar a reciclagem e não deixar lixo na praia.</label>
+          <label><input type="radio" name="t8-ex8" value="c"> Deixar o lixo na rua para o vento levar.</label>
+          <label><input type="radio" name="t8-ex8" value="d"> Queimar o lixo na areia.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="9" data-correct="b">
+        <p>9. O petróleo no mar impede a entrada de:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex9" value="a"> Peixes de outros mares.</label>
+          <label><input type="radio" name="t8-ex9" value="b"> Luz solar e oxigénio para as plantas marinhas.</label>
+          <label><input type="radio" name="t8-ex9" value="c"> Barcos de recreio.</label>
+          <label><input type="radio" name="t8-ex9" value="d"> Redes de pesca.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="10" data-correct="b">
+        <p>10. A pesca por &quot;arrasto&quot; é prejudicial porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex10" value="a"> É muito lenta.</label>
+          <label><input type="radio" name="t8-ex10" value="b"> Destrói o fundo do mar e tudo o que lá vive.</label>
+          <label><input type="radio" name="t8-ex10" value="c"> Só apanha peixes grandes.</label>
+          <label><input type="radio" name="t8-ex10" value="d"> Limpa o fundo do mar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="11" data-correct="b">
+        <p>11. Qual destas é uma consequência da poluição química nos oceanos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex11" value="a"> A água fica mais doce.</label>
+          <label><input type="radio" name="t8-ex11" value="b"> Os animais podem ficar doentes ou com deformações.</label>
+          <label><input type="radio" name="t8-ex11" value="c"> Nascem mais algas comestíveis.</label>
+          <label><input type="radio" name="t8-ex11" value="d"> O mar fica mais calmo.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="12" data-correct="a">
+        <p>12. Para proteger os oceanos, os governos criam:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex12" value="a"> Áreas Marinhas Protegidas (onde a pesca é controlada).</label>
+          <label><input type="radio" name="t8-ex12" value="b"> Mais fábricas de plástico.</label>
+          <label><input type="radio" name="t8-ex12" value="c"> Estradas sobre o mar.</label>
+          <label><input type="radio" name="t8-ex12" value="d"> Cidades subaquáticas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="13" data-correct="b">
+        <p>13. As tartarugas marinhas confundem sacos de plástico com:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex13" value="a"> Pedras.</label>
+          <label><input type="radio" name="t8-ex13" value="b"> Medusas (alforrecas).</label>
+          <label><input type="radio" name="t8-ex13" value="c"> Peixes pequenos.</label>
+          <label><input type="radio" name="t8-ex13" value="d"> Algas verdes.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="14" data-correct="b">
+        <p>14. O branqueamento dos corais acontece quando:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex14" value="a"> Os corais são pintados de branco.</label>
+          <label><input type="radio" name="t8-ex14" value="b"> Os corais ficam doentes devido à água muito quente ou poluição.</label>
+          <label><input type="radio" name="t8-ex14" value="c"> Os peixes limpam os corais.</label>
+          <label><input type="radio" name="t8-ex14" value="d"> É inverno no fundo do mar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="15" data-correct="b">
+        <p>15. O que significa consumo sustentável de peixe?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex15" value="a"> Comer peixe todos os dias.</label>
+          <label><input type="radio" name="t8-ex15" value="b"> Escolher peixes que não estão em risco de extinção.</label>
+          <label><input type="radio" name="t8-ex15" value="c"> Comer apenas peixes de aquário.</label>
+          <label><input type="radio" name="t8-ex15" value="d"> Não comer nada que venha do mar.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="16" data-correct="b">
+        <p>16. Qual é o impacto dos derrames de petróleo na economia?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex16" value="a"> Ajuda a vender mais peixe.</label>
+          <label><input type="radio" name="t8-ex16" value="b"> Prejudica o turismo e a pesca local.</label>
+          <label><input type="radio" name="t8-ex16" value="c"> Faz com que os barcos andem mais depressa.</label>
+          <label><input type="radio" name="t8-ex16" value="d"> Não tem impacto nenhum.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="17" data-correct="d">
+        <p>17. O plástico no mar demora quanto tempo a desaparecer?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex17" value="a"> Uma semana.</label>
+          <label><input type="radio" name="t8-ex17" value="b"> Um ano.</label>
+          <label><input type="radio" name="t8-ex17" value="c"> Centenas de anos.</label>
+          <label><input type="radio" name="t8-ex17" value="d"> Nunca desaparece, apenas se parte em pedaços menores.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="18" data-correct="b">
+        <p>18. Como é que o ruído dos barcos afeta as baleias?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex18" value="a"> Ajuda as baleias a cantar melhor.</label>
+          <label><input type="radio" name="t8-ex18" value="b"> Baralha a comunicação e a orientação das baleias.</label>
+          <label><input type="radio" name="t8-ex18" value="c"> As baleias gostam do som dos motores.</label>
+          <label><input type="radio" name="t8-ex18" value="d"> Não afeta nada.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="19" data-correct="a">
+        <p>19. O que podes fazer para ajudar os oceanos?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex19" value="a"> Usar menos objetos de plástico descartável (como palhinhas).</label>
+          <label><input type="radio" name="t8-ex19" value="b"> Comprar muitos brinquedos de plástico novos.</label>
+          <label><input type="radio" name="t8-ex19" value="c"> Deitar garrafas de vidro ao mar.</label>
+          <label><input type="radio" name="t8-ex19" value="d"> Não fazer nada, porque sou criança.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="8" data-ex="20" data-correct="b">
+        <p>20. Proteger os oceanos é importante porque eles:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t8-ex20" value="a"> São apenas bonitos para fotografar.</label>
+          <label><input type="radio" name="t8-ex20" value="b"> Produzem oxigénio e regulam o clima da Terra.</label>
+          <label><input type="radio" name="t8-ex20" value="c"> Servem apenas para andar de barco.</label>
+          <label><input type="radio" name="t8-ex20" value="d"> Têm muitos piratas.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(8, true)">Corrigir Tópico</button>
+      <div id="resumo-t8" class="resumo-correcao"></div>
+    </section>
+
+    <!-- TÓPICO 9: POPULAÇÃO MUNDIAL E IMPACTO AMBIENTAL -->
+    <section id="t9" class="topic">
+      <h2>9. POPULAÇÃO MUNDIAL E IMPACTO AMBIENTAL</h2>
+      <div class="explicacao"><p>O crescimento da população mundial (mais de 8 mil milhões) traz desafios:<br></p><p>1. CONSUMO DE RECURSOS: Precisamos de mais água, comida e energia para todos.<br></p><p>2. LIXO URBANO: As cidades produzem montanhas de resíduos que precisam de tratamento.<br></p><p>3. ESPAÇO: Cortam-se florestas para construir casas, tirando abrigo aos animais.</p>
+        <div class="video-explicacao video-link-fallback">
+          <p class="video-fallback-text">📺 Vídeo – População mundial e impacto ambiental:</p>
+          <a href="https://www.youtube.com/watch?v=CT1aS7mOA0c" target="_blank" rel="noopener noreferrer" class="video-fallback-btn">Assistir no YouTube</a>
+        </div>
+      </div>
+      <h3 class="exercicios-titulo">Exercícios</h3>
+      <div class="exercicio" data-topic="9" data-ex="1" data-correct="b">
+        <p>1. Atualmente, a população mundial é de cerca de:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex1" value="a"> 1 milhão de pessoas.</label>
+          <label><input type="radio" name="t9-ex1" value="b"> 8 mil milhões de pessoas.</label>
+          <label><input type="radio" name="t9-ex1" value="c"> 500 pessoas.</label>
+          <label><input type="radio" name="t9-ex1" value="d"> 1 bilião de pessoas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="2" data-correct="b">
+        <p>2. O aumento da população mundial leva a um maior consumo de:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex2" value="a"> Apenas videojogos.</label>
+          <label><input type="radio" name="t9-ex2" value="b"> Recursos naturais como água, comida e energia.</label>
+          <label><input type="radio" name="t9-ex2" value="c"> Ar frio.</label>
+          <label><input type="radio" name="t9-ex2" value="d"> Pedras da lua.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="3" data-correct="b">
+        <p>3. O que acontece quando muitas pessoas vivem juntas em grandes cidades?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex3" value="a"> O ar fica mais puro.</label>
+          <label><input type="radio" name="t9-ex3" value="b"> Produz-se uma grande quantidade de lixo urbano.</label>
+          <label><input type="radio" name="t9-ex3" value="c"> A natureza cresce mais depressa.</label>
+          <label><input type="radio" name="t9-ex3" value="d"> Há mais silêncio.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="4" data-correct="b">
+        <p>4. Porque é que a água potável pode faltar com o aumento da população?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex4" value="a"> Porque a água foge das pessoas.</label>
+          <label><input type="radio" name="t9-ex4" value="b"> Porque há mais pessoas a gastar a mesma quantidade de água disponível.</label>
+          <label><input type="radio" name="t9-ex4" value="c"> Porque a água se transforma em gelo.</label>
+          <label><input type="radio" name="t9-ex4" value="d"> Porque as nuvens deixam de existir.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="5" data-correct="b">
+        <p>5. O que é o &quot;desmatamento&quot; ou &quot;desflorestação&quot;?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex5" value="a"> Plantar muitas árvores novas.</label>
+          <label><input type="radio" name="t9-ex5" value="b"> Cortar florestas para criar espaço para cidades ou agricultura.</label>
+          <label><input type="radio" name="t9-ex5" value="c"> Pintar as árvores de verde.</label>
+          <label><input type="radio" name="t9-ex5" value="d"> Estudar as folhas das árvores.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="6" data-correct="c">
+        <p>6. Qual é uma consequência de cortar demasiadas árvores?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex6" value="a"> Os animais têm mais casas.</label>
+          <label><input type="radio" name="t9-ex6" value="b"> O solo fica mais protegido.</label>
+          <label><input type="radio" name="t9-ex6" value="c"> Perda de biodiversidade e aumento do calor.</label>
+          <label><input type="radio" name="t9-ex6" value="d"> O ar fica mais fresco.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="7" data-correct="b">
+        <p>7. O consumo excessivo de energia contribui para:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex7" value="a"> O arrefecimento do planeta.</label>
+          <label><input type="radio" name="t9-ex7" value="b"> As alterações climáticas.</label>
+          <label><input type="radio" name="t9-ex7" value="c"> O nascimento de mais animais.</label>
+          <label><input type="radio" name="t9-ex7" value="d"> A limpeza dos rios.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="8" data-correct="b">
+        <p>8. Como podemos reduzir o impacto do lixo nas cidades?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex8" value="a"> Queimando o lixo no quintal.</label>
+          <label><input type="radio" name="t9-ex8" value="b"> Praticando a separação de resíduos e a reciclagem.</label>
+          <label><input type="radio" name="t9-ex8" value="c"> Deitando o lixo para debaixo da cama.</label>
+          <label><input type="radio" name="t9-ex8" value="d"> Comprando mais coisas embaladas em plástico.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="9" data-correct="b">
+        <p>9. O que é o desenvolvimento sustentável?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex9" value="a"> Gastar tudo agora sem pensar no futuro.</label>
+          <label><input type="radio" name="t9-ex9" value="b"> Usar os recursos de forma inteligente para que não faltem no futuro.</label>
+          <label><input type="radio" name="t9-ex9" value="c"> Viver sem usar tecnologia nenhuma.</label>
+          <label><input type="radio" name="t9-ex9" value="d"> Construir prédios em cima de todas as florestas.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="10" data-correct="a">
+        <p>10. Cidades com muitas pessoas costumam ter mais problemas de:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex10" value="a"> Poluição do ar e trânsito.</label>
+          <label><input type="radio" name="t9-ex10" value="b"> Falta de luz solar.</label>
+          <label><input type="radio" name="t9-ex10" value="c"> Excesso de flores silvestres.</label>
+          <label><input type="radio" name="t9-ex10" value="d"> Demasiado espaço livre.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="11" data-correct="b">
+        <p>11. O aumento da população mundial exige que se produza mais comida. Isto pode causar:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex11" value="a"> O aparecimento de mais florestas virgens.</label>
+          <label><input type="radio" name="t9-ex11" value="b"> O uso excessivo de químicos nos campos e gasto de muita água.</label>
+          <label><input type="radio" name="t9-ex11" value="c"> A diminuição do número de quintas.</label>
+          <label><input type="radio" name="t9-ex11" value="d"> A limpeza automáticas dos solos.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="12" data-correct="b">
+        <p>12. Qual é a vantagem de usar transportes públicos (autocarro, metro) em cidades populosas?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex12" value="a"> É mais barulhento.</label>
+          <label><input type="radio" name="t9-ex12" value="b"> Polui menos o ar do que se cada pessoa usar o seu próprio carro.</label>
+          <label><input type="radio" name="t9-ex12" value="c"> É mais lento que andar a pé.</label>
+          <label><input type="radio" name="t9-ex12" value="d"> Não tem vantagens.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="13" data-correct="b">
+        <p>13. O que podes fazer para poupar água em casa?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex13" value="a"> Deixar a torneira aberta enquanto lavas as mãos.</label>
+          <label><input type="radio" name="t9-ex13" value="b"> Fechar a torneira enquanto escovas os dentes.</label>
+          <label><input type="radio" name="t9-ex13" value="c"> Tomar banhos de banheira cheia todos os dias.</label>
+          <label><input type="radio" name="t9-ex13" value="d"> Lavar o chão com água potável todos os dias.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="14" data-correct="b">
+        <p>14. Reciclar papel ajuda a salvar:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex14" value="a"> Peixes.</label>
+          <label><input type="radio" name="t9-ex14" value="b"> Árvores e florestas.</label>
+          <label><input type="radio" name="t9-ex14" value="c"> Pedras.</label>
+          <label><input type="radio" name="t9-ex14" value="d"> Carros.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="15" data-correct="b">
+        <p>15. O lixo eletrónico (telemóveis e computadores velhos) deve ser:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex15" value="a"> Deitado no lixo comum.</label>
+          <label><input type="radio" name="t9-ex15" value="b"> Entregue em locais próprios para reciclagem (Ponto Eletrão).</label>
+          <label><input type="radio" name="t9-ex15" value="c"> Enterrado no jardim.</label>
+          <label><input type="radio" name="t9-ex15" value="d"> Atirado ao rio.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="16" data-correct="b">
+        <p>16. O que acontece se a população continuar a crescer sem cuidarmos do ambiente?</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex16" value="a"> O planeta fica mais saudável.</label>
+          <label><input type="radio" name="t9-ex16" value="b"> Os recursos naturais podem esgotar-se.</label>
+          <label><input type="radio" name="t9-ex16" value="c"> A natureza resolve tudo sozinha sem ajuda.</label>
+          <label><input type="radio" name="t9-ex16" value="d"> Teremos mais comida para todos.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="17" data-correct="a">
+        <p>17. A energia solar e eólica são boas porque:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex17" value="a"> São energias que nunca acabam e não poluem o ar.</label>
+          <label><input type="radio" name="t9-ex17" value="b"> São mais caras e difíceis de usar.</label>
+          <label><input type="radio" name="t9-ex17" value="c"> Só funcionam à noite.</label>
+          <label><input type="radio" name="t9-ex17" value="d"> Gastam muito petróleo.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="18" data-correct="b">
+        <p>18. Para reduzir o desperdício alimentar numa família grande, devemos:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex18" value="a"> Comprar comida a mais e deitar fora o que sobra.</label>
+          <label><input type="radio" name="t9-ex18" value="b"> Planear as refeições e aproveitar as sobras.</label>
+          <label><input type="radio" name="t9-ex18" value="c"> Comer apenas doces.</label>
+          <label><input type="radio" name="t9-ex18" value="d"> Comprar apenas comida pronta em plástico.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="19" data-correct="b">
+        <p>19. As hortas urbanas nas cidades ajudam a:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex19" value="a"> Aumentar a poluição.</label>
+          <label><input type="radio" name="t9-ex19" value="b"> Produzir alimentos frescos e tornar a cidade mais verde.</label>
+          <label><input type="radio" name="t9-ex19" value="c"> Gastar mais energia.</label>
+          <label><input type="radio" name="t9-ex19" value="d"> Atrair mais carros.</label>
+        </div>
+      </div>
+      <div class="exercicio" data-topic="9" data-ex="20" data-correct="b">
+        <p>20. O papel de cada cidadão na proteção do ambiente é:</p>
+        <div class="opcoes">
+          <label><input type="radio" name="t9-ex20" value="a"> Não fazer nada e esperar que os outros resolvam.</label>
+          <label><input type="radio" name="t9-ex20" value="b"> Adotar pequenos gestos diários de poupança e cuidado.</label>
+          <label><input type="radio" name="t9-ex20" value="c"> Gastar o máximo possível para ajudar a economia.</label>
+          <label><input type="radio" name="t9-ex20" value="d"> Poluir apenas um bocadinho.</label>
+        </div>
+      </div>
+      <button class="btn-corrigir" onclick="corrigirTopico(9, true)">Corrigir Tópico</button>
+      <div id="resumo-t9" class="resumo-correcao"></div>
+    </section>
+
+
+
+    <!-- TÓPICO 10: Resultados -->
+    <section id="t10" class="topic topic-resultados">
+      <h2>📊 10. Resultados</h2>
+      <p class="resultados-intro">Resumo das dificuldades e registo de respostas erradas, para analisar o que precisas de rever.</p>
+      <div id="resultados-conteudo" class="resultados-conteudo"></div>
+    </section>
+  </div>
+
+    <script>
+    // Persistência: localStorage (funciona com file:// e em servidor). Cookie como cópia para “limpar manualmente”.
+    // Identificador da disciplina (pt = Português; em = Estudo do Meio). Usado em storage e cookies para não misturar dados.
+    var DISCIPLINA_ID = 'em';
+    var COOKIE_MAX_AGE = 60 * 60 * 24 * 365 * 10;
+    var STORAGE_KEY = 'larinha_' + DISCIPLINA_ID + '_respostas';
+    var COOKIE_NAME = 'larinha_' + DISCIPLINA_ID + '_respostas';
+    var STORAGE_KEY_ERROS = 'larinha_' + DISCIPLINA_ID + '_log_erros';
+    var COOKIE_ERROS = 'larinha_' + DISCIPLINA_ID + '_log_erros';
+
+    // Migração única: quem tinha dados na chave antiga (sem disciplina) passa a usar a chave da disciplina.
+    (function migrarStorageAntigo() {
+      var oldKey = 'larinha_respostas', oldErros = 'larinha_log_erros';
+      try {
+        if (!localStorage.getItem(STORAGE_KEY) && localStorage.getItem(oldKey)) {
+          localStorage.setItem(STORAGE_KEY, localStorage.getItem(oldKey));
+          localStorage.removeItem(oldKey);
+        }
+        if (!localStorage.getItem(STORAGE_KEY_ERROS) && localStorage.getItem(oldErros)) {
+          localStorage.setItem(STORAGE_KEY_ERROS, localStorage.getItem(oldErros));
+          localStorage.removeItem(oldErros);
+        }
+      } catch (e) {}
+    })();
+
+    function setCookie(name, value, maxAge) {
+      try {
+        document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; max-age=' + (maxAge || COOKIE_MAX_AGE) + '; SameSite=Lax';
+      } catch (e) {}
+    }
+    function getCookie(name) {
+      try {
+        var eq = name + '=';
+        var parts = document.cookie.split(';');
+        for (var i = 0; i < parts.length; i++) {
+          var p = parts[i].trim();
+          if (p.indexOf(eq) === 0) return decodeURIComponent(p.slice(eq.length));
+        }
+      } catch (e) {}
+      return '';
+    }
+
+    function collectRespostas() {
+      var out = {};
+      var inputs = document.querySelectorAll('input[name^="t"]');
+      inputs.forEach(function(inp) {
+        var name = inp.getAttribute('name');
+        if (!name) return;
+        if (inp.type === 'radio') {
+          if (inp.checked) out[name] = inp.value || '';
+        } else {
+          out[name] = inp.value || '';
+        }
+      });
+      return out;
+    }
+
+    function saveRespostas() {
+      var data = collectRespostas();
+      var json = JSON.stringify(data);
+      try {
+        localStorage.setItem(STORAGE_KEY, json);
+        setCookie(COOKIE_NAME, json);
+      } catch (e) {}
+    }
+
+    function loadRespostas() {
+      var json = '';
+      try {
+        json = localStorage.getItem(STORAGE_KEY) || getCookie(COOKIE_NAME);
+      } catch (e) {}
+      if (!json) return;
+      var data;
+      try {
+        data = JSON.parse(json);
+      } catch (e) {
+        return;
+      }
+      if (!data || typeof data !== 'object') return;
+      Object.keys(data).forEach(function(name) {
+        var val = data[name];
+        var inputs = document.querySelectorAll('input[name="' + name.replace(/"/g, '\\"') + '"]');
+        inputs.forEach(function(inp) {
+          if (inp.type === 'radio') {
+            inp.checked = (String(inp.value) === String(val));
+          } else {
+            inp.value = val;
+          }
+        });
+      });
+    }
+
+    function getLogErros() {
+      var json = '';
+      try {
+        json = localStorage.getItem(STORAGE_KEY_ERROS) || getCookie(COOKIE_ERROS);
+      } catch (e) {}
+      if (!json) return [];
+      try {
+        var arr = JSON.parse(json);
+        return Array.isArray(arr) ? arr : [];
+      } catch (e) { return []; }
+    }
+    function setLogErros(arr) {
+      var json = JSON.stringify(arr);
+      try {
+        localStorage.setItem(STORAGE_KEY_ERROS, json);
+        setCookie(COOKIE_ERROS, json);
+      } catch (e) {}
+    }
+    function addLogErro(topic, ex, wrongAnswer) {
+      var log = getLogErros();
+      log.push({ topic: Number(topic), ex: Number(ex), wrongAnswer: String(wrongAnswer || '').trim() });
+      setLogErros(log);
+    }
+
+    function limparProgresso() {
+      if (!confirm('Queres apagar todas as respostas e pontuação guardadas?')) return;
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(STORAGE_KEY_ERROS);
+      } catch (e) {}
+      document.cookie = COOKIE_NAME + '=; path=/; max-age=0';
+      document.cookie = COOKIE_ERROS + '=; path=/; max-age=0';
+      location.reload();
+    }
+
+    function limparTopico(topic) {
+      if (!confirm('Apagar as respostas só deste tópico?')) return;
+      var prefix = 't' + topic + '-';
+      try {
+        var json = localStorage.getItem(STORAGE_KEY) || getCookie(COOKIE_NAME);
+        if (json) {
+          var data;
+          try { data = JSON.parse(json); } catch (e) { data = {}; }
+          Object.keys(data).forEach(function(k) {
+            if (k.indexOf(prefix) === 0) delete data[k];
+          });
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          setCookie(COOKIE_NAME, JSON.stringify(data));
+        }
+      } catch (e) {}
+      var section = document.getElementById('t' + topic);
+      if (section) {
+        section.querySelectorAll('input[name^="' + prefix + '"]').forEach(function(inp) {
+          if (inp.type === 'radio') inp.checked = false;
+          else inp.value = '';
+        });
+      }
+      corrigirTopico(topic);
+    }
+
+    function preencherTopico(topic) {
+      var sectionEl = document.getElementById('t' + topic);
+      if (!sectionEl) return;
+      var totalExercises = sectionEl.querySelectorAll('.exercicio[data-topic="' + topic + '"]').length;
+      for (var ex = 1; ex <= totalExercises; ex++) {
+        var el = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+        if (!el) continue;
+        var nameA = 't' + topic + '-ex' + ex + '-a';
+        if (document.querySelector('input[name="' + nameA + '"]')) {
+          var setRadio = function(name, val) {
+            var r = document.querySelector('input[name="' + name + '"][value="' + val + '"]');
+            if (r) r.checked = true;
+          };
+          var ca = el.getAttribute('data-correct-a');
+          var cb = el.getAttribute('data-correct-b');
+          var cc = el.getAttribute('data-correct-c');
+          if (ca) setRadio(nameA, ca.trim());
+          if (cb) setRadio('t' + topic + '-ex' + ex + '-b', cb.trim());
+          if (cc) setRadio('t' + topic + '-ex' + ex + '-c', cc.trim());
+        } else {
+          var correct = el.getAttribute('data-correct');
+          if (correct == null) continue;
+          correct = correct.trim();
+          var radios = el.querySelectorAll('input[type="radio"]');
+          var found = false;
+          for (var i = 0; i < radios.length; i++) {
+            if (normalize(radios[i].value) === normalize(correct)) {
+              radios[i].checked = true;
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            var textInp = el.querySelector('input[type="text"].resposta');
+            if (textInp) textInp.value = correct;
+          }
+        }
+      }
+      saveRespostas();
+      corrigirTopico(topic);
+    }
+
+    function getResposta(topic, ex) {
+      const radioName = 't' + topic + '-ex' + ex;
+      const radios = document.querySelectorAll('input[name="' + radioName + '"]');
+      for (let r of radios) {
+        if (r.checked) return (r.value || '').trim().toLowerCase();
+      }
+      const textInput = document.querySelector('input[name="' + radioName + '"]');
+      if (textInput && textInput.type === 'text') {
+        return (textInput.value || '').trim().toLowerCase();
+      }
+      const byData = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+      if (!byData) return '';
+      const inp = byData.querySelector('input[type="text"].resposta');
+      if (inp) return (inp.value || '').trim().toLowerCase();
+      const r = byData.querySelector('input[type="radio"]:checked');
+      return r ? (r.value || '').trim().toLowerCase() : '';
+    }
+
+    function getCorrect(topic, ex) {
+      const el = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+      if (!el) return '';
+      const inp = el.querySelector('input[type="text"].resposta, input[data-correct]');
+      if (inp && inp.getAttribute('data-correct')) return inp.getAttribute('data-correct').trim().toLowerCase();
+      const dataCorrect = el.getAttribute('data-correct');
+      if (dataCorrect) return dataCorrect.trim().toLowerCase();
+      return '';
+    }
+    var DEFAULT_EXPLICACOES_TOPICO = {
+      1: 'Revê a explicação sobre tecnologia, transportes e telecomunicações no início do tópico.',
+      2: 'Revê a explicação sobre profissões e atividades económicas no início do tópico.',
+      3: 'Revê a explicação sobre a localidade (urbano/rural) e elementos da paisagem no início do tópico.',
+      4: 'Revê a explicação sobre o Sistema Solar, o Sol, os planetas e os movimentos da Terra no início do tópico.',
+      5: 'Revê a explicação sobre mapas, legenda e escala no início do tópico.',
+      6: 'Revê a explicação sobre pontos cardeais (N, S, E, O) e orientação (bússola, Sol) no início do tópico.',
+      7: 'Revê a explicação sobre rochas, solo e recursos do subsolo no início do tópico.',
+      8: 'Revê a explicação sobre a água (ciclo, estados, poupança) no início do tópico.',
+      9: 'Revê a explicação sobre ambiente, poluição e gestão de resíduos no início do tópico.'
+    };
+    function getExplicacao(topic, ex) {
+      const el = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+      const dataExp = el ? el.getAttribute('data-explicacao') : '';
+      if (dataExp) return dataExp;
+      return DEFAULT_EXPLICACOES_TOPICO[topic] || 'Lê a explicação e os exemplos no início deste tópico. A resposta está lá. Corrige e volta a corrigir.';
+    }
+
+    function normalize(text) {
+      if (text == null || text === '') return '';
+      return String(text).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').replace(/\s*-\s*/g, '-').trim();
+    }
+    function corrigirTopico(topic, fromUser) {
+      var sectionEl = document.getElementById('t' + topic);
+      var totalExercises = sectionEl ? sectionEl.querySelectorAll('.exercicio[data-topic="' + topic + '"]').length : 20;
+      const corretas = [];
+      const incorretasData = [];
+      for (let ex = 1; ex <= totalExercises; ex++) {
+        let ok = false;
+        let semResposta = false;
+        var wrongAnswer = '';
+        const exercicioEl = sectionEl ? sectionEl.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]') : null;
+        const nameA = 't' + topic + '-ex' + ex + '-a';
+        const hasTriple = (DISCIPLINA_ID === 'pt' && Number(topic) === 9 && ex === 1) || (exercicioEl && document.querySelector('input[name="' + nameA + '"]'));
+        if (hasTriple && exercicioEl) {
+          const nameB = 't' + topic + '-ex' + ex + '-b';
+          const nameC = 't' + topic + '-ex' + ex + '-c';
+          const correctA = normalize(exercicioEl.getAttribute('data-correct-a') || '');
+          const correctB = normalize(exercicioEl.getAttribute('data-correct-b') || '');
+          const correctC = normalize(exercicioEl.getAttribute('data-correct-c') || '');
+          const sel = (name) => (document.querySelector('input[name="' + name + '"]:checked') || {}).value || '';
+          const a = normalize(sel(nameA));
+          const b = normalize(sel(nameB));
+          const c = normalize(sel(nameC));
+          wrongAnswer = [sel(nameA), sel(nameB), sel(nameC)].filter(Boolean).join(' | ') || '';
+          semResposta = (a === '' && b === '' && c === '');
+          ok = (correctA && correctB && correctC) && (a === correctA && b === correctB && c === correctC);
+        } else {
+          const resp = normalize(getResposta(topic, ex));
+          wrongAnswer = (getResposta(topic, ex) || '').trim();
+          const correct = normalize(getCorrect(topic, ex));
+          semResposta = (resp === '');
+          ok = correct && (resp === correct);
+        }
+        if (ok) corretas.push(ex);
+        else if (!semResposta) incorretasData.push({ ex: ex, wrongAnswer: wrongAnswer });
+      }
+      var incorretas = incorretasData.map(function(d) { return d.ex; });
+      if (fromUser) incorretasData.forEach(function(d) { addLogErro(topic, d.ex, d.wrongAnswer); });
+      var faltaResponder = [];
+      for (var ex = 1; ex <= totalExercises; ex++) {
+        if (corretas.indexOf(ex) === -1 && incorretas.indexOf(ex) === -1) faltaResponder.push(ex);
+      }
+      const resumoEl = document.getElementById('resumo-t' + topic);
+      if (!resumoEl) return;
+      document.querySelectorAll('#t' + topic + ' .explicacao-errada-inline').forEach(function(el) { el.remove(); });
+      incorretas.forEach(function(n) {
+        const exercicioEl = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + n + '"]');
+        if (exercicioEl) {
+          const exp = getExplicacao(topic, n);
+          const div = document.createElement('div');
+          div.className = 'explicacao-errada-inline';
+          div.innerHTML = '<div class="explicacao-errada-titulo">❌ Pergunta ' + n + '</div><div class="explicacao-errada-texto"><strong>💡 Explicação:</strong><br>' + exp + '</div>';
+          exercicioEl.appendChild(div);
+        }
+      });
+      resumoEl.innerHTML = '<div class="corretas">CORRETAS: ' + (corretas.length ? corretas.join(',') : 'nenhuma') + '</div><div class="incorretas">INCORRETAS: ' + (incorretas.length ? incorretas.join(',') : 'nenhuma') + '</div><div class="falta-responder">FALTA RESPONDER: ' + (faltaResponder.length ? faltaResponder.join(',') : 'nenhuma') + '</div>';
+      resumoEl.classList.add('visible');
+      if (sectionEl) {
+        if (corretas.length === totalExercises) sectionEl.classList.add('topic-done');
+        else sectionEl.classList.remove('topic-done');
+      }
+      var navLinks = document.querySelectorAll('a[href="#t' + topic + '"]');
+      navLinks.forEach(function(navLink) {
+        var countSpan = navLink.querySelector('.nav-count');
+        if (countSpan) {
+          countSpan.textContent = ' (' + corretas.length + '/' + totalExercises + ')';
+          if (corretas.length === totalExercises) {
+            navLink.classList.add('topic-ok');
+            countSpan.textContent = ' (' + totalExercises + '/' + totalExercises + ') ✓';
+          } else {
+            navLink.classList.remove('topic-ok');
+          }
+        }
+      });
+      saveRespostas();
+      if (typeof renderResultados === 'function') renderResultados();
+    }
+
+    function getTextoPartilhaResultados() {
+      var TOTAL_TOPICOS = 9;
+      var concluidos = [];
+      document.querySelectorAll('section.topic.topic-done').forEach(function(section) {
+        var id = section.id;
+        if (id && id.indexOf('t') === 0) {
+          var n = parseInt(id.slice(1), 10);
+          if (n >= 1 && n <= TOTAL_TOPICOS) concluidos.push(n);
+        }
+      });
+      concluidos.sort(function(a, b) { return a - b; });
+      var linhas = [];
+      linhas.push('Olá, estou estudando para a prova.');
+      linhas.push('Estudo do Meio 4º Ano');
+      linhas.push('Meus resultados - Tópicos concluídos (' + concluidos.length + ' de ' + TOTAL_TOPICOS + '):');
+      concluidos.forEach(function(n) {
+        var section = document.getElementById('t' + n);
+        var h2 = section ? section.querySelector('h2') : null;
+        var txt = (h2 && h2.textContent) ? h2.textContent.replace(/^\s*\S+\s+/, '').trim() : ('Tópico ' + n);
+        linhas.push(txt);
+      });
+      linhas.push('');
+      linhas.push('Estude também, segue o link:');
+      linhas.push('https://luizeduardompf.github.io/larinha');
+      return linhas.join('\n');
+    }
+
+    function getTextoQuestao(topic, ex) {
+      var el = document.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]');
+      if (!el) return 'Questão ' + ex;
+      var p = el.querySelector('p');
+      if (!p) return 'Questão ' + ex;
+      var clone = p.cloneNode(true);
+      clone.querySelectorAll('input').forEach(function(inp) {
+        var span = document.createElement('span');
+        span.textContent = '______';
+        if (inp.parentNode) inp.parentNode.replaceChild(span, inp);
+      });
+      return (clone.textContent || '').trim();
+    }
+
+    function getTextoPartilhaPais() {
+      var TOTAL_TOPICOS = 9;
+      var concluidos = [];
+      document.querySelectorAll('section.topic.topic-done').forEach(function(section) {
+        var id = section.id;
+        if (id && id.indexOf('t') === 0) {
+          var n = parseInt(id.slice(1), 10);
+          if (n >= 1 && n <= TOTAL_TOPICOS) concluidos.push(n);
+        }
+      });
+      concluidos.sort(function(a, b) { return a - b; });
+      var log = getLogErros();
+      var countByKey = {};
+      log.forEach(function(entry) {
+        var key = entry.topic + '-' + entry.ex;
+        countByKey[key] = (countByKey[key] || 0) + 1;
+      });
+      var dificuldadesKeys = Object.keys(countByKey).sort(function(a, b) {
+        var pa = a.split('-'), pb = b.split('-');
+        return Number(pa[0]) - Number(pb[0]) || Number(pa[1]) - Number(pb[1]);
+      });
+      var linhas = [];
+      linhas.push('TÓPICOS CONCLUÍDOS');
+      concluidos.forEach(function(n) {
+        var section = document.getElementById('t' + n);
+        var h2 = section ? section.querySelector('h2') : null;
+        var txt = (h2 && h2.textContent) ? h2.textContent.replace(/^\s*\S+\s+/, '').trim() : ('Tópico ' + n);
+        linhas.push('Tópico ' + n + ' - ' + txt);
+      });
+      if (!concluidos.length) linhas.push('(nenhum ainda)');
+      linhas.push('');
+      linhas.push('------------------------');
+      linhas.push('');
+      linhas.push('DIFICULDADES');
+      dificuldadesKeys.forEach(function(key) {
+        var p = key.split('-');
+        var t = p[0], ex = p[1];
+        var n = countByKey[key];
+        linhas.push('Tópico ' + t + ' – Questão ' + ex + ': ' + n + ' ' + (n === 1 ? 'Erro' : 'Erros'));
+        var qText = getTextoQuestao(t, ex);
+        if (qText) linhas.push('  - ' + qText);
+      });
+      if (!dificuldadesKeys.length) linhas.push('(nenhuma registada)');
+      return linhas.join('\n');
+    }
+
+    function renderResultados() {
+      var container = document.getElementById('resultados-conteudo');
+      if (!container) return;
+      var log = getLogErros();
+      var countByKey = {};
+      log.forEach(function(entry) {
+        var key = entry.topic + '-' + entry.ex;
+        countByKey[key] = (countByKey[key] || 0) + 1;
+      });
+      var summaryLines = Object.keys(countByKey).sort(function(a, b) {
+        var pa = a.split('-'), pb = b.split('-');
+        return Number(pa[0]) - Number(pb[0]) || Number(pa[1]) - Number(pb[1]);
+      }).map(function(key) {
+        var p = key.split('-');
+        var t = p[0], ex = p[1];
+        var n = countByKey[key];
+        return 'Tópico ' + t + ' – Questão ' + ex + ': ' + n + ' ' + (n === 1 ? 'Erro' : 'Erros');
+      });
+      var link = function(topic, ex, text) {
+        var id = 't' + topic + '-ex' + ex;
+        return '<a href="#' + id + '">' + (text || id) + '</a>';
+      };
+      var concluidos = [];
+      document.querySelectorAll('section.topic.topic-done').forEach(function(section) {
+        var id = section.id;
+        if (id && id.indexOf('t') === 0) {
+          var n = parseInt(id.slice(1), 10);
+          if (n >= 1 && n <= 9) concluidos.push(n);
+        }
+      });
+      concluidos.sort(function(a, b) { return a - b; });
+      var textoPartilha = getTextoPartilhaResultados();
+      var urlWhatsApp = 'https://wa.me/?text=' + encodeURIComponent(textoPartilha);
+      var textoPais = getTextoPartilhaPais();
+      var urlWhatsAppPais = 'https://wa.me/?text=' + encodeURIComponent(textoPais);
+      var html = '';
+      var iconPartilha = '<span class="resultados-partilhar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92 0-1.61-1.31-2.92-2.92-2.92z"/></svg></span>';
+      html += '<div class="resultados-partilhar-wrap"><a href="' + urlWhatsApp.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar" title="Partilhar com amigos" aria-label="Partilhar resultados com os amigos"><span class="resultados-partilhar-longo">Partilhar os meus resultados com os amigos</span><span class="resultados-partilhar-curto">AMIGOS</span>' + iconPartilha + '</a><a href="' + urlWhatsAppPais.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" class="resultados-partilhar resultados-partilhar-pais" title="Partilhar com os pais" aria-label="Partilhar resultados com os pais"><span class="resultados-partilhar-longo">Partilhar resultados com os meus pais</span><span class="resultados-partilhar-curto">PAIS</span>' + iconPartilha + '</a></div>';
+      html += '<div class="resultados-concluidos"><h4>TÓPICOS CONCLUÍDOS</h4>';
+      if (concluidos.length) {
+        html += '<p>Respondeste corretamente a todas as questões destes tópicos:</p><ul>';
+        concluidos.forEach(function(n) {
+          html += '<li><a href="#t' + n + '">Tópico ' + n + '</a></li>';
+        });
+        html += '</ul></div>';
+      } else {
+        html += '<p class="resultados-concluidos-vazio">Ainda nenhum tópico concluído. Responde a todas as questões de um tópico e clica em Corrigir para o marcar como concluído.</p></div>';
+      }
+      if (summaryLines.length) {
+        html += '<div class="resultados-dificuldades"><h4>DIFICULDADES</h4><ul>';
+        summaryLines.forEach(function(line) {
+          var m = line.match(/Tópico (\d+) – Questão (\d+)/);
+          if (m) html += '<li>' + link(m[1], m[2], line) + '</li>';
+          else html += '<li>' + line + '</li>';
+        });
+        html += '</ul></div>';
+      }
+      html += '<div class="resultados-log"><h4>LOG DE ERROS</h4>';
+      if (!log.length) html += '<p class="resultados-log-vazio">Ainda não há registos. Ao responderes errado a uma questão e corrigires o tópico, cada erro fica aqui registado.</p>';
+      else {
+        html += '<ul class="resultados-log-lista">';
+        log.forEach(function(entry) {
+          var resp = entry.wrongAnswer ? ': ' + escapeHtml(entry.wrongAnswer) : '';
+          html += '<li>Tópico ' + entry.topic + ' – Questão ' + entry.ex + ' – Responder errado' + resp + '</li>';
+        });
+        html += '</ul>';
+      }
+      html += '</div>';
+      container.innerHTML = html;
+    }
+    function escapeHtml(s) {
+      var div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    // Envolver o bloco de exercícios de cada tópico num painel expansível (fechado por defeito)
+    function initPainéisExercicios() {
+      for (var n = 1; n <= 9; n++) {
+        var section = document.getElementById('t' + n);
+        if (!section) continue;
+        var titulo = section.querySelector('h3.exercicios-titulo');
+        if (!titulo) continue;
+        var resumoId = 'resumo-t' + n;
+        var nodes = [];
+        var el = titulo.nextElementSibling;
+        while (el && el.id !== resumoId) {
+          nodes.push(el);
+          el = el.nextElementSibling;
+        }
+        if (el && el.id === resumoId) nodes.push(el);
+        var details = document.createElement('details');
+        details.className = 'painel-exercicios';
+        var summary = document.createElement('summary');
+        summary.className = 'painel-exercicios-cabecalho';
+        summary.innerHTML = titulo.innerHTML + ' <span class="painel-exercicios-icone" aria-hidden="true">▼</span>';
+        var wrap = document.createElement('div');
+        wrap.className = 'painel-exercicios-conteudo';
+        nodes.forEach(function(node) { wrap.appendChild(node); });
+        details.appendChild(summary);
+        details.appendChild(wrap);
+        titulo.parentNode.replaceChild(details, titulo);
+      }
+    }
+
+    // Adicionar botão «limpar este tópico» e link «preencher» em cada secção
+    function initBotoesLimparTopico() {
+      for (var n = 1; n <= 9; n++) {
+        var section = document.getElementById('t' + n);
+        if (!section) continue;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn-limpar-topico';
+        btn.title = 'Apagar respostas só deste tópico';
+        btn.setAttribute('aria-label', 'Apagar respostas do tópico ' + n);
+        btn.innerHTML = '🗑';
+        btn.addEventListener('click', (function(t) { return function() { limparTopico(t); }; })(n));
+        section.insertBefore(btn, section.firstChild);
+        var link = document.createElement('a');
+        link.href = '#';
+        link.className = 'link-preencher-topico';
+        link.title = 'Preencher respostas corretas deste tópico';
+        link.setAttribute('aria-label', 'Preencher tópico ' + n);
+        link.innerHTML = '·';
+        link.addEventListener('click', (function(t) {
+          return function(e) {
+            e.preventDefault();
+            if (!confirm('Pagar tudo e parar de estudar? (Não faça isso)')) return;
+            preencherTopico(t);
+          };
+        })(n));
+        section.appendChild(link);
+      }
+    }
+
+    // Restaurar respostas e pontuação ao carregar a página
+    function initPersist() {
+      document.querySelectorAll('.exercicio[data-topic][data-ex]').forEach(function(el) {
+        var t = el.getAttribute('data-topic'), e = el.getAttribute('data-ex');
+        if (t && e) el.id = 't' + t + '-ex' + e;
+      });
+      initPainéisExercicios();
+      initBotoesLimparTopico();
+      loadRespostas();
+      for (var t = 1; t <= 9; t++) corrigirTopico(t);
+      renderResultados();
+      var inputs = document.querySelectorAll('input[name^="t"]');
+      inputs.forEach(function(inp) {
+        inp.addEventListener('change', saveRespostas);
+        inp.addEventListener('input', saveRespostas);
+      });
+      function attachLimparProgresso(btn) { if (btn) btn.addEventListener('click', limparProgresso); }
+      attachLimparProgresso(document.getElementById('btn-limpar-progresso'));
+      attachLimparProgresso(document.getElementById('btn-limpar-progresso-sticky'));
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPersist);
+    } else {
+      initPersist();
+    }
+
+    // Mostrar/ocultar header fixo ao fazer scroll
+    (function() {
+      var mainHeader = document.getElementById('main-header');
+      var stickyHeader = document.getElementById('header-sticky');
+      if (!mainHeader || !stickyHeader) return;
+      var threshold = 80;
+      function onScroll() {
+        var show = window.scrollY > threshold;
+        stickyHeader.classList.toggle('visible', show);
+        stickyHeader.setAttribute('aria-hidden', show ? 'false' : 'true');
+      }
+      window.addEventListener('scroll', function() { requestAnimationFrame(onScroll); }, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

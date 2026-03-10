@@ -196,6 +196,35 @@
       font-size: 0.72rem;
     }
     header.header-sticky .nav-links a .nav-count { font-size: 0.65rem; }
+    .header-sticky-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-bottom: 2px;
+    }
+    header.header-sticky .header-sticky-top .link-menu-disciplinas {
+      position: static;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.95);
+    }
+    header.header-sticky .header-sticky-top .link-menu-disciplinas:hover,
+    header.header-sticky .header-sticky-top .link-menu-disciplinas:focus { color: white; }
+    header.header-sticky .header-sticky-title { margin: 0; }
+    header.header-sticky .header-sticky-top .btn-limpar-progresso {
+      position: static;
+      top: auto;
+      bottom: auto;
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+      background: rgba(255,255,255,0.3);
+      box-shadow: none;
+      flex-shrink: 0;
+    }
+    header.header-sticky .header-sticky-top .btn-limpar-progresso:hover { background: rgba(255,255,255,0.5); }
+    header.header-sticky .header-sticky-top .btn-limpar-progresso:active { background: rgba(255,255,255,0.6); }
     section.topic {
       position: relative;
       background: white;
@@ -489,7 +518,11 @@
 <body>
   <!-- Header fixo (aparece ao fazer scroll) -->
   <header class="header-sticky" id="header-sticky" aria-hidden="true">
-    <span class="header-sticky-title">📚 Português 4º Ano</span>
+    <div class="header-sticky-top">
+      <a href="index.html" class="link-menu-disciplinas" title="Voltar ao menu de disciplinas">← Menu</a>
+      <span class="header-sticky-title">📚 Português 4º Ano</span>
+      <button type="button" class="btn-limpar-progresso" id="btn-limpar-progresso-sticky" title="Limpar respostas e pontuação guardadas" aria-label="Limpar progresso">🗑</button>
+    </div>
     <nav class="header-nav" aria-label="Tópicos">
       <div class="nav-links">
         <a href="#t1" title="Ler e compreender">1<span class="nav-count"></span></a>
@@ -4260,7 +4293,7 @@
         var wrongAnswer = '';
         const exercicioEl = sectionEl ? sectionEl.querySelector('.exercicio[data-topic="' + topic + '"][data-ex="' + ex + '"]') : null;
         const nameA = 't' + topic + '-ex' + ex + '-a';
-        const hasTriple = (Number(topic) === 9 && ex === 1) || (exercicioEl && document.querySelector('input[name="' + nameA + '"]'));
+        const hasTriple = (DISCIPLINA_ID === 'pt' && Number(topic) === 9 && ex === 1) || (exercicioEl && document.querySelector('input[name="' + nameA + '"]'));
         if (hasTriple && exercicioEl) {
           const nameB = 't' + topic + '-ex' + ex + '-b';
           const nameC = 't' + topic + '-ex' + ex + '-c';
@@ -4564,8 +4597,9 @@
         inp.addEventListener('change', saveRespostas);
         inp.addEventListener('input', saveRespostas);
       });
-      var btnLimpar = document.getElementById('btn-limpar-progresso');
-      if (btnLimpar) btnLimpar.addEventListener('click', limparProgresso);
+      function attachLimparProgresso(btn) { if (btn) btn.addEventListener('click', limparProgresso); }
+      attachLimparProgresso(document.getElementById('btn-limpar-progresso'));
+      attachLimparProgresso(document.getElementById('btn-limpar-progresso-sticky'));
     }
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initPersist);
